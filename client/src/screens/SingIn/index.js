@@ -26,6 +26,7 @@ export default () => {
     // let login ()
 
     return (
+        // TODO: transformar em View
         <Container>
             <InputArea_2>
                 <Text>
@@ -33,8 +34,11 @@ export default () => {
                 </Text>
            </InputArea_2>
 
+            // TODO: container
            <InputArea>
 
+               // TODO: virar componente de InputForm
+               // TODO: placeholder, value, onChange, type (date, name, email...)
                 <SingInput 
                     placeholder="Digite seu email"
                     value={emailField}
@@ -48,6 +52,8 @@ export default () => {
                     password={true}
                 />
 
+               // TODO: virar componente de Botao
+               // TODO: text, styleType (olhar figma), onPress
                 <CustomButton onPress={()=> navigation.navigate('EditProfile')}>
                     <CustomButtonText>LOGAR</CustomButtonText>
                 </CustomButton>
