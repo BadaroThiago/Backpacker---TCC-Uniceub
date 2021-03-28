@@ -23,6 +23,8 @@ export default () => {
     const [emailField, setEmailField] = useState('');
     const [passwordField, setPasswordField] = useState('');
 
+    // let login ()
+
     return (
         <Container>
             <InputArea_2>
@@ -30,6 +32,7 @@ export default () => {
                     <LoginText>Entrar</LoginText>
                 </Text>
            </InputArea_2>
+
            <InputArea>
 
                 <SingInput 

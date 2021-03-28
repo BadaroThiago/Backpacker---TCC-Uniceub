@@ -18,7 +18,8 @@ const Input = styled.TextInput`
     color: #333C47;
 `;
 
-
+// TODO: renomear para BPInputField
+// TODO: type ("password", "email", "text", "date")
 export default ({placeholder, value, onChangeText, password}) => {
     return(
         <InputArea>

@@ -1,6 +1,6 @@
 import React, { useState }from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { Text, Image } from 'react-native';
+import { Text, Image, Alert } from 'react-native';
 import { Container, 
         InputArea, 
         CustomButton,
@@ -11,6 +11,8 @@ import { Container,
      } from './styles';
 
 import SingInput from '../../components/SingInput';
+import firebase from 'firebase';
+import { createUser } from '../../Api';
 
 export default () => {
 
@@ -18,8 +20,19 @@ export default () => {
 
     const [nameField, setNameField] = useState('');
     const [emailField, setEmailField] = useState('');
-    const [ageField, setAgeField] = useState('');
+    const [dateField, setDateField] = useState('');
     const [passwordField, setPasswordField] = useState('');
+
+    let signUp = () => {
+        createUser(nameField, emailField, dateField, passwordField)
+        .then(() => {
+            console.log("HEY");
+            navigation.navigate('SingIn');
+        })
+        .catch((err) => {
+            Alert.alert('Erro no cadastro', err.message);
+        });
+    }
 
     return (
         <Container>
@@ -44,8 +57,8 @@ export default () => {
 
                 <SingInput 
                     placeholder="Data de Nascimento"
-                    value={ageField}
-                    onChangeText={t=>setAgeField(t)}
+                    value={dateField}
+                    onChangeText={t=>setDateField(t)}
                 />
 
                 <SingInput 
@@ -61,7 +74,7 @@ export default () => {
                     password={true}
                 />
 
-                <CustomButton onPress={()=> navigation.navigate('SingIn')}>
+                <CustomButton onPress={signUp}>
                     <CustomButtonText>CADASTRAR</CustomButtonText>
                 </CustomButton>
 

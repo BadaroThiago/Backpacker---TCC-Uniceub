@@ -33,6 +33,6 @@ export default () => (
         <Stack.Screen name="EditProfile" component={EditProfile}></Stack.Screen>
 
         <Stack.Screen name="MainTab" component={MainTab}></Stack.Screen>
-    
+
     </Stack.Navigator>
 );
