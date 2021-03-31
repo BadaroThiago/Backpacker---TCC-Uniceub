@@ -13,10 +13,27 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
 
+  header: {
+    marginTop: 50,
+    marginLeft: 20,
+    marginBottom: 15,
+    height: 30,
+    flexDirection: 'row',
+    alignContent: 'space-between'
+  },
+
   title: {
     marginLeft: 20,
-    marginTop: 70,
-    fontSize: 36,
+    marginTop: 60,
+    marginBottom: 20,
+    fontSize: 40,
+    fontWeight: 'bold',
+    color: colorConstants.WhiteText,
+  },
+  title2: {
+    marginLeft: 20,
+    marginBottom: 20,
+    fontSize: 40,
     fontWeight: 'bold',
     color: colorConstants.WhiteText,
   },
@@ -28,6 +45,7 @@ export const styles = StyleSheet.create({
     backgroundColor: colorConstants.SecondaryBackground,
     flexDirection: 'row',
     marginTop: 10,
+    marginBottom: 5,
     borderWidth: 2,
     paddingLeft: 10,
     borderColor: colorConstants.WhiteText,

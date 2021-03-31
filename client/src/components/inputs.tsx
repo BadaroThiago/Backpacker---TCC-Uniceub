@@ -3,6 +3,19 @@ import { TextInput } from "react-native";
 import { styles } from "../styles";
 
 
+export const BPTextInput = ({ placeholder, onChangeText }) => {
+    return (
+      <TextInput
+        style={styles.input}
+        placeholderTextColor="#ccc"
+        placeholder={placeholder}
+        onChangeText={onChangeText}
+        textContentType="none"
+        autoCorrect={false}
+      />
+    );
+};
+
 export const BPEmailInput = ({ onChangeText }) => {
     return (
       <TextInput
@@ -19,12 +32,12 @@ export const BPEmailInput = ({ onChangeText }) => {
     );
 };
 
-export const BPPasswordInput = ({ onChangeText }) => {
+export const BPPasswordInput = ({ placeholder, onChangeText }) => {
   return (
       <TextInput
         style={styles.input}
         placeholderTextColor="#ccc"
-        placeholder="Senha"
+        placeholder={placeholder}
         autoCompleteType="password"
         secureTextEntry={true}
         textContentType="password"

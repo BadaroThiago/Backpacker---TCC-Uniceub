@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { View, Text, TextInput, TouchableOpacity, Alert } from "react-native";
+import { View, Text, TouchableOpacity, Alert } from "react-native";
 import { styles, colorConstants } from "../styles";
 
-import { BPEmailInput, BPPasswordInput } from '../components/inputs';
-import { BPButton } from '../components/buttons';
+import { BPEmailInput, BPPasswordInput } from "../components/inputs";
+import { BPButton } from "../components/buttons";
 
 import firebase from "firebase";
 
@@ -21,7 +21,7 @@ export default () => {
       .then(() => {
         Alert.alert("Bem vindo!");
       })
-      .catch(err => {
+      .catch((err) => {
         Alert.alert("Falha ao logar", err.message);
       });
   };
@@ -30,20 +30,19 @@ export default () => {
     <View style={styles.view}>
       <Text style={styles.title}>Entrar</Text>
 
-      <BPEmailInput
-        onChangeText={t => setEmailField(t)}
-      />
+      <BPEmailInput onChangeText={(t) => setEmailField(t)} />
 
       <BPPasswordInput
-        onChangeText={t => setPasswordField(t)}
+        placeholder="Senha"
+        onChangeText={(t) => setPasswordField(t)}
       />
 
-      <BPButton
-        text="ENTRAR"
-        onPress={login}
-      />
+      <BPButton text="ENTRAR" onPress={login} />
 
-      <TouchableOpacity style={styles.smallText}>
+      <TouchableOpacity
+        style={styles.smallText}
+        onPress={() => navigation.navigate("SignUp")}
+      >
         <Text style={{ color: colorConstants.WhiteText }}>
           Ainda não possui uma conta?{" "}
         </Text>
@@ -52,12 +51,13 @@ export default () => {
         </Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.smallText}>
+      <TouchableOpacity style={styles.smallText}
+        onPress={() => navigation.navigate('ResetPassword')}>
         <Text style={{ color: colorConstants.WhiteText }}>
           Esqueceu sua senha?{" "}
         </Text>
         <Text style={{ color: colorConstants.WhiteText, fontWeight: "bold" }}>
-          Recuperar senha
+          Redefinir senha
         </Text>
       </TouchableOpacity>
     </View>
