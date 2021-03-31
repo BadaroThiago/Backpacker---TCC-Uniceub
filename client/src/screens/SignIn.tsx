@@ -3,13 +3,16 @@ import { useNavigation } from "@react-navigation/native";
 import { View, Text, TextInput, TouchableOpacity, Alert } from "react-native";
 import { styles, colorConstants } from "../styles";
 
+import { BPEmailInput, BPPasswordInput } from '../components/inputs';
+import { BPButton } from '../components/buttons';
+
 import firebase from "firebase";
 
 export default () => {
   const navigation = useNavigation();
 
-  const [emailField, setEmailField] = useState("");
-  const [passwordField, setPasswordField] = useState("");
+  const [emailField, setEmailField] = useState<string>("");
+  const [passwordField, setPasswordField] = useState<string>("");
 
   let login = () => {
     firebase
@@ -27,30 +30,18 @@ export default () => {
     <View style={styles.view}>
       <Text style={styles.title}>Entrar</Text>
 
-      <TextInput
-        style={styles.input}
-        placeholderTextColor="#ccc"
-        placeholder="Email"
+      <BPEmailInput
         onChangeText={t => setEmailField(t)}
-        textContentType="emailAddress"
-        autoCompleteType="email"
-        keyboardType="email-address"
-        autoCorrect={false}
-        autoCapitalize="none"
       />
-      <TextInput
-        style={styles.input}
-        placeholderTextColor="#ccc"
-        placeholder="Senha"
-        autoCompleteType="password"
-        secureTextEntry={true}
-        textContentType="password"
+
+      <BPPasswordInput
         onChangeText={t => setPasswordField(t)}
       />
 
-      <TouchableOpacity style={styles.button} onPress={login}>
-        <Text style={styles.buttonText}>ENTRAR</Text>
-      </TouchableOpacity>
+      <BPButton
+        text="ENTRAR"
+        onPress={login}
+      />
 
       <TouchableOpacity style={styles.smallText}>
         <Text style={{ color: colorConstants.WhiteText }}>
