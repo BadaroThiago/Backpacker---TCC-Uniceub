@@ -1,7 +1,7 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 
-import UserContextProvider from "./src/contexts/UserContext";
+// import UserContextProvider from "./src/contexts/UserContext";
 import MainStack from "./src/stacks/MainStack";
 
 import firebase from "firebase";
@@ -14,10 +14,8 @@ if (!firebase.apps.length) {
 
 export default () => {
   return (
-    <UserContextProvider>
-      <NavigationContainer>
-        <MainStack></MainStack>
-      </NavigationContainer>
-    </UserContextProvider>
+    <NavigationContainer>
+      <MainStack></MainStack>
+    </NavigationContainer>
   );
 };
