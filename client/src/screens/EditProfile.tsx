@@ -5,6 +5,7 @@ import { styles } from "../styles";
 
 import { BPEmailInput, BPPasswordInput, BPTextInput } from '../components/inputs';
 import { BPButton } from '../components/buttons';
+import { BPButtonDel } from '../components/buttons';
 import BPHeader from '../components/header';
 
 import { createUser } from '../api/User';
@@ -14,22 +15,9 @@ export default () => {
   const navigation = useNavigation();
 
   const [nameField, setNamelField] = useState<string>("");
-  const [dateField, setDateField] = useState<string>("");
   const [emailField, setEmailField] = useState<string>("");
   const [passwordField, setPasswordField] = useState<string>("");
-  // Confirm password não esta sendo usado?
   const [confirmPasswordField, setConfirmPasswordField] = useState<string>("");
-
-  let signIn = async () => {
-      createUser(nameField, emailField, passwordField, dateField)
-      .then(() => {
-        navigation.navigate('SignIn');
-        Alert.alert("Bem vindo!");
-      })
-      .catch(err => {
-        Alert.alert("Falha ao logar", err.message);
-      });
-  };
 
   return (
     <View style={styles.view}>
@@ -38,16 +26,11 @@ export default () => {
         onPress={() => navigation.goBack()}
       />
 
-      <Text style={styles.title2}>Cadastrar</Text>
+      <Text style={styles.title2}>Editar Perfil</Text>
 
       <BPTextInput
         placeholder="Nome"
         onChangeText={t => setNamelField(t)}
-      />
-
-      <BPTextInput
-        placeholder="Data de Nascimento (DD/MM/YYYY)"
-        onChangeText={t => setDateField(t)}
       />
 
       <BPEmailInput
@@ -65,8 +48,13 @@ export default () => {
       />
 
       <BPButton
-        text="CRIAR CONTA"
-        onPress={signIn}
+        text="SALVAR"
+     //   onPress={}
+      />
+
+      <BPButtonDel
+        text="EXCLUIR"
+     //   onPress={}
       />
     </View>
   );
