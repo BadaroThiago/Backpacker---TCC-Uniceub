@@ -2,7 +2,7 @@ import axios from "axios";
 import firebase from "firebase";
 import moment from "moment";
 
-const BASE_API = "http://localhost:300/user";
+const BASE_API = "http://localhost:8081/user";
 
 interface UserFormFields {
   name?: string;
@@ -25,8 +25,8 @@ export async function createUser(
   await axios.post(`${BASE_API}/new`, {
     name: name,
     email: email,
-    date: unixDate.unix(),
-    fireabase_id: firebase.auth().currentUser.uid,
+    dt_nascimento: unixDate.unix(),
+    firebase_id: firebase.auth().currentUser.uid,
   });
 }
 
