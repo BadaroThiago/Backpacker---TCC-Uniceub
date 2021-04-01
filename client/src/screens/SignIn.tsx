@@ -19,6 +19,7 @@ export default () => {
       .auth()
       .signInWithEmailAndPassword(emailField, passwordField)
       .then(() => {
+        navigation.navigate('EditProfile');
         Alert.alert("Bem vindo!");
       })
       .catch((err) => {

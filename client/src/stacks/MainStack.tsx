@@ -11,22 +11,22 @@ import ResetPassword from "../screens/ResetPassword";
 // import SignUp from "../screens/SingUp/index";
 
 // import Home from "../screens/Home";
-// import EditProfile from "../screens/EditProfile";
+ import EditProfile from "../screens/EditProfile";
 
 // import MainTab from "../stacks/MainTab";
 
 const Stack = createStackNavigator();
 
 export default () => {
+  
   // <Stack.Screen name="Preload" component={Preload}></Stack.Screen>
-  // <Stack.Screen name="Recover" component={Recover}></Stack.Screen>
-  // <Stack.Screen name="Recover_Code" component={Recover_Code}></Stack.Screen>
-  // <Stack.Screen name="NewPassword" component={NewPassword}></Stack.Screen>
 
   // <Stack.Screen name="Home" component={Home}></Stack.Screen>
-  // <Stack.Screen name="EditProfile" component={EditProfile}></Stack.Screen>
+   
+   <Stack.Screen name="EditProfile" component={EditProfile}></Stack.Screen>
 
-  // <Stack.Screen name="MainTab" component={MainTab}></Stack.Screen>
+   // <Stack.Screen name="MainTab" component={MainTab}></Stack.Screen>
+
   return (
     <Stack.Navigator
       initialRouteName="SignIn"
@@ -34,6 +34,7 @@ export default () => {
     >
       <Stack.Screen name="SignIn" component={SignIn}></Stack.Screen>
       <Stack.Screen name="SignUp" component={SignUp}></Stack.Screen>
+      <Stack.Screen name="EditProfile" component={EditProfile}></Stack.Screen>
       <Stack.Screen
         name="ResetPassword"
         component={ResetPassword}

@@ -5,6 +5,7 @@ export const colorConstants = {
   MainBackground: '#27323E',
   SecondaryBackground: '#333C47',
   Blue: '#1DA1F2',
+  Red: '#D72929',
 }
 
 export const styles = StyleSheet.create({
@@ -30,6 +31,7 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: colorConstants.WhiteText,
   },
+
   title2: {
     marginLeft: 20,
     marginBottom: 20,
@@ -67,6 +69,20 @@ export const styles = StyleSheet.create({
     borderColor: colorConstants.Blue
   },
 
+  buttondel: {
+    width: '90%',
+    height: 52,
+    marginTop: 10,
+
+    backgroundColor: colorConstants.Red,
+    justifyContent: 'center',
+    alignSelf: 'center',
+    alignItems: 'center',
+
+    borderRadius: 6,
+    borderColor: colorConstants.Red
+  },
+
   buttonText: {
     fontSize: 18,
     color: 'white',
@@ -81,4 +97,3 @@ export const styles = StyleSheet.create({
   }
 
 });
-

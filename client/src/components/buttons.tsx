@@ -9,3 +9,11 @@ export const BPButton = ({ text, onPress }) => {
     </TouchableOpacity>
   );
 }
+
+export const BPButtonDel = ({ text, onPress }) => { 
+  return (
+    <TouchableOpacity style={styles.buttondel} onPress={onPress}>
+      <Text style={styles.buttonText}>{ text }</Text>
+    </TouchableOpacity>
+  );
+}
