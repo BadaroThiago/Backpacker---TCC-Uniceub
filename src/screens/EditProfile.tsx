@@ -12,7 +12,8 @@ import { BPButton } from "../components/buttons";
 import { BPButtonDel } from "../components/buttons";
 import BPHeader from "../components/header";
 
-import { createUser, getUser } from "../api/User";
+import { getUser, editUser, UserFormFields } from "../api/User";
+import firebase from "firebase";
 
 export default () => {
   const navigation = useNavigation();
@@ -28,6 +29,31 @@ export default () => {
       setNamelField(res.data.nome_usuario);
     });
   }, []);
+
+  const updateUser = async () => {
+    let user = firebase.auth().currentUser;
+
+    // Caso email ou senha tenham sido alterados
+    // TODO: refatorar isso
+    if (user.email !== emailField) {
+      user.email = emailField;
+      await firebase.auth().updateCurrentUser(user);
+    } else if (passwordField !== "" && passwordField === confirmPasswordField) {
+      await user.updatePassword(passwordField);
+    }
+
+    let data: UserFormFields = {};
+    data.nome_usuario = nameField;
+    data.email = emailField;
+
+    try {
+      await editUser(data);
+      Alert.alert("Atualizado com sucesso!");
+    } catch(err) {
+      Alert.alert("Erro ao atualizar dados", err.message);
+    }
+  }
+
 
   return (
     <View style={styles.view}>
@@ -55,7 +81,7 @@ export default () => {
 
       <BPButton
         text="SALVAR"
-        //   onPress={}
+        onPress={updateUser}
       />
 
       <BPButtonDel

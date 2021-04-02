@@ -4,8 +4,8 @@ import moment from "moment";
 
 const BASE_API = "http://localhost:8081/user";
 
-interface UserFormFields {
-  name?: string;
+export interface UserFormFields {
+  nome_usuario?: string;
   email?: string;
   password?: string;
   dt_nascimento?: string;
@@ -37,39 +37,12 @@ export async function getUser() {
   return await axios.get(url);
 }
 
-export async function editUser(
-  name?: string,
-  email?: string,
-  password?: string,
-  date?: string
-) {
-  let editFields: UserFormFields = {};
+export async function editUser(payload: UserFormFields) {
   let user = firebase.auth().currentUser;
 
-  // Se mudar email ou senha, precisa atualizar no firebase
-  if (typeof email !== "undefined") {
-    editFields.email = email;
-    user.email = email;
-  }
-  if (typeof password !== "undefined") {
-    editFields.password = password;
-    await user.updatePassword(password);
-  }
-
-  // realiza updates no firebase
-  await firebase.auth().updateCurrentUser(user);
-
-  // TODO: melhorar isso
-  if (typeof name !== "undefined") {
-    editFields.name = name;
-  }
-  if (typeof date !== "undefined") {
-    editFields.dt_nascimento = date;
-  }
-
   // adiciona o token
-  editFields.token = await user.getIdToken();
-  await axios.post(`${BASE_API}/${user.uid}/edit`, editFields);
+  // payload.token = await user.getIdToken();
+  await axios.put(`${BASE_API}/${user.uid}`, payload);
 }
 
 export async function deleteUser(softDelete = false) {}
