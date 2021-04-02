@@ -22,6 +22,7 @@ export default () => {
   const [emailField, setEmailField] = useState<string>("");
   const [passwordField, setPasswordField] = useState<string>("");
   const [confirmPasswordField, setConfirmPasswordField] = useState<string>("");
+  const [shouldUpdateUser, setShouldUpdateUser] = useState<boolean>(false);
 
   useEffect(() => {
     getUser().then((res) => {
@@ -31,29 +32,42 @@ export default () => {
   }, []);
 
   const updateUser = async () => {
-    let user = firebase.auth().currentUser;
-
-    // Caso email ou senha tenham sido alterados
-    // TODO: refatorar isso
-    if (user.email !== emailField) {
-      user.email = emailField;
-      await firebase.auth().updateCurrentUser(user);
-    } else if (passwordField !== "" && passwordField === confirmPasswordField) {
-      await user.updatePassword(passwordField);
-    }
-
-    let data: UserFormFields = {};
-    data.nome_usuario = nameField;
-    data.email = emailField;
-
     try {
-      await editUser(data);
+      if (shouldUpdateUser) {
+        let data: UserFormFields = {};
+        data.nome_usuario = nameField;
+        data.email = emailField;
+        await editUser(data);
+      }
+
+      let user = firebase.auth().currentUser;
+
+      // Caso email ou senha tenham sido alterados
+      // TODO: refatorar isso
+      if (user.email !== emailField) {
+        user.email = emailField;
+        await firebase.auth().updateCurrentUser(user);
+      } else if (passwordField !== "" && passwordField === confirmPasswordField) {
+        await user.updatePassword(passwordField);
+      }
+
       Alert.alert("Atualizado com sucesso!");
+      setShouldUpdateUser(false);
     } catch(err) {
+      console.log(err);
       Alert.alert("Erro ao atualizar dados", err.message);
     }
   }
 
+  const onChangeName = name => {
+    setNamelField(name);
+    setShouldUpdateUser(true);
+  }
+
+  const onChangeEmail = email => {
+    setEmailField(email);
+    setShouldUpdateUser(true);
+  }
 
   return (
     <View style={styles.view}>
@@ -64,10 +78,10 @@ export default () => {
       <BPTextInput
         value={nameField}
         placeholder="Nome"
-        onChangeText={(t) => setNamelField(t)}
+        onChangeText={(t) => onChangeName(t)}
       />
 
-      <BPEmailInput value={emailField} onChangeText={(t) => setEmailField(t)} />
+      <BPEmailInput value={emailField} onChangeText={(t) => onChangeEmail(t)} />
 
       <BPPasswordInput
         placeholder="Senha"
@@ -86,7 +100,7 @@ export default () => {
 
       <BPButtonDel
         text="EXCLUIR"
-        //   onPress={}
+        // onPress={}
       />
     </View>
   );
