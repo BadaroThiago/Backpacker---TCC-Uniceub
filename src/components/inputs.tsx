@@ -3,7 +3,7 @@ import { TextInput } from "react-native";
 import { styles } from "../styles";
 
 
-export const BPTextInput = ({ placeholder, onChangeText }) => {
+export const BPTextInput = ({ value, placeholder, onChangeText }) => {
     return (
       <TextInput
         style={styles.input}
@@ -12,11 +12,12 @@ export const BPTextInput = ({ placeholder, onChangeText }) => {
         onChangeText={onChangeText}
         textContentType="none"
         autoCorrect={false}
+        value={value}
       />
     );
 };
 
-export const BPEmailInput = ({ onChangeText }) => {
+export const BPEmailInput = ({ value, onChangeText }) => {
     return (
       <TextInput
         style={styles.input}
@@ -28,6 +29,7 @@ export const BPEmailInput = ({ onChangeText }) => {
         keyboardType="email-address"
         autoCorrect={false}
         autoCapitalize="none"
+        value={value}
       />
     );
 };
