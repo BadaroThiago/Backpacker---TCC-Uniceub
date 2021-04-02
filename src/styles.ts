@@ -83,9 +83,29 @@ export const styles = StyleSheet.create({
     borderColor: colorConstants.Red
   },
 
+  buttondel2: {
+    width: '90%',
+    height: 52,
+    marginTop: 10,
+
+    backgroundColor: colorConstants.MainBackground,
+    justifyContent: 'center',
+    alignSelf: 'center',
+    alignItems: 'center',
+
+    borderRadius: 6,
+    borderColor: '#867eff',
+    borderWidth: 1.3
+  },
+
   buttonText: {
     fontSize: 18,
     color: 'white',
+    fontWeight: 'bold'
+  },
+  buttonText2: {
+    fontSize: 18,
+    color: '#867eff',
     fontWeight: 'bold'
   },
 

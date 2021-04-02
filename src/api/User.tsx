@@ -33,7 +33,7 @@ export async function createUser(
 export async function getUser() {
   let user = firebase.auth().currentUser;
   // let token = await user.getIdToken();
-  let url = `${BASE_API}/${user.uid}`
+  let url = `${BASE_API}/${user.uid}`;
   return await axios.get(url);
 }
 
@@ -45,4 +45,12 @@ export async function editUser(payload: UserFormFields) {
   await axios.put(`${BASE_API}/${user.uid}`, payload);
 }
 
-export async function deleteUser(softDelete = false) {}
+export async function deleteUser(softDelete = false) {
+  let user = firebase.auth().currentUser;
+
+  // adiciona o token
+  // payload.token = await user.getIdToken();
+  await axios.delete(`${BASE_API}/${user.uid}`, {
+    data: { soft_delete: softDelete },
+  });
+}

@@ -8,11 +8,10 @@ import {
   BPPasswordInput,
   BPTextInput,
 } from "../components/inputs";
-import { BPButton } from "../components/buttons";
-import { BPButtonDel } from "../components/buttons";
+import { BPButton, BPButtonDelete, BPButtonDelete2 } from "../components/buttons";
 import BPHeader from "../components/header";
 
-import { getUser, editUser, UserFormFields } from "../api/User";
+import { getUser, editUser, deleteUser, UserFormFields } from "../api/User";
 import firebase from "firebase";
 
 export default () => {
@@ -59,6 +58,18 @@ export default () => {
     }
   }
 
+  const removeUser = async (softDelete = false) => {
+    try {
+      await deleteUser(softDelete);
+      await firebase.auth().currentUser.delete()
+
+      Alert.alert(`Conta ${softDelete ? "excluida" : "desativada"} com sucesso!`);
+      navigation.navigate("SigIn");
+    } catch(err) {
+      Alert.alert("Erro", err.message);
+    }
+  }
+
   const onChangeName = name => {
     setNamelField(name);
     setShouldUpdateUser(true);
@@ -98,9 +109,13 @@ export default () => {
         onPress={updateUser}
       />
 
-      <BPButtonDel
-        text="EXCLUIR"
-        // onPress={}
+      <BPButtonDelete
+        text="DESATIVAR CONTA"
+        onPress={() => removeUser()}
+      />
+      <BPButtonDelete2
+        text="EXCLUIR CONTA"
+        onPress={() => removeUser(true)}
       />
     </View>
   );
