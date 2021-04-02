@@ -23,7 +23,7 @@ export async function createUser(
   let unixDate = moment(date, "DD/MM/YYYY");
 
   await axios.post(`${BASE_API}/new`, {
-    name: name,
+    nome: name,
     email: email,
     dt_nascimento: unixDate.unix(),
     firebase_id: firebase.auth().currentUser.uid,
@@ -32,11 +32,9 @@ export async function createUser(
 
 export async function getUser() {
   let user = firebase.auth().currentUser;
-  let token = await user.getIdToken();
-
-  await axios.get(`${BASE_API}/${user.uid}`, {
-    data: { token: token },
-  });
+  // let token = await user.getIdToken();
+  let url = `${BASE_API}/${user.uid}`
+  return await axios.get(url);
 }
 
 export async function editUser(
