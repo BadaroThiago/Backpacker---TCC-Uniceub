@@ -63,8 +63,8 @@ export default () => {
       await deleteUser(softDelete);
       await firebase.auth().currentUser.delete()
 
-      Alert.alert(`Conta ${softDelete ? "excluida" : "desativada"} com sucesso!`);
-      navigation.navigate("SigIn");
+      Alert.alert(`Conta ${softDelete ? "desativada" : "excluida" } com sucesso!`);
+      navigation.navigate("SignIn");
     } catch(err) {
       Alert.alert("Erro", err.message);
     }
@@ -111,11 +111,11 @@ export default () => {
 
       <BPButtonDelete
         text="DESATIVAR CONTA"
-        onPress={() => removeUser()}
+        onPress={() => removeUser(true)}
       />
       <BPButtonDelete2
         text="EXCLUIR CONTA"
-        onPress={() => removeUser(true)}
+        onPress={() => removeUser()}
       />
     </View>
   );
