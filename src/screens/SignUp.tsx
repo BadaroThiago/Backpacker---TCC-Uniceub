@@ -4,11 +4,10 @@ import { View, Text, Alert } from "react-native";
 import { styles } from "../styles";
 
 import { BPEmailInput, BPPasswordInput, BPTextInput } from '../components/inputs';
-import { BPButton } from '../components/buttons';
+import { BPButton, BPButtonPlus } from '../components/buttons';
 import BPHeader from '../components/header';
 
 import { createUser } from '../api/User';
-
 
 export default () => {
   const navigation = useNavigation();
@@ -17,7 +16,6 @@ export default () => {
   const [dateField, setDateField] = useState<string>("");
   const [emailField, setEmailField] = useState<string>("");
   const [passwordField, setPasswordField] = useState<string>("");
-  // Confirm password não esta sendo usado?
   const [confirmPasswordField, setConfirmPasswordField] = useState<string>("");
 
   let signIn = async () => {
@@ -68,6 +66,7 @@ export default () => {
         text="CRIAR CONTA"
         onPress={signIn}
       />
+
     </View>
   );
 };

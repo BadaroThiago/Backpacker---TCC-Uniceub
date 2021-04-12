@@ -3,6 +3,8 @@ import { useNavigation } from "@react-navigation/native";
 import { View, Text, Alert } from "react-native";
 import { styles } from "../styles";
 
+import FabButton from '../components/fabButton'
+
 import {
   BPEmailInput,
   BPPasswordInput,
@@ -82,7 +84,7 @@ export default () => {
 
   return (
     <View style={styles.view}>
-      <BPHeader showMenuButton={false} onPress={() => navigation.goBack()} />
+      <BPHeader showMenuButton={false} onPress={()=> navigation.navigate('Home')} />
 
       <Text style={styles.title2}>Editar Perfil</Text>
 
@@ -117,6 +119,9 @@ export default () => {
         text="EXCLUIR CONTA"
         onPress={() => removeUser()}
       />
+
+      <FabButton render={navigation} style={{ top : 700, right: 50}}/>
+
     </View>
   );
 };
