@@ -55,6 +55,21 @@ export const styles = StyleSheet.create({
     color: colorConstants.WhiteText
   },
 
+  descriptionInput: {
+    width: '90%',
+    height: 100,
+    alignSelf: 'center',
+    backgroundColor: colorConstants.SecondaryBackground,
+    flexDirection: 'row',
+    marginTop: 10,
+    marginBottom: 5,
+    borderWidth: 2,
+    paddingLeft: 10,
+    borderColor: colorConstants.WhiteText,
+    borderRadius: 3,
+    color: colorConstants.WhiteText
+  },
+
   button: {
     width: '90%',
     height: 52,
@@ -97,6 +112,19 @@ export const styles = StyleSheet.create({
     borderColor: '#867eff',
     borderWidth: 1.3
   },
+
+  buttonplus: {
+    width: 80,
+    height: 40,
+    borderRadius: 60 / 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowRadius: 10,
+    shadowColor: '#00213B',
+    backgroundColor: '#1DA1F2',
+    shadowOpacity: 0.3,
+    marginTop: 10
+},
 
   buttonText: {
     fontSize: 18,

@@ -17,6 +17,20 @@ export const BPTextInput = ({ value, placeholder, onChangeText }) => {
     );
 };
 
+export const BPDescriptionTextInput = ({ value, placeholder, onChangeText }) => {
+  return (
+    <TextInput
+      style={styles.descriptionInput}
+      placeholderTextColor="#ccc"
+      placeholder={placeholder}
+      onChangeText={onChangeText}
+      textContentType="none"
+      autoCorrect={false}
+      value={value}
+    />
+  );
+};
+
 export const BPEmailInput = ({ value, onChangeText }) => {
     return (
       <TextInput
@@ -33,6 +47,7 @@ export const BPEmailInput = ({ value, onChangeText }) => {
       />
     );
 };
+
 
 export const BPPasswordInput = ({ placeholder, onChangeText }) => {
   return (
