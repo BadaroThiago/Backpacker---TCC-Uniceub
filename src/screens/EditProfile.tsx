@@ -3,14 +3,18 @@ import { useNavigation } from "@react-navigation/native";
 import { View, Text, Alert } from "react-native";
 import { styles } from "../styles";
 
-import FabButton from '../components/fabButton'
+import FabButton from "../components/fabButton";
 
 import {
   BPEmailInput,
   BPPasswordInput,
   BPTextInput,
 } from "../components/inputs";
-import { BPButton, BPButtonDelete, BPButtonDelete2 } from "../components/buttons";
+import {
+  BPButton,
+  BPButtonDelete,
+  BPButtonDelete2,
+} from "../components/buttons";
 import BPHeader from "../components/header";
 
 import { getUser, editUser, deleteUser, UserFormFields } from "../api/User";
@@ -26,10 +30,12 @@ export default () => {
   const [shouldUpdateUser, setShouldUpdateUser] = useState<boolean>(false);
 
   useEffect(() => {
-    getUser().then((res) => {
-      setEmailField(res.data.email);
-      setNamelField(res.data.nome_usuario);
-    });
+    getUser()
+      .then((res) => {
+        setEmailField(res.data.email);
+        setNamelField(res.data.nome_usuario);
+      })
+      .catch();
   }, []);
 
   const updateUser = async () => {
@@ -48,43 +54,51 @@ export default () => {
       if (user.email !== emailField) {
         user.email = emailField;
         await firebase.auth().updateCurrentUser(user);
-      } else if (passwordField !== "" && passwordField === confirmPasswordField) {
+      } else if (
+        passwordField !== "" &&
+        passwordField === confirmPasswordField
+      ) {
         await user.updatePassword(passwordField);
       }
 
       Alert.alert("Atualizado com sucesso!");
       setShouldUpdateUser(false);
-    } catch(err) {
+    } catch (err) {
       console.log(err);
       Alert.alert("Erro ao atualizar dados", err.message);
     }
-  }
+  };
 
   const removeUser = async (softDelete = false) => {
     try {
       await deleteUser(softDelete);
-      await firebase.auth().currentUser.delete()
+      await firebase.auth().currentUser.delete();
 
-      Alert.alert(`Conta ${softDelete ? "desativada" : "excluida" } com sucesso!`);
+      Alert.alert(
+        `Conta ${softDelete ? "desativada" : "excluida"} com sucesso!`
+      );
       navigation.navigate("SignIn");
-    } catch(err) {
+    } catch (err) {
       Alert.alert("Erro", err.message);
     }
-  }
+  };
 
-  const onChangeName = name => {
+  const onChangeName = (name) => {
     setNamelField(name);
     setShouldUpdateUser(true);
-  }
+  };
 
-  const onChangeEmail = email => {
+  const onChangeEmail = (email) => {
     setEmailField(email);
     setShouldUpdateUser(true);
-  }
+  };
 
   return (
     <View style={styles.view}>
-      <BPHeader showMenuButton={false} onPress={()=> navigation.navigate('Home')} />
+      <BPHeader
+        showMenuButton={false}
+        onPress={() => navigation.navigate("Home")}
+      />
 
       <Text style={styles.title2}>Editar Perfil</Text>
 
@@ -106,22 +120,12 @@ export default () => {
         onChangeText={(t) => setConfirmPasswordField(t)}
       />
 
-      <BPButton
-        text="SALVAR"
-        onPress={updateUser}
-      />
+      <BPButton text="SALVAR" onPress={updateUser} />
 
-      <BPButtonDelete
-        text="DESATIVAR CONTA"
-        onPress={() => removeUser(true)}
-      />
-      <BPButtonDelete2
-        text="EXCLUIR CONTA"
-        onPress={() => removeUser()}
-      />
+      <BPButtonDelete text="DESATIVAR CONTA" onPress={() => removeUser(true)} />
+      <BPButtonDelete2 text="EXCLUIR CONTA" onPress={() => removeUser()} />
 
-      <FabButton render={navigation} style={{ top : 700, right: 50}}/>
-
+      <FabButton render={navigation} style={{ top: 700, right: 50 }} />
     </View>
   );
 };

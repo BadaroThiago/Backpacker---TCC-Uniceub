@@ -26,31 +26,36 @@ export async function createUser(
     nome: name,
     email: email,
     dt_nascimento: unixDate.unix(),
-    firebase_id: firebase.auth().currentUser.uid,
+    id_firebase: firebase.auth().currentUser.uid,
   });
 }
 
 export async function getUser() {
   let user = firebase.auth().currentUser;
-  // let token = await user.getIdToken();
+  let token = await user.getIdToken();
+
   let url = `${BASE_API}/${user.uid}`;
-  return await axios.get(url);
+
+  await axios.get(url, {
+    headers: { Authorization: token }
+  });
 }
 
 export async function editUser(payload: UserFormFields) {
   let user = firebase.auth().currentUser;
+  let token = await user.getIdToken();
 
-  // adiciona o token
-  // payload.token = await user.getIdToken();
-  await axios.put(`${BASE_API}/${user.uid}`, payload);
+  await axios.put(`${BASE_API}/${user.uid}`, payload, {
+    headers: { Authorization: token }
+  });
 }
 
 export async function deleteUser(softDelete = false) {
   let user = firebase.auth().currentUser;
+  let token = await user.getIdToken();
 
-  // adiciona o token
-  // payload.token = await user.getIdToken();
   await axios.delete(`${BASE_API}/${user.uid}`, {
     data: { soft_delete: softDelete },
+    headers: { Authorization: token }
   });
 }
