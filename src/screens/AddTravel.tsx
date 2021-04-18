@@ -12,11 +12,11 @@ import BPHeader from "../components/header";
 export default () => {
   const navigation = useNavigation();
 
-  const [nameField, setNamelField] = useState<string>("");
-  const [DescriptionField, setDescriptionField] = useState<string>("");
-  const [SpentField, setSpentField] = useState<string>("");
-  const [dateField, setDateField] = useState<string>("");
-  const [dateTField, setDateTField] = useState<string>("");
+  const [name, setName] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
+  const [budget, setBudget] = useState<string>("");
+  const [startDate, setStartDate] = useState<string>("");
+  const [endDate, setEndDate] = useState<string>("");
 
   return (
     <View style={styles.view}>
@@ -25,32 +25,32 @@ export default () => {
       <Text style={styles.title2}>Adicionar Viagem</Text>
 
       <BPTextInput
-        value={nameField}
+        value={name}
         placeholder="Nome"
-        onChangeText={(t) => setNamelField(t)}
+        onChangeText={(t) => setName(t)}
       />
 
       <BPDescriptionTextInput
-        value={DescriptionField}
+        value={description}
         placeholder="Descrição (Opcional)"
-        onChangeText={(t) => setDescriptionField(t)}
+        onChangeText={(t) => setDescription(t)}
       />
 
       <BPTextInput
-        value={SpentField}
+        value={budget}
         placeholder="Meta de Gastos (Opcional)"
-        onChangeText={(t) => setSpentField(t)}
+        onChangeText={(t) => setBudget(t)}
       />
 
 
       <BPTextInput
         placeholder="Data de Início (DD/MM/YYYY)"
-        onChangeText={t => setDateField(t)}
+        onChangeText={t => setStartDate(t)}
       />
 
       <BPTextInput
         placeholder="Data de Término (DD/MM/YYYY)"
-        onChangeText={t => setDateTField(t)}
+        onChangeText={t => setEndDate(t)}
       />
 
       <BPButton
@@ -59,7 +59,6 @@ export default () => {
       />
 
       <FabButton render={navigation} style={{ top : 700, right: 50}}/>
-
     </View>
   );
 };
