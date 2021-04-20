@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { View, Text } from "react-native";
-import { styles, colorConstants } from "../styles";
+import { styles } from "../styles";
 
-import FabButton from '../components/fabButton'
-
+import Card from '../components/card';
+import FabButton from '../components/fabButton';
 import { BPButtonPlus } from "../components/buttons";
 
 export default () => {
@@ -14,6 +14,7 @@ export default () => {
     <View style={styles.view}>
         <Text style={styles.title}>Viagens</Text>
 
+        
 
         <FabButton render={navigation} style={{ top : 700, right: 50}}/>
 

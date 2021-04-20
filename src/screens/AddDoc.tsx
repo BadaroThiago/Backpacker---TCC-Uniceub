@@ -14,15 +14,12 @@ export default () => {
 
   const [nameField, setNamelField] = useState<string>("");
   const [DescriptionField, setDescriptionField] = useState<string>("");
-  const [SpentField, setSpentField] = useState<string>("");
-  const [dateField, setDateField] = useState<string>("");
-  const [dateTField, setDateTField] = useState<string>("");
 
   return (
     <View style={styles.view}>
       <BPHeader showMenuButton={false} onPress={()=> navigation.navigate('Home')} />
 
-      <Text style={styles.title2}>Adicionar local</Text>
+      <Text style={styles.title2}>Adicionar Documento</Text>
 
       <BPTextInput
         value={nameField}
@@ -36,26 +33,9 @@ export default () => {
         onChangeText={(t) => setDescriptionField(t)}
       />
 
-      <BPTextInput
-        value={SpentField}
-        placeholder="Meta de Gastos (Opcional)"
-        onChangeText={(t) => setSpentField(t)}
-      />
-
-
-      <BPTextInput
-        placeholder="Data de Início (DD/MM/YYYY)"
-        onChangeText={t => setDateField(t)}
-      />
-
-      <BPTextInput
-        placeholder="Data de Término (DD/MM/YYYY)"
-        onChangeText={t => setDateTField(t)}
-      />
-
       <BPButton
         text="Adicionar"
-        onPress={()=> navigation.navigate('AddDoc')}
+        onPress={()=> navigation.navigate('AddSpent')}
       />
 
       <FabButton render={navigation} style={{ top : 700, right: 50}}/>

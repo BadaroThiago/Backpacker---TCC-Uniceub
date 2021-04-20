@@ -8,6 +8,8 @@ import ResetPassword from "../screens/ResetPassword";
 import Home from "../screens/Home";
 import AddTravel from "../screens/AddTravel";
 import AddLocal from "../screens/AddLocal";
+import AddDoc from "../screens/AddDoc";
+import AddSpent from "../screens/AddSpent";
 import EditProfile from "../screens/EditProfile";
 
 const Stack = createStackNavigator();
@@ -15,7 +17,7 @@ const Stack = createStackNavigator();
 export default () => {
   return (
     <Stack.Navigator
-      initialRouteName="SignIn"
+      initialRouteName="Home"
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen name="SignIn" component={SignIn}></Stack.Screen>
@@ -25,6 +27,8 @@ export default () => {
       <Stack.Screen name="Home" component={Home}></Stack.Screen>
       <Stack.Screen name="AddTravel" component={AddTravel}></Stack.Screen>
       <Stack.Screen name="AddLocal" component={AddLocal}></Stack.Screen>
+      <Stack.Screen name="AddDoc" component={AddDoc}></Stack.Screen>
+      <Stack.Screen name="AddSpent" component={AddSpent}></Stack.Screen>
 
       <Stack.Screen
         name="ResetPassword"

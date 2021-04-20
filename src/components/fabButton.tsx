@@ -8,26 +8,29 @@ import {
 import { AntDesign, FontAwesome5, Entypo } from "@expo/vector-icons";
 
 export default class FabButton extends React.Component {
-  // TODO: isso aqui fica no constructor
-  animation = new Animated.Value(0);
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.animation = new Animated.Value(0),
+    this.state = {
+      open: false
+    };
   }
 
   toggleMenu = () => {
-    // TODO: declarar `this.open` como state
-    const toValue = this.open ? 0 : 1;
+    const toValue = this.state.open ? 0 : 1;
 
+    //console.log('To value',toValue);
+    //console.log('State open',this.state.open);
     Animated.spring(this.animation, {
       toValue,
       friction: 5,
       useNativeDriver: true,
     }).start();
 
-    // TODO: para atualizar valores de state, usar setState
-    this.open = !this.open;
+    this.setState({
+        open : !this.state.open
+    });
   };
 
   render() {
@@ -44,7 +47,6 @@ export default class FabButton extends React.Component {
       ],
     };
 
-    // TODO: colocar como functions da classe
     const editProfile = {
       transform: [
         { scale: this.animation },
@@ -57,7 +59,6 @@ export default class FabButton extends React.Component {
       ],
     };
 
-    // TODO: colocar como functions da classe
     const addTravel = {
       transform: [
         { scale: this.animation },
@@ -70,7 +71,6 @@ export default class FabButton extends React.Component {
       ],
     };
 
-    // TODO: colocar como functions da classe
     const rotation = {
       transform: [
         {
