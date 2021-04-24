@@ -36,7 +36,7 @@ export async function getUser() {
 
   let url = `${BASE_API}/${user.uid}`;
 
-  await axios.get(url, {
+  return await axios.get(url, {
     headers: { Authorization: token }
   });
 }
@@ -45,7 +45,7 @@ export async function editUser(payload: UserFormFields) {
   let user = firebase.auth().currentUser;
   let token = await user.getIdToken();
 
-  await axios.put(`${BASE_API}/${user.uid}`, payload, {
+  return await axios.put(`${BASE_API}/${user.uid}`, payload, {
     headers: { Authorization: token }
   });
 }
