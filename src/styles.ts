@@ -142,6 +142,17 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 20,
     fontSize: 14,
-  }
+  },
+
+
+  card: {
+    backgroundColor: colorConstants.SecondaryBackground,
+    borderRadius: 6,
+    shadowColor: "black",
+    shadowOpacity: 0.4,
+    shadowOffset: { width: 0, height: 3 },
+  },
+
+
 
 });
