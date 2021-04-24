@@ -3,7 +3,7 @@ import { useNavigation } from "@react-navigation/native";
 import { View, Text } from "react-native";
 import { styles } from "../styles";
 
-import FabButton from '../components/fabButton'
+import MyComponent from '../components/FAB';
 
 import { BPTextInput, BPDescriptionTextInput } from "../components/inputs";
 import { BPButton  } from "../components/buttons";
@@ -38,7 +38,7 @@ export default () => {
         onPress={()=> navigation.navigate('AddSpent')}
       />
 
-      <FabButton render={navigation} style={{ top : 700, right: 50}}/>
+      <MyComponent/>
 
     </View>
   );

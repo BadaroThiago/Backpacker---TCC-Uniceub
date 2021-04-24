@@ -11,14 +11,16 @@ import AddLocal from "../screens/AddLocal";
 import AddDoc from "../screens/AddDoc";
 import AddSpent from "../screens/AddSpent";
 import EditProfile from "../screens/EditProfile";
+import DetailTrip from "../screens/DetailTrip";
 import ListExpenses from '../screens/ListExpenses';
+import Local from '../screens/Local';
 
 const Stack = createStackNavigator();
 
 export default () => {
   return (
     <Stack.Navigator
-      initialRouteName="ListExpenses"
+      initialRouteName="DetailTrip"
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen name="SignIn" component={SignIn}></Stack.Screen>
@@ -32,6 +34,8 @@ export default () => {
       <Stack.Screen name="AddSpent" component={AddSpent}></Stack.Screen>
 
       <Stack.Screen name="ListExpenses" component={ListExpenses}></Stack.Screen>
+      <Stack.Screen name="DetailTrip" component={DetailTrip}></Stack.Screen>
+      <Stack.Screen name="Local" component={Local}></Stack.Screen>
 
       <Stack.Screen
         name="ResetPassword"

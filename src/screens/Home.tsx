@@ -3,22 +3,24 @@ import { useNavigation } from "@react-navigation/native";
 import { View, Text } from "react-native";
 import { styles } from "../styles";
 
-import Card from '../components/card';
-import FabButton from '../components/fabButton';
-import { BPButtonPlus } from "../components/buttons";
+import { BPCardTravelList } from '../components/card';
+import MyComponent from '../components/FAB';
 
 export default () => {
   const navigation = useNavigation();
 
   return (
     <View style={styles.view}>
+
         <Text style={styles.title}>Viagens</Text>
 
-        
+        <BPCardTravelList width="85%" height={100}/>
+        <BPCardTravelList width="85%" height={100}/>
+        <BPCardTravelList width="85%" height={100}/>
+        <BPCardTravelList width="85%" height={100}/>
+        <BPCardTravelList width="85%" height={100}/>
 
-        <FabButton render={navigation} style={{ top : 700, right: 50}}/>
-
-        <BPButtonPlus text="Criar" onPress={()=> navigation.navigate('AddTravel')}/>
+        <MyComponent/>
 
     </View>
   );

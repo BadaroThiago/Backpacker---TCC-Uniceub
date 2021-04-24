@@ -26,13 +26,3 @@ export const BPButtonDelete2 = ({ text, onPress }) => {
     </TouchableOpacity>
   );
 }
-
-export const BPButtonPlus = ({ text, onPress }) => { 
-  return (
-    <TouchableOpacity onPress={onPress}>
-      <View style={[styles.buttonplus]}>
-        <AntDesign  name="plus" size={20} color="#333C47">{ text }</AntDesign>
-      </View>
-    </TouchableOpacity>
-  );
-}

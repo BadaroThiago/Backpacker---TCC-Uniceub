@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
     backgroundColor: colorConstants.MainBackground,
     flex: 1,
   },
-
+ 
   header: {
     marginTop: 50,
     marginLeft: 20,

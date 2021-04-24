@@ -3,7 +3,7 @@ import { useNavigation } from "@react-navigation/native";
 import { View, Text, Alert } from "react-native";
 import { styles } from "../styles";
 
-import FabButton from "../components/fabButton";
+import MyComponent from '../components/FAB';
 
 import {
   BPEmailInput,
@@ -125,7 +125,7 @@ export default () => {
       <BPButtonDelete text="DESATIVAR CONTA" onPress={() => removeUser(true)} />
       <BPButtonDelete2 text="EXCLUIR CONTA" onPress={() => removeUser()} />
 
-      <FabButton render={navigation} style={{ top: 700, right: 50 }} />
+      <MyComponent/>
     </View>
   );
 };
