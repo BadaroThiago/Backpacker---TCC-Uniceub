@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, FlatList } from "react-native";
+import { View, Text, FlatList, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import BPHeader from "../components/header";
-import { BPCardDocsList } from "../components/card";
+import { BPCardExpenseList, BPCardExpensesInfo } from "../components/card";
 import { styles } from "../styles";
 
 export default () => {
@@ -16,19 +16,29 @@ export default () => {
         onPress={() => navigation.navigate("Home")}
       />
 
-      <Text style={styles.title2}>Lista de gastos</Text>
+      <Text style={styles.title2}>Gastos</Text>
+
+      <BPCardExpensesInfo width="85%" />
 
       <FlatList
         data={[
-          { id: "adf", nome: "Nome do documento 1" },
-          { id: "adfasdfk", nome: "Nome do documento 2" },
-          { id: "adasdff", nome: "Nome do documento 3" },
+          { id: "adf", nome: "Nome do gasto 1" },
+          { id: "adfasdfk", nome: "Nome do gasto 2" },
+          { id: "adasdff", nome: "Nome do gasto 3" },
+          { id: "aasdasdff", nome: "Nome do gasto 3" },
+          { id: "adaasdsdff", nome: "Nome do gasto 3" },
+          { id: "adasddsfa", nome: "Nome do gasto 3" },
+          { id: "adasdfdddf", nome: "Nome do gasto 3" },
+          { id: "adasdfaaaaaaaf", nome: "Nome do gasto 3" },
         ]}
         renderItem={(doc) => (
-          <BPCardDocsList name={doc.item.nome} width="85%" height={100} />
+          <BPCardExpenseList name={doc.item.nome} width="85%" height={60} />
         )}
         keyExtractor={(t) => t.id}
+        ListHeaderComponent={<Text style={styles.listHeader}>Todos os gastos</Text>}
       />
+
+
     </View>
   );
 };
