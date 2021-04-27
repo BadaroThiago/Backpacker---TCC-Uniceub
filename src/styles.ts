@@ -40,6 +40,14 @@ export const styles = StyleSheet.create({
     color: colorConstants.WhiteText,
   },
 
+  listHeader: {
+    marginLeft: 20,
+    marginBottom: 20,
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: colorConstants.WhiteText,
+  },
+
   input: {
     width: '90%',
     height: 50,
