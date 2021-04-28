@@ -6,7 +6,7 @@ import { IconAndText } from "./IconAndText";
 import { styles, colorConstants } from "../styles";
 
 import { BPTextExpenseInfo } from "../components/expenses/text";
-import { BPGoalChart } from "../components/charts";
+import { BPGoalChart, BPLocalChart } from "../components/charts";
 
 export const BPCardTravelList = ({ width, height }) => {
   return (
@@ -194,7 +194,7 @@ export const BPCardDetailTrip = ({ width, height }) => {
   );
 };
 
-export const BPCardDetailTrip_2 = ({ width, height }) => {
+export const BPCardDetailTrip_2 = ({ width, height, name }) => {
   return (
     <View>
       <TouchableOpacity>
@@ -221,24 +221,31 @@ export const BPCardDetailTrip_2 = ({ width, height }) => {
                 fontSize: 16,
                 color: colorConstants.WhiteText,
                 fontWeight: "bold",
-              }}
-            >
-              Locais Visitados
+              }}>
             </Text>
+
             <Text
               style={{
                 flex: 2,
                 fontSize: 16,
                 color: colorConstants.WhiteText,
                 fontWeight: "bold",
-              }}
-            >
-              Meta de Gastos
+              }}>
             </Text>
+
+            <View style={{ marginBottom: 1 }}>
+            <BPLocalChart
+              goal={15}
+              currentValue={5}
+              title="Locais Viajadoss"
+            />
+            <BPGoalChart goal={1500} currentValue={500} title="Meta de gastos" />
+            </View>
+
             <Text
               style={{
                 fontSize: 16,
-                marginBottom: 15,
+                marginTop: 1,
                 color: colorConstants.WhiteText,
                 fontWeight: "bold",
               }}
@@ -247,19 +254,24 @@ export const BPCardDetailTrip_2 = ({ width, height }) => {
             </Text>
           </View>
           <View>
-          <Text style={{ fontSize: 12 }}>
+          <Text
+              style={{
+                marginTop: 10,
+              }}
+            ></Text>
+          <Text style={{ fontSize: 12, borderBottomWidth: 1 }}>
             <IconAndText nome="user" text="Fulano de Tal"></IconAndText>
           </Text>
-          <Text style={{ fontSize: 12 }}>
+          <Text style={{ fontSize: 12, borderBottomWidth: 1, marginTop: 2, }}>
             <IconAndText nome="user" text="Fulano de Tal"></IconAndText>
           </Text>
-          <Text style={{ fontSize: 12 }}>
+          <Text style={{ fontSize: 12, borderBottomWidth: 1, marginTop: 2, }}>
             <IconAndText nome="user" text="Fulano de Tal"></IconAndText>
           </Text>
-          <Text style={{ fontSize: 12 }}>
+          <Text style={{ fontSize: 12, borderBottomWidth: 1, marginTop: 2, }}>
             <IconAndText nome="user" text="Fulano de Tal"></IconAndText>
           </Text>
-          <Text style={{ fontSize: 12 }}>
+          <Text style={{ fontSize: 12, borderBottomWidth: 1, marginTop: 2, }}>
             <IconAndText nome="user" text="Fulano de Tal"></IconAndText>
           </Text>
           </View>
