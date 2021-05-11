@@ -12,6 +12,12 @@ import AddDoc from "../screens/AddDoc";
 import AddSpent from "../screens/AddSpent";
 import EditProfile from "../screens/EditProfile";
 import DetailTrip from "../screens/DetailTrip";
+import DetailLocal from "../screens/DetailLocal";
+import DetailDoc from "../screens/DetailDoc";
+import DetailExpenses from "../screens/DetailExpenses";
+import EditTrip from "../screens/EditTrip";
+import EditLocal from "../screens/EditLocal";
+import EditDoc from "../screens/EditDoc";
 import ListExpenses from '../screens/ListExpenses';
 import Local from '../screens/Local';
 
@@ -20,7 +26,7 @@ const Stack = createStackNavigator();
 export default () => {
   return (
     <Stack.Navigator
-      initialRouteName="DetailTrip"
+      initialRouteName="EditTrip"
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen name="SignIn" component={SignIn}></Stack.Screen>
@@ -35,6 +41,12 @@ export default () => {
 
       <Stack.Screen name="ListExpenses" component={ListExpenses}></Stack.Screen>
       <Stack.Screen name="DetailTrip" component={DetailTrip}></Stack.Screen>
+      <Stack.Screen name="DetailLocal" component={DetailLocal}></Stack.Screen>
+      <Stack.Screen name="DetailDoc" component={DetailDoc}></Stack.Screen>
+      <Stack.Screen name="DetailExpenses" component={DetailExpenses}></Stack.Screen>
+      <Stack.Screen name="EditTrip" component={EditTrip}></Stack.Screen>
+      <Stack.Screen name="EditLocal" component={EditLocal}></Stack.Screen>
+      <Stack.Screen name="EditDoc" component={EditDoc}></Stack.Screen>
       <Stack.Screen name="Local" component={Local}></Stack.Screen>
 
       <Stack.Screen

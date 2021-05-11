@@ -18,7 +18,7 @@ export default () => {
         onPress={() => navigation.navigate("Home")}
       />
 
-        <Text style={styles.title2}>Nome da Viagem</Text>
+        <Text style={styles.title2}> Nome da Viagem </Text>
 
         <BPCardDetailTrip width="85%" height={199}/>
         <BPCardDetailTrip_2 width="85%" height={307}/>

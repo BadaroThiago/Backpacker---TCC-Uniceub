@@ -1,7 +1,6 @@
 import React from "react";
 import { Text, TouchableOpacity, View} from "react-native";
 import { styles } from "../styles";
-import { AntDesign } from "@expo/vector-icons";
 
 export const BPButton = ({ text, onPress }) => { 
   return (

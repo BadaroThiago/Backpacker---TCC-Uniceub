@@ -96,7 +96,7 @@ export const BPCardLocal = ({ width, height }) => {
                 fontWeight: "bold",
               }}
             >
-              Locais Viajados
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sodales arcu id commodo vestibulum.
             </Text>
           </View>
 
@@ -194,7 +194,7 @@ export const BPCardDetailTrip = ({ width, height }) => {
   );
 };
 
-export const BPCardDetailTrip_2 = ({ width, height, name }) => {
+export const BPCardDetailTrip_2 = ({ width, height }) => {
   return (
     <View>
       <TouchableOpacity>
@@ -224,16 +224,8 @@ export const BPCardDetailTrip_2 = ({ width, height, name }) => {
               }}>
             </Text>
 
-            <Text
-              style={{
-                flex: 2,
-                fontSize: 16,
-                color: colorConstants.WhiteText,
-                fontWeight: "bold",
-              }}>
-            </Text>
-
             <View style={{ marginBottom: 1 }}>
+
             <BPLocalChart
               goal={15}
               currentValue={5}

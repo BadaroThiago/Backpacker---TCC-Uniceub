@@ -4,7 +4,7 @@ import { View, Text } from "react-native";
 import { styles } from "../styles";
 
 import { BPCardTravelList } from '../components/card';
-import MyComponent from '../components/FAB';
+import FabHome from '../components/FAB';
 
 export default () => {
   const navigation = useNavigation();
@@ -20,7 +20,7 @@ export default () => {
         <BPCardTravelList width="85%" height={100}/>
         <BPCardTravelList width="85%" height={100}/>
 
-        <MyComponent/>
+        <FabHome/>
 
     </View>
   );
