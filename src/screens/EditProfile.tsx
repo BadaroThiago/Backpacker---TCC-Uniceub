@@ -35,7 +35,9 @@ export default () => {
         setEmailField(res.data.email);
         setNamelField(res.data.nome_usuario);
       })
-      .catch();
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   const updateUser = async () => {

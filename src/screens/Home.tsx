@@ -22,6 +22,10 @@ export default () => {
 
         <FabHome/>
 
+      <BPButtonPlus
+        text="Criar"
+        onPress={() => navigation.navigate("AddTravel")}
+      />
     </View>
   );
 };

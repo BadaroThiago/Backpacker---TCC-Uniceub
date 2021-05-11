@@ -2,7 +2,8 @@ import axios from "axios";
 import firebase from "firebase";
 import moment from "moment";
 
-const BASE_API = "http://localhost:8081/travel";
+// const BASE_API = "http://localhost:8081/travel";
+const BASE_API = "https://tcc-backpacker.herokuapp.com/travel";
 
 export interface TravelFormFields {
   nome_viagem: string;
