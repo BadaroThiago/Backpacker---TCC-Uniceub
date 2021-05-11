@@ -18,7 +18,7 @@ const Stack = createStackNavigator();
 export default () => {
   return (
     <Stack.Navigator
-      initialRouteName="ListExpenses"
+      initialRouteName="SignIn"
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen name="SignIn" component={SignIn}></Stack.Screen>

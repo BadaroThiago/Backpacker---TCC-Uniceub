@@ -2,7 +2,8 @@ import axios from "axios";
 import firebase from "firebase";
 import moment from "moment";
 
-const BASE_API = "http://localhost:8081/user";
+const BASE_API = "https://tcc-backpacker.herokuapp.com/user";
+// const BASE_API = "http://localhost:8081/user";
 
 export interface UserFormFields {
   nome_usuario?: string;
@@ -36,9 +37,11 @@ export async function getUser() {
 
   let url = `${BASE_API}/${user.uid}`;
 
-  return await axios.get(url, {
+  let data = await axios.get(url, {
     headers: { Authorization: token }
   });
+
+  return data;
 }
 
 export async function editUser(payload: UserFormFields) {
