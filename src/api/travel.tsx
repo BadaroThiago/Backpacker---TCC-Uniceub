@@ -28,9 +28,11 @@ export async function getTravel(idTravel: number) {
 
   let url = `${BASE_API}/${idTravel}`;
 
-  return await axios.get(url, {
+  let data = await axios.get(url, {
     headers: { Authorization: token },
   });
+
+  return data;
 }
 
 export async function editTravel(idTravel: number, payload: TravelFormFields) {
