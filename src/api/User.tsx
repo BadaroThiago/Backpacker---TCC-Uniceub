@@ -2,14 +2,15 @@ import axios from "axios";
 import firebase from "firebase";
 import moment from "moment";
 
-const BASE_API = "http://localhost:8081/user";
+const BASE_API = "https://tcc-backpacker.herokuapp.com/user";
+// const BASE_API = "http://localhost:8081/user";
 
 export interface UserFormFields {
   nome_usuario?: string;
   email?: string;
   password?: string;
+  confirmPassword?: string;
   dt_nascimento?: string;
-  token?: string;
 }
 
 export async function createUser(
@@ -26,31 +27,52 @@ export async function createUser(
     nome: name,
     email: email,
     dt_nascimento: unixDate.unix(),
-    firebase_id: firebase.auth().currentUser.uid,
+    id_firebase: firebase.auth().currentUser.uid,
   });
 }
 
 export async function getUser() {
   let user = firebase.auth().currentUser;
-  // let token = await user.getIdToken();
+  let token = await user.getIdToken();
+
   let url = `${BASE_API}/${user.uid}`;
-  return await axios.get(url);
+
+  let data = await axios.get(url, {
+    headers: { Authorization: token },
+  });
+
+  return data;
 }
 
 export async function editUser(payload: UserFormFields) {
   let user = firebase.auth().currentUser;
+  let token = await user.getIdToken();
 
-  // adiciona o token
-  // payload.token = await user.getIdToken();
-  await axios.put(`${BASE_API}/${user.uid}`, payload);
+  // Caso os emais sejam diferentes, atualiza no firebase
+  if (user.email !== payload.email) {
+    await user.updateEmail(payload.email);
+    console.log(user);
+    user = firebase.auth().currentUser;
+  }
+  // Caso tente atualiza a senha, garante que elas batem
+  if (payload.password && payload.password === payload.confirmPassword) {
+    await user.updatePassword(payload.password);
+  }
+
+  delete payload.password;
+  delete payload.confirmPassword;
+
+  return await axios.put(`${BASE_API}/${user.uid}`, payload, {
+    headers: { Authorization: token },
+  });
 }
 
 export async function deleteUser(softDelete = false) {
   let user = firebase.auth().currentUser;
+  let token = await user.getIdToken();
 
-  // adiciona o token
-  // payload.token = await user.getIdToken();
   await axios.delete(`${BASE_API}/${user.uid}`, {
     data: { soft_delete: softDelete },
+    headers: { Authorization: token },
   });
 }
