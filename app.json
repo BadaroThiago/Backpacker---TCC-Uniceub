@@ -21,7 +21,8 @@
       "favicon": "./assets/favicon.png"
     },
     "android": {
-      "package": "com.sempreceub.backpacker"
+      "package": "com.sempreceub.backpacker",
+      "versionCode": 3
     }
   }
 }

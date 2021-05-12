@@ -9,8 +9,8 @@ export interface UserFormFields {
   nome_usuario?: string;
   email?: string;
   password?: string;
+  confirmPassword?: string;
   dt_nascimento?: string;
-  token?: string;
 }
 
 export async function createUser(
@@ -38,7 +38,7 @@ export async function getUser() {
   let url = `${BASE_API}/${user.uid}`;
 
   let data = await axios.get(url, {
-    headers: { Authorization: token }
+    headers: { Authorization: token },
   });
 
   return data;
@@ -48,8 +48,22 @@ export async function editUser(payload: UserFormFields) {
   let user = firebase.auth().currentUser;
   let token = await user.getIdToken();
 
+  // Caso os emais sejam diferentes, atualiza no firebase
+  if (user.email !== payload.email) {
+    await user.updateEmail(payload.email);
+    console.log(user);
+    user = firebase.auth().currentUser;
+  }
+  // Caso tente atualiza a senha, garante que elas batem
+  if (payload.password && payload.password === payload.confirmPassword) {
+    await user.updatePassword(payload.password);
+  }
+
+  delete payload.password;
+  delete payload.confirmPassword;
+
   return await axios.put(`${BASE_API}/${user.uid}`, payload, {
-    headers: { Authorization: token }
+    headers: { Authorization: token },
   });
 }
 
@@ -59,6 +73,6 @@ export async function deleteUser(softDelete = false) {
 
   await axios.delete(`${BASE_API}/${user.uid}`, {
     data: { soft_delete: softDelete },
-    headers: { Authorization: token }
+    headers: { Authorization: token },
   });
 }
