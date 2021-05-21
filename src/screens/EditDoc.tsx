@@ -19,7 +19,7 @@ export default () => {
     <View style={styles.view}>
       <BPHeader showMenuButton={false} onPress={()=> navigation.navigate('Home')} />
 
-      <Text style={styles.title2}>Adicionar Documento</Text>
+      <Text style={styles.title2}>Editar Documento</Text>
 
       <BPTextInput
         value={nameField}

@@ -1,7 +1,6 @@
-import React, { useState } from "react";
-import { useNavigation } from "@react-navigation/native";
-import { View, Text, TouchableOpacity, Image, Alert } from "react-native";
-import { styles, colorConstants } from "../styles";
+import React from "react";
+import { View, TouchableOpacity, Image, Alert } from "react-native";
+import { styles } from "../styles";
 
 
 export default ({ showMenuButton, onPress }) => {

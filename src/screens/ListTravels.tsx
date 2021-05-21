@@ -1,25 +1,35 @@
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import { View, Text } from "react-native";
+import { View, Text, FlatList } from "react-native";
 import { styles } from "../styles";
 
-import Card from "../components/card";
-import FabButton from "../components/fabButton";
-import { BPButtonPlus } from "../components/buttons";
+import { BPCardTravelList } from '../components/card';
+import FabHome from '../components/FAB';
+import TravelMenu from "./TravelMenu";
 
 export default ({ navigation }) => {
   // const navigation = useNavigation();
 
   return (
     <View style={styles.view}>
-      <Text style={styles.title}>Viagens</Text>
 
-      <FabButton render={navigation} style={{ top: "90%", right: 50 }} />
+        <Text style={styles.title}>Viagens</Text>
 
-      <BPButtonPlus
-        text="Criar"
-        onPress={() => navigation.navigate("TravelMenu")}
+        <FlatList
+        data={[
+          { id: "adfasdasd", nome: "Nome da viagem 1" },
+          { id: "adf", nome: "Nome da viagem 2" },
+          { id: "adasdff", nome: "Nome da viagem 3" },
+          { id: "aasdasdff", nome: "Nome da viagem 4" },
+        ]}
+        renderItem={(doc) => (
+          <BPCardTravelList onPress = {() => navigation.nagivate("TravelMenu")} name={doc.item.nome} width="85%" height={100} />
+        )}
+        keyExtractor={(t) => t.id}
       />
+
+        <FabHome/>
+
     </View>
   );
 };

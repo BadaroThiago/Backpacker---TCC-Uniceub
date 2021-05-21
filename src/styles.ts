@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
     backgroundColor: colorConstants.MainBackground,
     flex: 1,
   },
-
+ 
   header: {
     marginTop: 50,
     marginLeft: 20,
@@ -117,7 +117,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
 
     borderRadius: 6,
-    borderColor: '#867eff',
+    borderColor: '#1DA1F2',
     borderWidth: 1.3
   },
 
@@ -141,7 +141,7 @@ export const styles = StyleSheet.create({
   },
   buttonText2: {
     fontSize: 18,
-    color: '#867eff',
+    color: '#1DA1F2',
     fontWeight: 'bold'
   },
 
