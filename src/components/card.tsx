@@ -8,10 +8,10 @@ import { styles, colorConstants } from "../styles";
 import { BPTextExpenseInfo } from "../components/expenses/text";
 import { BPGoalChart, BPLocalChart } from "../components/charts";
 
-export const BPCardTravelList = ({ width, height }) => {
+export const BPCardTravelList = ({ width, height, onPress }) => {
   return (
     <View>
-      <TouchableOpacity>
+      <TouchableOpacity onPress = {onPress}>
         <Card
           style={{
             ...styles.card,

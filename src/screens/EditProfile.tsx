@@ -42,26 +42,13 @@ export default () => {
 
   const updateUser = async () => {
     try {
-      if (shouldUpdateUser) {
-        let data: UserFormFields = {};
-        data.nome_usuario = nameField;
-        data.email = emailField;
-        await editUser(data);
-      }
-
-      let user = firebase.auth().currentUser;
-
-      // Caso email ou senha tenham sido alterados
-      // TODO: refatorar isso
-      if (user.email !== emailField) {
-        user.email = emailField;
-        await firebase.auth().updateCurrentUser(user);
-      } else if (
-        passwordField !== "" &&
-        passwordField === confirmPasswordField
-      ) {
-        await user.updatePassword(passwordField);
-      }
+      let data: UserFormFields = {
+        nome_usuario: nameField,
+        email: emailField,
+        password: passwordField,
+        confirmPassword: confirmPasswordField,
+      };
+      await editUser(data);
 
       Alert.alert("Atualizado com sucesso!");
       setShouldUpdateUser(false);

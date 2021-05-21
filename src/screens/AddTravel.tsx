@@ -6,21 +6,47 @@ import { styles } from "../styles";
 import MyComponent from '../components/FAB';
 
 import { BPTextInput, BPDescriptionTextInput } from "../components/inputs";
-import { BPButton  } from "../components/buttons";
+import { BPButton } from "../components/buttons";
 import BPHeader from "../components/header";
 
-export default () => {
-  const navigation = useNavigation();
+import { TravelFormFields, createTravel } from "../api/travel";
+import moment from "moment";
 
+export default ({ navigation }) => {
   const [name, setName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [budget, setBudget] = useState<string>("");
   const [startDate, setStartDate] = useState<string>("");
   const [endDate, setEndDate] = useState<string>("");
 
+  const addTravel = async () => {
+    let travel: TravelFormFields = {
+      nome_viagem: name,
+      descricao: description,
+      // TODO: melhorar
+      dt_inicio: moment(startDate, "DD/MM/YYYY").toDate(),
+      dt_fim: moment(endDate, "DD/MM/YYYY").toDate(),
+      orcamento_viagem: Number.parseFloat(budget),
+    };
+
+    createTravel(travel)
+      .then(() => {
+        Alert.alert("Criado viagem com sucesso!");
+        navigation.navigate("Home");
+      })
+      .catch((err) => {
+        console.log(err);
+        Alert.alert("Error", err.message);
+        navigation.navigate("Home");
+      });
+  };
+
   return (
     <View style={styles.view}>
-      <BPHeader showMenuButton={false} onPress={()=> navigation.navigate('Home')} />
+      <BPHeader
+        showMenuButton={false}
+        onPress={() => navigation.navigate("ListTravels")}
+      />
 
       <Text style={styles.title2}>Adicionar Viagem</Text>
 
@@ -42,21 +68,17 @@ export default () => {
         onChangeText={(t) => setBudget(t)}
       />
 
-
       <BPTextInput
         placeholder="Data de Início (DD/MM/YYYY)"
-        onChangeText={t => setStartDate(t)}
+        onChangeText={(t) => setStartDate(t)}
       />
 
       <BPTextInput
         placeholder="Data de Término (DD/MM/YYYY)"
-        onChangeText={t => setEndDate(t)}
+        onChangeText={(t) => setEndDate(t)}
       />
 
-      <BPButton
-        text="Adicionar"
-        onPress={()=> navigation.navigate('AddLocal')}
-      />
+      <BPButton text="Adicionar" onPress={addTravel} />
 
       <MyComponent/>
     </View>

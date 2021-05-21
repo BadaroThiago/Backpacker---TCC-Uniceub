@@ -5,9 +5,10 @@ import { styles } from "../styles";
 
 import { BPCardTravelList } from '../components/card';
 import FabHome from '../components/FAB';
+import TravelMenu from "./TravelMenu";
 
-export default () => {
-  const navigation = useNavigation();
+export default ({ navigation }) => {
+  // const navigation = useNavigation();
 
   return (
     <View style={styles.view}>
@@ -22,7 +23,7 @@ export default () => {
           { id: "aasdasdff", nome: "Nome da viagem 4" },
         ]}
         renderItem={(doc) => (
-          <BPCardTravelList name={doc.item.nome} width="85%" height={100} />
+          <BPCardTravelList onPress = {() => navigation.nagivate("TravelMenu")} name={doc.item.nome} width="85%" height={100} />
         )}
         keyExtractor={(t) => t.id}
       />
