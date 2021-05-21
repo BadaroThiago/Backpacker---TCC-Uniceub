@@ -22,10 +22,10 @@ export default () => {
 
         <FlatList
         data={[
-          { id: "adf", nome: "Nome da viagem 1" },
-          { id: "adf", nome: "Nome da viagem 2" },
-          { id: "adf", nome: "Nome da viagem 3" },
-          { id: "adf", nome: "Nome da viagem 4" },
+          { id: "adfqwe", nome: "Nome da viagem 1" },
+          { id: "adfxxz", nome: "Nome da viagem 2" },
+          { id: "adffdfgy", nome: "Nome da viagem 3" },
+          { id: "adfqwee", nome: "Nome da viagem 4" },
         ]}
         renderItem={(doc) => (
           <BPCardLocal name={doc.item.nome} width="85%" height={100} />
