@@ -9,13 +9,13 @@ import Home from "../screens/Home";
 import AddTravel from "../screens/AddTravel";
 import AddLocal from "../screens/AddLocal";
 import AddDoc from "../screens/AddDoc";
-import AddSpent from "../screens/AddSpent";
+import AddSpent from "../screens/AddExpenses";
 import EditProfile from "../screens/EditProfile";
 import DetailTrip from "../screens/DetailTrip";
 import DetailLocal from "../screens/DetailLocal";
 import DetailDoc from "../screens/DetailDoc";
 import DetailExpenses from "../screens/DetailExpenses";
-import EditTrip from "../screens/EditTrip";
+import EditTravel from "../screens/EditTravel";
 import EditLocal from "../screens/EditLocal";
 import EditDoc from "../screens/EditDoc";
 import ListExpenses from '../screens/ListExpenses';
@@ -44,7 +44,7 @@ export default () => {
       <Stack.Screen name="DetailLocal" component={DetailLocal}></Stack.Screen>
       <Stack.Screen name="DetailDoc" component={DetailDoc}></Stack.Screen>
       <Stack.Screen name="DetailExpenses" component={DetailExpenses}></Stack.Screen>
-      <Stack.Screen name="EditTrip" component={EditTrip}></Stack.Screen>
+      <Stack.Screen name="EditTravel" component={EditTravel}></Stack.Screen>
       <Stack.Screen name="EditLocal" component={EditLocal}></Stack.Screen>
       <Stack.Screen name="EditDoc" component={EditDoc}></Stack.Screen>
       <Stack.Screen name="Local" component={Local}></Stack.Screen>
