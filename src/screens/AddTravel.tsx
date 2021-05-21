@@ -12,9 +12,7 @@ import BPHeader from "../components/header";
 import { TravelFormFields, createTravel } from "../api/travel";
 import moment from "moment";
 
-export default () => {
-  const navigation = useNavigation();
-
+export default ({ navigation }) => {
   const [name, setName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [budget, setBudget] = useState<string>("");
@@ -47,7 +45,7 @@ export default () => {
     <View style={styles.view}>
       <BPHeader
         showMenuButton={false}
-        onPress={() => navigation.navigate("Home")}
+        onPress={() => navigation.navigate("ListTravels")}
       />
 
       <Text style={styles.title2}>Adicionar Viagem</Text>

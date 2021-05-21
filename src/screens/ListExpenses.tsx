@@ -6,9 +6,9 @@ import BPHeader from "../components/header";
 import { BPCardExpenseList, BPCardExpensesInfo } from "../components/card";
 import { styles } from "../styles";
 
-export default () => {
-  const navigation = useNavigation();
+// TODO: Converter para ser uma stack
 
+export default ({ navigation }) => {
   return (
     <View style={styles.view}>
       <BPHeader

@@ -1,19 +1,20 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import AuthNavigation from "../screens/AuthNavigation";
-import HomeNavigation from "../screens/HomeNavigation";
+// import TravelDetail from '../screens/TravelDetail';
+import AddTravel from '../screens/AddTravel';
+// import EditTravel from '../screens/EditTravel';
 
 const Stack = createStackNavigator();
 
 export default () => {
   return (
     <Stack.Navigator
-      initialRouteName="Auth"
+      initialRouteName="AddTravel"
       screenOptions={{ headerShown: false }}
     >
-      <Stack.Screen name="Auth" component={AuthNavigation} />
-      <Stack.Screen name="Travel" component={HomeNavigation} />
+      <Stack.Screen name="AddTravel" component={AddTravel}></Stack.Screen>
     </Stack.Navigator>
   );
 };
+
