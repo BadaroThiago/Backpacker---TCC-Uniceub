@@ -26,7 +26,7 @@ const Stack = createStackNavigator();
 export default () => {
   return (
     <Stack.Navigator
-      initialRouteName="EditTrip"
+      initialRouteName="DetailTrip"
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen name="SignIn" component={SignIn}></Stack.Screen>

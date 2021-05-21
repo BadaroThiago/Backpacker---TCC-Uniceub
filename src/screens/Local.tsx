@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import { View, Text } from "react-native";
+import { View, Text, FlatList } from "react-native";
 import { styles } from "../styles";
 
 import { BPCardLocal } from '../components/card';
@@ -20,10 +20,18 @@ export default () => {
 
         <Text style={styles.title2}>Locais</Text>
 
-        <BPCardLocal width="85%" height={100}/>
-        <BPCardLocal width="85%" height={100}/>
-        <BPCardLocal width="85%" height={100}/>
-        <BPCardLocal width="85%" height={100}/>
+        <FlatList
+        data={[
+          { id: "adf", nome: "Nome da viagem 1" },
+          { id: "adf", nome: "Nome da viagem 2" },
+          { id: "adf", nome: "Nome da viagem 3" },
+          { id: "adf", nome: "Nome da viagem 4" },
+        ]}
+        renderItem={(doc) => (
+          <BPCardLocal name={doc.item.nome} width="85%" height={100} />
+        )}
+        keyExtractor={(t) => t.id}
+      />
 
         <BPFab/>
 

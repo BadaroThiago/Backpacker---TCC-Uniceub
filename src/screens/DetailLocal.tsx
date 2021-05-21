@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import { View, Text } from "react-native";
+import { View, Text, FlatList } from "react-native";
 import { styles } from "../styles";
 
 import {
@@ -26,7 +26,15 @@ export default () => {
 
         <Text style={styles.title2}> Nome Local </Text>
 
-        <BPCardLocal width="85%" height={160}/>
+        <FlatList
+        data={[
+          { id: "adf", nome: "Nome da viagem 1" },
+        ]}
+        renderItem={(doc) => (
+          <BPCardLocal name={doc.item.nome} width="85%" height={160} />
+        )}
+        keyExtractor={(t) => t.id}
+      />
 
         <BPButton text="MARCAR COMO VISITADO" onPress={() => navigation.navigate("Local")} />
         <BPButtonDelete2 text="EDITAR LOCAL" onPress={() => navigation.navigate("AddLocal")} />

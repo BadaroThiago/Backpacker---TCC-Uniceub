@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import { View, Text } from "react-native";
+import { View, Text, FlatList } from "react-native";
 import { styles } from "../styles";
 
 import { BPCardTravelList } from '../components/card';
@@ -14,18 +14,21 @@ export default () => {
 
         <Text style={styles.title}>Viagens</Text>
 
-        <BPCardTravelList width="85%" height={100}/>
-        <BPCardTravelList width="85%" height={100}/>
-        <BPCardTravelList width="85%" height={100}/>
-        <BPCardTravelList width="85%" height={100}/>
-        <BPCardTravelList width="85%" height={100}/>
+        <FlatList
+        data={[
+          { id: "adfasdasd", nome: "Nome da viagem 1" },
+          { id: "adf", nome: "Nome da viagem 2" },
+          { id: "adasdff", nome: "Nome da viagem 3" },
+          { id: "aasdasdff", nome: "Nome da viagem 4" },
+        ]}
+        renderItem={(doc) => (
+          <BPCardTravelList name={doc.item.nome} width="85%" height={100} />
+        )}
+        keyExtractor={(t) => t.id}
+      />
 
         <FabHome/>
 
-      <BPButtonPlus
-        text="Criar"
-        onPress={() => navigation.navigate("AddTravel")}
-      />
     </View>
   );
 };
