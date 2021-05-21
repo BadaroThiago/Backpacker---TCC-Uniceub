@@ -8,23 +8,24 @@ import { BPButton } from "../components/buttons";
 
 import firebase from "firebase";
 
-export default () => {
-  const navigation = useNavigation();
-
+export default ({ navigation }) => {
   const [emailField, setEmailField] = useState<string>("");
   const [passwordField, setPasswordField] = useState<string>("");
 
   let login = () => {
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(emailField, passwordField)
-      .then(() => {
-        navigation.navigate("Home");
-        Alert.alert("Bem vindo!");
-      })
-      .catch((err) => {
-        Alert.alert("Falha ao logar", err.message);
-      });
+    navigation.navigate("Travel");
+    // TODO: DEBUGGGG
+    // firebase
+      // .auth()
+      // .signInWithEmailAndPassword(emailField, passwordField)
+      // .then(() => {
+        // navigation.navigate("Home");
+        // Alert.alert("Bem vindo!");
+      // })
+      // .catch((err) => {
+        // Alert.alert("Falha ao logar", err.message);
+      // });
+
   };
 
   return (
