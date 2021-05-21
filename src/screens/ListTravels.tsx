@@ -1,11 +1,15 @@
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 import { View, Text } from "react-native";
 import { styles } from "../styles";
 
+import Card from "../components/card";
 import FabButton from "../components/fabButton";
 import { BPButtonPlus } from "../components/buttons";
 
 export default ({ navigation }) => {
+  // const navigation = useNavigation();
+
   return (
     <View style={styles.view}>
       <Text style={styles.title}>Viagens</Text>
@@ -14,7 +18,7 @@ export default ({ navigation }) => {
 
       <BPButtonPlus
         text="Criar"
-        onPress={() => navigation.navigate("AddTravel")}
+        onPress={() => navigation.navigate("TravelMenu")}
       />
     </View>
   );
