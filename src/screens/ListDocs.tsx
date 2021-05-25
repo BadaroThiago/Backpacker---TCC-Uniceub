@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, FlatList, ScrollView } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+// import { useNavigation } from "@react-navigation/native";
 
 import BPHeader from "../components/header";
 import { BPCardDocsList } from "../components/card";
 import { styles } from "../styles";
 
-export default () => {
-  const navigation = useNavigation();
+import { TravelRoutes } from '../navigation';
+
+export default ({ navigation }) => {
+  // const navigation = useNavigation();
 
   return (
     <View style={styles.view}>
       <BPHeader
         showMenuButton={false}
-        onPress={() => navigation.navigate("Home")}
+        onPress={() => navigation.navigate(TravelRoutes.List)}
       />
 
       <Text style={styles.title2}>Documentos</Text>
