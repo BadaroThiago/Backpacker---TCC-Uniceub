@@ -5,16 +5,18 @@ import ListExpenses from '../screens/ListExpenses';
 import AddExpense from '../screens/AddExpense';
 // import EditExpense from '../screens/EditExpense';
 
+import { ExpenseRoutes } from '../navigation';
+
 const Stack = createStackNavigator();
 
 export default () => {
   return (
     <Stack.Navigator
-      initialRouteName="ListExpenses"
+      initialRouteName={ExpenseRoutes.List}
       screenOptions={{ headerShown: false }}
     >
-      <Stack.Screen name="ListExpenses" component={ListExpenses}></Stack.Screen>
-      <Stack.Screen name="AddExpense" component={AddExpense}></Stack.Screen>
+      <Stack.Screen name={ExpenseRoutes.List} component={ListExpenses}></Stack.Screen>
+      <Stack.Screen name={ExpenseRoutes.Add} component={AddExpense}></Stack.Screen>
     </Stack.Navigator>
   );
 };

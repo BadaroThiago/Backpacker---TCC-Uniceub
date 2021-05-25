@@ -6,6 +6,8 @@ import BPHeader from "../components/header";
 import { BPCardExpenseList, BPCardExpensesInfo } from "../components/card";
 import { styles } from "../styles";
 
+import { TravelRoutes } from '../navigation';
+
 // TODO: Converter para ser uma stack
 
 export default ({ navigation }) => {
@@ -13,7 +15,7 @@ export default ({ navigation }) => {
     <View style={styles.view}>
       <BPHeader
         showMenuButton={false}
-        onPress={() => navigation.navigate("Home")}
+        onPress={() => navigation.navigate(TravelRoutes.List)}
       />
 
       <Text style={styles.title2}>Gastos</Text>
