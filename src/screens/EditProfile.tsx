@@ -1,28 +1,22 @@
+import firebase from "firebase";
 import React, { useEffect, useState } from "react";
-import { useNavigation } from "@react-navigation/native";
-import { View, Text, Alert } from "react-native";
-import { styles } from "../styles";
-
-import MyComponent from '../components/FAB';
-
-import {
-  BPEmailInput,
-  BPPasswordInput,
-  BPTextInput,
-} from "../components/inputs";
+import { Alert, Text, View } from "react-native";
+import { deleteUser, editUser, getUser, UserFormFields } from "../api/User";
 import {
   BPButton,
   BPButtonDelete,
   BPButtonDelete2,
 } from "../components/buttons";
+import FAB from "../components/FAB";
 import BPHeader from "../components/header";
+import {
+  BPEmailInput,
+  BPPasswordInput,
+  BPTextInput,
+} from "../components/inputs";
+import { styles } from "../styles";
 
-import { getUser, editUser, deleteUser, UserFormFields } from "../api/User";
-import firebase from "firebase";
-
-export default () => {
-  const navigation = useNavigation();
-
+export default ({ navigation }) => {
   const [nameField, setNamelField] = useState<string>("");
   const [emailField, setEmailField] = useState<string>("");
   const [passwordField, setPasswordField] = useState<string>("");
@@ -84,10 +78,7 @@ export default () => {
 
   return (
     <View style={styles.view}>
-      <BPHeader
-        showMenuButton={false}
-        onPress={() => navigation.navigate("Home")}
-      />
+      <BPHeader showMenuButton={false} onPress={() => navigation.goBack()} />
 
       <Text style={styles.title2}>Editar Perfil</Text>
 
@@ -114,7 +105,7 @@ export default () => {
       <BPButtonDelete text="DESATIVAR CONTA" onPress={() => removeUser(true)} />
       <BPButtonDelete2 text="EXCLUIR CONTA" onPress={() => removeUser()} />
 
-      <MyComponent/>
+      <FAB />
     </View>
   );
 };

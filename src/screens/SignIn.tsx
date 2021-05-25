@@ -8,12 +8,14 @@ import { BPButton } from "../components/buttons";
 
 import firebase from "firebase";
 
+import { StackRoutes } from '../navigation';
+
 export default ({ navigation }) => {
   const [emailField, setEmailField] = useState<string>("");
   const [passwordField, setPasswordField] = useState<string>("");
 
   let login = () => {
-    navigation.navigate("Travel");
+    navigation.navigate(StackRoutes.Home);
     // TODO: DEBUGGGG
     // firebase
       // .auth()
