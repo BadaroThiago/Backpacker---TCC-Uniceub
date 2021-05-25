@@ -9,13 +9,15 @@ import ExpenseStack from '../screens/ExpenseStack';
 // import TravelDetail from '../screens/TravelDetail';
 import AddTravel from '../screens/AddTravel';
 
+import { ExpenseRoutes, TravelRoutes } from '../navigation';
+
 export default () => {
   const Tab = createBottomTabNavigator();
 
   return (
       <Tab.Navigator>
-        <Tab.Screen name="AddTravel" component={AddTravel} />
-        <Tab.Screen name="ExpenseStack" component={ExpenseStack} />
+        <Tab.Screen name={TravelRoutes.Add} component={AddTravel} />
+        <Tab.Screen name={ExpenseRoutes.Stack} component={ExpenseStack} />
       </Tab.Navigator>
   );
 };

@@ -3,7 +3,7 @@ import { useNavigation } from "@react-navigation/native";
 import { View, Text, Alert } from "react-native";
 import { styles } from "../styles";
 
-import MyComponent from '../components/FAB';
+import FAB from '../components/FAB';
 
 import { BPTextInput, BPDescriptionTextInput } from "../components/inputs";
 import { BPButton } from "../components/buttons";
@@ -11,6 +11,8 @@ import BPHeader from "../components/header";
 
 import { TravelFormFields, createTravel } from "../api/travel";
 import moment from "moment";
+
+import { StackRoutes, TravelRoutes } from '../navigation';
 
 export default ({ navigation }) => {
   const [name, setName] = useState<string>("");
@@ -23,7 +25,6 @@ export default ({ navigation }) => {
     let travel: TravelFormFields = {
       nome_viagem: name,
       descricao: description,
-      // TODO: melhorar
       dt_inicio: moment(startDate, "DD/MM/YYYY").toDate(),
       dt_fim: moment(endDate, "DD/MM/YYYY").toDate(),
       orcamento_viagem: Number.parseFloat(budget),
@@ -32,12 +33,12 @@ export default ({ navigation }) => {
     createTravel(travel)
       .then(() => {
         Alert.alert("Criado viagem com sucesso!");
-        navigation.navigate("Home");
+        navigation.navigate(TravelRoutes.Stack);
       })
       .catch((err) => {
         console.log(err);
         Alert.alert("Error", err.message);
-        navigation.navigate("Home");
+        navigation.navigate(TravelRoutes.Stack);
       });
   };
 
@@ -45,7 +46,7 @@ export default ({ navigation }) => {
     <View style={styles.view}>
       <BPHeader
         showMenuButton={false}
-        onPress={() => navigation.navigate("ListTravels")}
+        onPress={() => navigation.navigate(TravelRoutes.List)}
       />
 
       <Text style={styles.title2}>Adicionar Viagem</Text>
@@ -80,7 +81,7 @@ export default ({ navigation }) => {
 
       <BPButton text="Adicionar" onPress={addTravel} />
 
-      <MyComponent/>
+      <FAB/>
     </View>
   );
 };

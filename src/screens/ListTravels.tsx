@@ -1,21 +1,18 @@
 import React from "react";
-import { useNavigation } from "@react-navigation/native";
 import { View, Text, FlatList } from "react-native";
 import { styles } from "../styles";
 
-import { BPCardTravelList } from '../components/card';
-import FabHome from '../components/FAB';
-import TravelMenu from "./TravelMenu";
+import { BPCardTravelList } from "../components/card";
+import FabHome from "../components/FAB";
+
+import { TravelRoutes } from "../navigation";
 
 export default ({ navigation }) => {
-  // const navigation = useNavigation();
-
   return (
     <View style={styles.view}>
+      <Text style={styles.title}>Viagens</Text>
 
-        <Text style={styles.title}>Viagens</Text>
-
-        <FlatList
+      <FlatList
         data={[
           { id: "adfasdasd", nome: "Nome da viagem 1" },
           { id: "adf", nome: "Nome da viagem 2" },
@@ -23,13 +20,17 @@ export default ({ navigation }) => {
           { id: "aasdasdff", nome: "Nome da viagem 4" },
         ]}
         renderItem={(doc) => (
-          <BPCardTravelList onPress = {() => navigation.nagivate("TravelMenu")} name={doc.item.nome} width="85%" height={100} />
+          <BPCardTravelList
+            onPress={() => navigation.navigate(TravelRoutes.Stack)}
+            name={doc.item.nome}
+            width="85%"
+            height={100}
+          />
         )}
         keyExtractor={(t) => t.id}
       />
 
-        <FabHome/>
-
+      <FabHome />
     </View>
   );
 };

@@ -3,7 +3,7 @@ import { useNavigation } from "@react-navigation/native";
 import { View, Text, Alert } from "react-native";
 import { styles } from "../styles";
 
-import MyComponent from '../components/FAB';
+import FAB from '../components/FAB';
 
 import { BPTextInput, BPDescriptionTextInput } from "../components/inputs";
 import { BPButton  } from "../components/buttons";
@@ -58,7 +58,7 @@ export default () => {
         onPress={()=> navigation.navigate('AddLocal')}
       />
 
-      <MyComponent/>
+      <FAB/>
     </View>
   );
 };
