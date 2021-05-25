@@ -3,12 +3,6 @@ import { useNavigation } from "@react-navigation/native";
 import { View, Text, FlatList } from "react-native";
 import { styles } from "../styles";
 
-import {
-    BPButton,
-    BPButtonDelete,
-    BPButtonDelete2,
-  } from "../components/buttons";
-
 import { BPCardLocal } from '../components/card';
 import BPFab from '../components/FAB';
 import BPHeader from "../components/header";
@@ -24,21 +18,20 @@ export default () => {
         onPress={() => navigation.navigate("Home")}
       />
 
-        <Text style={styles.title2}> Nome Local </Text>
+        <Text style={styles.title2}>Locais</Text>
 
         <FlatList
         data={[
-          { id: "adf", nome: "Nome da viagem 1" },
+          { id: "adfqwe", nome: "Nome da viagem 1" },
+          { id: "adfxxz", nome: "Nome da viagem 2" },
+          { id: "adffdfgy", nome: "Nome da viagem 3" },
+          { id: "adfqwee", nome: "Nome da viagem 4" },
         ]}
         renderItem={(doc) => (
-          <BPCardLocal name={doc.item.nome} width="85%" height={160} />
+          <BPCardLocal name={doc.item.nome} width="85%" height={100} />
         )}
         keyExtractor={(t) => t.id}
       />
-
-        <BPButton text="MARCAR COMO VISITADO" onPress={() => navigation.navigate("Local")} />
-        <BPButtonDelete2 text="EDITAR LOCAL" onPress={() => navigation.navigate("AddLocal")} />
-        <BPButtonDelete text="EXCLUIR" onPress={() => navigation.navigate("Local")} />
 
         <BPFab/>
 
