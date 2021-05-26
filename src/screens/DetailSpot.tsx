@@ -1,6 +1,6 @@
 import React from "react";
-import { useNavigation } from "@react-navigation/native";
-import { View, Text, FlatList } from "react-native";
+// import { useNavigation } from "@react-navigation/native";
+import { View, Text} from "react-native";
 import { styles } from "../styles";
 
 import {
@@ -13,7 +13,7 @@ import { BPCardLocal } from "../components/card";
 import BPFab from "../components/FAB";
 import BPHeader from "../components/header";
 
-import { SpotRoutes } from '../navigation';
+import { SpotRoutes } from "../navigation";
 
 export default ({ navigation }) => {
   return (
@@ -25,13 +25,7 @@ export default ({ navigation }) => {
 
       <Text style={styles.title2}> Nome Local </Text>
 
-      <FlatList
-        data={[{ id: "adf", nome: "Nome da viagem 1" }]}
-        renderItem={(doc) => (
-          <BPCardLocal name={doc.item.nome} width="85%" height={160} />
-        )}
-        keyExtractor={(t) => t.id}
-      />
+      <BPCardLocal width="85%" height={160} onPress={() => {}} />
 
       <BPButton
         text="MARCAR COMO VISITADO"
