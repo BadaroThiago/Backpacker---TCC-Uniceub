@@ -11,7 +11,7 @@ import { BPGoalChart, BPLocalChart } from "../components/charts";
 export const BPCardTravelList = ({ width, height, onPress }) => {
   return (
     <View>
-      <TouchableOpacity onPress = {onPress}>
+      <TouchableOpacity onPress={onPress}>
         <Card
           style={{
             ...styles.card,
@@ -67,10 +67,10 @@ export const BPCardTravelList = ({ width, height, onPress }) => {
   );
 };
 
-export const BPCardLocal = ({ width, height }) => {
+export const BPCardLocal = ({ width, height, onPress }) => {
   return (
     <View>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={onPress}>
         <Card
           style={{
             ...styles.card,
@@ -96,7 +96,8 @@ export const BPCardLocal = ({ width, height }) => {
                 fontWeight: "bold",
               }}
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sodales arcu id commodo vestibulum.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
+              sodales arcu id commodo vestibulum.
             </Text>
           </View>
 
@@ -108,10 +109,7 @@ export const BPCardLocal = ({ width, height }) => {
             }}
           >
             <Text style={{ flex: 1, fontSize: 12 }}>
-              <IconAndText
-                nome="calendar"
-                text="10/12/2022"
-              ></IconAndText>
+              <IconAndText nome="calendar" text="10/12/2022"></IconAndText>
             </Text>
           </View>
         </Card>
@@ -120,7 +118,11 @@ export const BPCardLocal = ({ width, height }) => {
   );
 };
 
-export const BPCardDetailTrip = ({ width, height }) => {
+export const BPCardDetailTrip = ({ description, width, height }) => {
+  // TODO: receber como parametro:
+  // descricao
+  // qnt viajantes
+  // meta de gastos
   return (
     <View>
       <TouchableOpacity>
@@ -148,7 +150,7 @@ export const BPCardDetailTrip = ({ width, height }) => {
                 color: colorConstants.WhiteText,
               }}
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sodales arcu id commodo vestibulum. Donec pulvinar urna sapien, in rhoncus arcu iaculis sagittis. 
+              {description}
             </Text>
           </View>
 
@@ -162,7 +164,7 @@ export const BPCardDetailTrip = ({ width, height }) => {
               marginTop: 15,
             }}
           >
-            <Text style={{ flex: 1, fontSize: 12 }}>
+            <Text style={{ fontSize: 12 }}>
               <IconAndText
                 nome="plane-departure"
                 text="10/12/2022"
@@ -174,10 +176,10 @@ export const BPCardDetailTrip = ({ width, height }) => {
           </View>
 
           <View
-          style={{
-            flexDirection: "row",
-            height: "50%",
-            padding: 15,
+            style={{
+              flexDirection: "row",
+              height: "50%",
+              padding: 15,
             }}
           >
             <Text style={{ flex: 1, fontSize: 12 }}>
@@ -187,7 +189,6 @@ export const BPCardDetailTrip = ({ width, height }) => {
               <IconAndText nome="amazon" text="R$ 123456,78"></IconAndText>
             </Text>
           </View>
-
         </Card>
       </TouchableOpacity>
     </View>
@@ -221,17 +222,20 @@ export const BPCardDetailTrip_2 = ({ width, height }) => {
                 fontSize: 16,
                 color: colorConstants.WhiteText,
                 fontWeight: "bold",
-              }}>
-            </Text>
+              }}
+            ></Text>
 
             <View style={{ marginBottom: 1 }}>
-
-            <BPLocalChart
-              goal={15}
-              currentValue={5}
-              title="Locais Viajadoss"
-            />
-            <BPGoalChart goal={1500} currentValue={500} title="Meta de gastos" />
+              <BPLocalChart
+                goal={15}
+                currentValue={5}
+                title="Locais Viajadoss"
+              />
+              <BPGoalChart
+                goal={1500}
+                currentValue={500}
+                title="Meta de gastos"
+              />
             </View>
 
             <Text
@@ -246,26 +250,26 @@ export const BPCardDetailTrip_2 = ({ width, height }) => {
             </Text>
           </View>
           <View>
-          <Text
+            <Text
               style={{
                 marginTop: 10,
               }}
             ></Text>
-          <Text style={{ fontSize: 12, borderBottomWidth: 1 }}>
-            <IconAndText nome="user" text="Fulano de Tal"></IconAndText>
-          </Text>
-          <Text style={{ fontSize: 12, borderBottomWidth: 1, marginTop: 2, }}>
-            <IconAndText nome="user" text="Fulano de Tal"></IconAndText>
-          </Text>
-          <Text style={{ fontSize: 12, borderBottomWidth: 1, marginTop: 2, }}>
-            <IconAndText nome="user" text="Fulano de Tal"></IconAndText>
-          </Text>
-          <Text style={{ fontSize: 12, borderBottomWidth: 1, marginTop: 2, }}>
-            <IconAndText nome="user" text="Fulano de Tal"></IconAndText>
-          </Text>
-          <Text style={{ fontSize: 12, borderBottomWidth: 1, marginTop: 2, }}>
-            <IconAndText nome="user" text="Fulano de Tal"></IconAndText>
-          </Text>
+            <Text style={{ fontSize: 12, borderBottomWidth: 1 }}>
+              <IconAndText nome="user" text="Fulano de Tal"></IconAndText>
+            </Text>
+            <Text style={{ fontSize: 12, borderBottomWidth: 1, marginTop: 2 }}>
+              <IconAndText nome="user" text="Fulano de Tal"></IconAndText>
+            </Text>
+            <Text style={{ fontSize: 12, borderBottomWidth: 1, marginTop: 2 }}>
+              <IconAndText nome="user" text="Fulano de Tal"></IconAndText>
+            </Text>
+            <Text style={{ fontSize: 12, borderBottomWidth: 1, marginTop: 2 }}>
+              <IconAndText nome="user" text="Fulano de Tal"></IconAndText>
+            </Text>
+            <Text style={{ fontSize: 12, borderBottomWidth: 1, marginTop: 2 }}>
+              <IconAndText nome="user" text="Fulano de Tal"></IconAndText>
+            </Text>
           </View>
         </Card>
       </TouchableOpacity>
