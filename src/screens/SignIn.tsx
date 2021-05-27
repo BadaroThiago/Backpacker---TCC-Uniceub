@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigation } from "@react-navigation/native";
 import { View, Text, TouchableOpacity, Alert } from "react-native";
 import { styles, colorConstants } from "../styles";
 
@@ -8,26 +7,24 @@ import { BPButton } from "../components/buttons";
 
 import firebase from "firebase";
 
-import { StackRoutes } from '../navigation';
+import { StackRoutes } from "../navigation";
 
 export default ({ navigation }) => {
   const [emailField, setEmailField] = useState<string>("");
   const [passwordField, setPasswordField] = useState<string>("");
 
   let login = () => {
-    navigation.navigate(StackRoutes.Home);
     // TODO: DEBUGGGG
-    // firebase
-      // .auth()
-      // .signInWithEmailAndPassword(emailField, passwordField)
-      // .then(() => {
-        // navigation.navigate("Home");
-        // Alert.alert("Bem vindo!");
-      // })
-      // .catch((err) => {
-        // Alert.alert("Falha ao logar", err.message);
-      // });
-
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(emailField, passwordField)
+      .then(() => {
+        navigation.navigate(StackRoutes.Home);
+        Alert.alert("Bem vindo!");
+      })
+      .catch((err) => {
+        Alert.alert("Falha ao logar", err.message);
+      });
   };
 
   return (
@@ -55,8 +52,10 @@ export default ({ navigation }) => {
         </Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.smallText}
-        onPress={() => navigation.navigate('ResetPassword')}>
+      <TouchableOpacity
+        style={styles.smallText}
+        onPress={() => navigation.navigate("ResetPassword")}
+      >
         <Text style={{ color: colorConstants.WhiteText }}>
           Esqueceu sua senha?{" "}
         </Text>

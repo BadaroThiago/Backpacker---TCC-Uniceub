@@ -1,33 +1,42 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, FlatList } from "react-native";
 import { styles } from "../styles";
 
-import { BPCardTravelList } from "../components/card";
+import { BPCardTravelList } from "../components/cards/BPCardTravelList";
 import FabHome from "../components/FAB";
 
 import { TravelRoutes } from "../navigation";
+import { Travel, getTravels } from "../api/travel";
 
 export default ({ navigation }) => {
+  const [travels, setTravels] = useState<[Travel]>();
+
+  useEffect(() => {
+    getTravels()
+      .then((res) => {
+        console.log(res.data);
+        setTravels(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <View style={styles.view}>
       <Text style={styles.title}>Viagens</Text>
 
       <FlatList
-        data={[
-          { id: "adfasdasd", nome: "Nome da viagem 1" },
-          { id: "adf", nome: "Nome da viagem 2" },
-          { id: "adasdff", nome: "Nome da viagem 3" },
-          { id: "aasdasdff", nome: "Nome da viagem 4" },
-        ]}
-        renderItem={(doc) => (
+        data={travels}
+        renderItem={(t) => (
           <BPCardTravelList
+            travel={t.item}
             onPress={() => navigation.navigate(TravelRoutes.Stack)}
-            name={doc.item.nome}
             width="85%"
             height={100}
           />
         )}
-        keyExtractor={(t) => t.id}
+        keyExtractor={(t) => t.id_viagem.toString()}
       />
 
       <FabHome />

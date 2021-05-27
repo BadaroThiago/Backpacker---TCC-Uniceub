@@ -1,26 +1,42 @@
 import axios from "axios";
 import firebase from "firebase";
+
+import getEnvVars from "../../environment";
 import moment from "moment";
 
-// const BASE_API = "http://localhost:8081/travel";
-const BASE_API = "https://tcc-backpacker.herokuapp.com/travel";
+const BASE_API = `${getEnvVars().apiUrl}/travel`;
 
 export interface Travel {
-  id_viagem: number;
+  id_viagem?: number;
   nome_viagem: string;
-  orcamento_viagem?: number;
-  dt_inicio: Date;
-  dt_fim: Date;
+  orcamento_viagem?: number | string;
+  dt_inicio?: Date | string;
+  dt_fim?: Date | string;
   descricao: string;
 }
 
-export async function createTravel(travel: Travel) {
+export async function createTravel(travelData: Travel) {
+  travelData.orcamento_viagem = parseFloat(travelData.orcamento_viagem as string);
+  travelData.dt_inicio = moment(travelData.orcamento_viagem, 'dd/mm/yyyy').toDate();
+  travelData.dt_fim = moment(travelData.dt_fim, 'dd/mm/yyyy').toDate();
+
   let user = firebase.auth().currentUser;
   let token = await user.getIdToken();
 
-  await axios.post(`${BASE_API}/new`, travel, {
+  await axios.post(`${BASE_API}/new`, travelData, {
     headers: { Authorization: token },
   });
+}
+
+export async function getTravels() {
+  let user = firebase.auth().currentUser;
+  let token = await user.getIdToken();
+
+  let data = await axios.get(BASE_API, {
+    headers: { Authorization: token },
+  });
+
+  return data;
 }
 
 export async function getTravel(idTravel: number) {
