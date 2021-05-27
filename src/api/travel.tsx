@@ -5,15 +5,16 @@ import moment from "moment";
 // const BASE_API = "http://localhost:8081/travel";
 const BASE_API = "https://tcc-backpacker.herokuapp.com/travel";
 
-export interface TravelFormFields {
+export interface Travel {
+  id_viagem: number;
   nome_viagem: string;
-  descricao?: string;
-  dt_inicio?: Date;
-  dt_fim?: Date;
   orcamento_viagem?: number;
+  dt_inicio: Date;
+  dt_fim: Date;
+  descricao: string;
 }
 
-export async function createTravel(travel: TravelFormFields) {
+export async function createTravel(travel: Travel) {
   let user = firebase.auth().currentUser;
   let token = await user.getIdToken();
 
@@ -35,11 +36,11 @@ export async function getTravel(idTravel: number) {
   return data;
 }
 
-export async function editTravel(idTravel: number, payload: TravelFormFields) {
+export async function editTravel(travel: Travel) {
   let user = firebase.auth().currentUser;
   let token = await user.getIdToken();
 
-  await axios.put(`${BASE_API}/${idTravel}`, payload, {
+  await axios.put(`${BASE_API}/${travel.id_viagem}`, travel, {
     headers: { Authorization: token },
   });
 }
