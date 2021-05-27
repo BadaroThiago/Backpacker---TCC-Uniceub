@@ -6,7 +6,7 @@ export enum StackRoutes {
 export enum AuthRoutes {
   SignIn = "SignIn",
   SignUp = "SignUp",
-  ResetPassword = "ResetPassword"
+  ResetPassword = "ResetPassword",
 }
 
 export enum TravelRoutes {

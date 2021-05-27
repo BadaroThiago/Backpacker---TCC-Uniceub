@@ -10,15 +10,15 @@ export interface Travel {
   id_viagem?: number;
   nome_viagem: string;
   orcamento_viagem?: number | string;
-  dt_inicio?: Date | string;
-  dt_fim?: Date | string;
+  dt_inicio?: Date | string | number;
+  dt_fim?: Date | string | number;
   descricao: string;
 }
 
 export async function createTravel(travelData: Travel) {
   travelData.orcamento_viagem = parseFloat(travelData.orcamento_viagem as string);
-  travelData.dt_inicio = moment(travelData.orcamento_viagem, 'dd/mm/yyyy').toDate();
-  travelData.dt_fim = moment(travelData.dt_fim, 'dd/mm/yyyy').toDate();
+  travelData.dt_inicio = moment(travelData.dt_inicio, 'dd/mm/yyyy').unix();
+  travelData.dt_fim = moment(travelData.dt_fim, 'dd/mm/yyyy').unix();
 
   let user = firebase.auth().currentUser;
   let token = await user.getIdToken();

@@ -1,26 +1,25 @@
-import React, { useEffect, useState } from "react";
-import { View, Text, FlatList } from "react-native";
-import { styles } from "../styles";
-
+import { useFocusEffect } from "@react-navigation/native";
+import React, { useCallback, useState } from "react";
+import { FlatList, Text, View } from "react-native";
+import { getTravels, Travel } from "../api/travel";
 import { BPCardTravelList } from "../components/cards/BPCardTravelList";
 import FabHome from "../components/FAB";
-
 import { TravelRoutes } from "../navigation";
-import { Travel, getTravels } from "../api/travel";
+import { styles } from "../styles";
+
+
 
 export default ({ navigation }) => {
   const [travels, setTravels] = useState<[Travel]>();
 
-  useEffect(() => {
-    getTravels()
-      .then((res) => {
-        console.log(res.data);
-        setTravels(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      getTravels()
+        .then((res) => setTravels(res.data))
+        .catch((err) => console.log(err));
+      return () => {};
+    }, [])
+  );
 
   return (
     <View style={styles.view}>
