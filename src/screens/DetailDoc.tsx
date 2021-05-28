@@ -18,19 +18,16 @@ export default () => {
 
   return (
     <View style={styles.view}>
-      <BPHeader
-        showMenuButton={false}
-        onPress={() => navigation.goBack()}
-      />
+      <BPHeader showMenuButton={false} onPress={() => navigation.goBack()} />
 
       <Text style={styles.title2}> Nome Documento </Text>
 
       <FlatList
         data={[{ id: "adf", nome: "Nome da viagem 1" }]}
-        renderItem={(doc) => (
+        renderItem={doc => (
           <BPCardLocal name={doc.item.nome} width="85%" height={160} />
         )}
-        keyExtractor={(t) => t.id}
+        keyExtractor={t => t.id}
       />
 
       <BPButton

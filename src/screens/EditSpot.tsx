@@ -9,11 +9,9 @@ import { BPTextInput, BPDescriptionTextInput } from "../components/inputs";
 import { BPButton } from "../components/buttons";
 import BPHeader from "../components/header";
 
-import { SpotRoutes } from '../navigation';
-
+import { SpotRoutes } from "../navigation";
 
 export default ({ navigation }) => {
-
   const [name, setName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [date, setDate] = useState<string>("");
@@ -30,18 +28,18 @@ export default ({ navigation }) => {
       <BPTextInput
         value={name}
         placeholder="Nome"
-        onChangeText={(t) => setName(t)}
+        onChangeText={t => setName(t)}
       />
 
       <BPDescriptionTextInput
         value={description}
         placeholder="Descrição (Opcional)"
-        onChangeText={(t) => setDescription(t)}
+        onChangeText={t => setDescription(t)}
       />
 
       <BPTextInput
         placeholder="Data de visita (DD/MM/YYYY)"
-        onChangeText={(t) => setDate(t)}
+        onChangeText={t => setDate(t)}
       />
 
       <BPButton

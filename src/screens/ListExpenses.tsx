@@ -6,7 +6,7 @@ import BPHeader from "../components/header";
 import { BPCardExpenseList, BPCardExpensesInfo } from "../components/card";
 import { styles } from "../styles";
 
-import { TravelRoutes } from '../navigation';
+import { TravelRoutes } from "../navigation";
 
 // TODO: Converter para ser uma stack
 
@@ -33,14 +33,14 @@ export default ({ navigation }) => {
           { id: "adasdfdddf", nome: "Nome do gasto 3" },
           { id: "adasdfaaaaaaaf", nome: "Nome do gasto 3" },
         ]}
-        renderItem={(doc) => (
+        renderItem={doc => (
           <BPCardExpenseList name={doc.item.nome} width="85%" height={60} />
         )}
-        keyExtractor={(t) => t.id}
-        ListHeaderComponent={<Text style={styles.listHeader}>Todos os gastos</Text>}
+        keyExtractor={t => t.id}
+        ListHeaderComponent={
+          <Text style={styles.listHeader}>Todos os gastos</Text>
+        }
       />
-
-
     </View>
   );
 };

@@ -3,10 +3,10 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import ListTravels from "../screens/ListTravels";
 import TravelMenu from "../screens/TravelMenu";
-import AddTravel from '../screens/AddTravel';
-import EditProfile from '../screens/EditProfile';
+import AddTravel from "../screens/AddTravel";
+import EditProfile from "../screens/EditProfile";
 
-import { TravelRoutes, UserRoutes } from '../navigation';
+import { TravelRoutes, UserRoutes } from "../navigation";
 
 const Stack = createStackNavigator();
 
@@ -18,9 +18,8 @@ export default () => {
     >
       <Stack.Screen name={TravelRoutes.List} component={ListTravels} />
       <Stack.Screen name={TravelRoutes.Add} component={AddTravel} />
-      <Stack.Screen name={TravelRoutes.Stack} component={TravelMenu}  />
-      <Stack.Screen name={UserRoutes.Edit} component={EditProfile}  />
-
+      <Stack.Screen name={TravelRoutes.Stack} component={TravelMenu} />
+      <Stack.Screen name={UserRoutes.Edit} component={EditProfile} />
     </Stack.Navigator>
   );
 };

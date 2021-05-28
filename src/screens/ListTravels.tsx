@@ -7,16 +7,14 @@ import FabHome from "../components/FAB";
 import { TravelRoutes } from "../navigation";
 import { styles } from "../styles";
 
-
-
 export default ({ navigation }) => {
   const [travels, setTravels] = useState<[Travel]>();
 
   useFocusEffect(
     useCallback(() => {
       getTravels()
-        .then((res) => setTravels(res.data))
-        .catch((err) => console.log(err));
+        .then(res => setTravels(res.data))
+        .catch(err => console.log(err));
       return () => {};
     }, [])
   );
@@ -27,7 +25,7 @@ export default ({ navigation }) => {
 
       <FlatList
         data={travels}
-        renderItem={(t) => (
+        renderItem={t => (
           <BPCardTravelList
             travel={t.item}
             onPress={() => navigation.navigate(TravelRoutes.Stack)}
@@ -35,7 +33,7 @@ export default ({ navigation }) => {
             height={100}
           />
         )}
-        keyExtractor={(t) => t.id_viagem.toString()}
+        keyExtractor={t => t.id_viagem.toString()}
       />
 
       <FabHome />

@@ -28,18 +28,18 @@ export default ({ navigation }) => {
       <BPTextInput
         value={name}
         placeholder="Nome"
-        onChangeText={(t) => setName(t)}
+        onChangeText={t => setName(t)}
       />
 
       <BPDescriptionTextInput
         value={description}
         placeholder="Descrição (Opcional)"
-        onChangeText={(t) => setDescription(t)}
+        onChangeText={t => setDescription(t)}
       />
 
       <BPTextInput
         placeholder="Data de visita (DD/MM/YYYY)"
-        onChangeText={(t) => setDate(t)}
+        onChangeText={t => setDate(t)}
         value={date}
       />
 

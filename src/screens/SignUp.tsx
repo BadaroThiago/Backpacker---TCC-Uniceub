@@ -7,7 +7,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { createUser } from "../api/User";
 import { BPButton } from "../components/buttons";
 import BPHeader from "../components/header";
@@ -33,7 +33,7 @@ export default () => {
         navigation.navigate("SignIn");
         Alert.alert("Bem vindo!");
       })
-      .catch((err) => {
+      .catch(err => {
         Alert.alert("Falha ao logar", err.message);
       });
   };
@@ -51,26 +51,26 @@ export default () => {
 
           <BPTextInput
             placeholder="Nome"
-            onChangeText={(t) => setNamelField(t)}
+            onChangeText={t => setNamelField(t)}
             value={undefined}
           />
 
           <BPTextInput
             placeholder="Data de Nascimento (DD/MM/YYYY)"
-            onChangeText={(t) => setDateField(t)}
+            onChangeText={t => setDateField(t)}
             value={undefined}
           />
 
-          <BPEmailInput onChangeText={(t) => setEmailField(t)} />
+          <BPEmailInput onChangeText={t => setEmailField(t)} />
 
           <BPPasswordInput
             placeholder="Senha"
-            onChangeText={(t) => setPasswordField(t)}
+            onChangeText={t => setPasswordField(t)}
           />
 
           <BPPasswordInput
             placeholder="Confirme a senha"
-            onChangeText={(t) => setConfirmPasswordField(t)}
+            onChangeText={t => setConfirmPasswordField(t)}
           />
 
           <BPButton text="CRIAR CONTA" onPress={signIn} />

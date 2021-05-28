@@ -3,13 +3,13 @@ import { useNavigation } from "@react-navigation/native";
 import { View, Text } from "react-native";
 import { styles } from "../styles";
 
-import FAB from '../components/FAB';
+import FAB from "../components/FAB";
 
 import { BPTextInput, BPDescriptionTextInput } from "../components/inputs";
-import { BPButton  } from "../components/buttons";
+import { BPButton } from "../components/buttons";
 import BPHeader from "../components/header";
 
-import { TravelRoutes } from '../navigation';
+import { TravelRoutes } from "../navigation";
 
 export default ({ navigation }) => {
   const [nameField, setNamelField] = useState<string>("");
@@ -17,29 +17,31 @@ export default ({ navigation }) => {
 
   return (
     <View style={styles.view}>
-      <BPHeader showMenuButton={false} onPress={()=> navigation.navigate(TravelRoutes.List)} />
+      <BPHeader
+        showMenuButton={false}
+        onPress={() => navigation.navigate(TravelRoutes.List)}
+      />
 
       <Text style={styles.title2}>Adicionar Documento</Text>
 
       <BPTextInput
         value={nameField}
         placeholder="Nome"
-        onChangeText={(t) => setNamelField(t)}
+        onChangeText={t => setNamelField(t)}
       />
 
       <BPDescriptionTextInput
         value={DescriptionField}
         placeholder="Descrição (Opcional)"
-        onChangeText={(t) => setDescriptionField(t)}
+        onChangeText={t => setDescriptionField(t)}
       />
 
       <BPButton
         text="Adicionar"
-        onPress={()=> navigation.navigate('AddSpent')}
+        onPress={() => navigation.navigate("AddSpent")}
       />
 
-      <FAB/>
-
+      <FAB />
     </View>
   );
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text } from "react-native";
 import { colorConstants } from "../styles";
-import { numberToCurrency } from '../helpers/utils';
+import { numberToCurrency } from "../helpers/utils";
 
 import { LinearGradient } from "expo-linear-gradient";
 
@@ -45,7 +45,8 @@ export const BPGoalChart = ({ goal, currentValue, title }) => {
         ></LinearGradient>
       </View>
       <Text style={{ color: colorConstants.WhiteText }}>
-        R$ {numberToCurrency(currentValue)} gastos de R$ {numberToCurrency(goal)}
+        R$ {numberToCurrency(currentValue)} gastos de R${" "}
+        {numberToCurrency(goal)}
       </Text>
     </View>
   );
@@ -91,7 +92,8 @@ export const BPLocalChart = ({ goal, currentValue, title }) => {
         ></LinearGradient>
       </View>
       <Text style={{ color: colorConstants.WhiteText }}>
-        {numberToCurrency(currentValue)} locais viajados {numberToCurrency(goal)}
+        {numberToCurrency(currentValue)} locais viajados{" "}
+        {numberToCurrency(goal)}
       </Text>
     </View>
   );

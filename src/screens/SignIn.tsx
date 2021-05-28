@@ -22,7 +22,7 @@ export default ({ navigation }) => {
         navigation.navigate(StackRoutes.Home);
         Alert.alert("Bem vindo!");
       })
-      .catch((err) => {
+      .catch(err => {
         Alert.alert("Falha ao logar", err.message);
       });
   };
@@ -31,11 +31,11 @@ export default ({ navigation }) => {
     <View style={styles.view}>
       <Text style={styles.title}>Entrar</Text>
 
-      <BPEmailInput onChangeText={(t) => setEmailField(t)} />
+      <BPEmailInput onChangeText={t => setEmailField(t)} />
 
       <BPPasswordInput
         placeholder="Senha"
-        onChangeText={(t) => setPasswordField(t)}
+        onChangeText={t => setPasswordField(t)}
       />
 
       <BPButton text="ENTRAR" onPress={login} />

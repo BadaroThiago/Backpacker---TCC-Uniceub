@@ -5,7 +5,7 @@ import { Card } from "react-native-paper";
 import { IconAndText } from "../IconAndText";
 import { styles, colorConstants } from "../../styles";
 
-import { formatDate } from '../../helpers/utils';
+import { formatDate } from "../../helpers/utils";
 
 import { Travel } from "../../api/travel";
 

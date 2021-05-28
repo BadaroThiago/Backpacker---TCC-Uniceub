@@ -8,7 +8,6 @@ import { styles, colorConstants } from "../styles";
 import { BPTextExpenseInfo } from "../components/expenses/text";
 import { BPGoalChart, BPLocalChart } from "../components/charts";
 
-
 export const BPCardLocal = ({ width, height, onPress }) => {
   return (
     <View>

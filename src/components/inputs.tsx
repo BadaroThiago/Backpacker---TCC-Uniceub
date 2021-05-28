@@ -2,7 +2,7 @@ import React from "react";
 import { TextInput } from "react-native";
 import { styles } from "../styles";
 
-import { TextInputMask } from 'react-native-masked-text';
+import { TextInputMask } from "react-native-masked-text";
 
 export const BPDateInput = ({ value, placeholder, onChangeText }) => {
   return (
@@ -14,8 +14,8 @@ export const BPDateInput = ({ value, placeholder, onChangeText }) => {
       textContentType="none"
       autoCorrect={false}
       value={value}
-      type={'datetime'}
-      options={{ format: 'DD/MM/YYYY' }}
+      type={"datetime"}
+      options={{ format: "DD/MM/YYYY" }}
     />
   );
 };
