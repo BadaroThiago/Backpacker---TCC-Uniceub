@@ -12,7 +12,7 @@ export interface Travel {
   orcamento_viagem?: number | string;
   dt_inicio?: Date | string | number;
   dt_fim?: Date | string | number;
-  descricao: string;
+  descricao?: string;
 }
 
 export async function createTravel(travelData: Travel) {

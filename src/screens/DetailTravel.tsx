@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, Text, FlatList } from "react-native";
 import { styles } from "../styles";
 
@@ -8,8 +8,12 @@ import BPFab from "../components/FAB";
 import BPHeader from "../components/header";
 
 import { TravelRoutes } from "../navigation";
+import { TravelContext } from "../context";
 
 export default ({ navigation }) => {
+  const id_viagem = useContext(TravelContext);
+  console.log(id_viagem);
+
   return (
     <View style={styles.view}>
       <BPHeader
@@ -20,7 +24,7 @@ export default ({ navigation }) => {
       <Text style={styles.title2}> Nome da Viagem </Text>
 
       <BPCardDetailTrip description="adsfasdf" width="85%" height={200} />
-      <BPCardDetailTrip_2 name={"Teste"} width="85%" height={310} />
+      <BPCardDetailTrip_2 width="85%" height={310} />
 
       <BPFab />
     </View>

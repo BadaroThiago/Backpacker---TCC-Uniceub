@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createContext } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import ExpenseStack from "../screens/ExpenseStack";
@@ -9,14 +9,19 @@ import DetailTravel from "../screens/DetailTravel";
 
 import { ExpenseRoutes, TravelRoutes, SpotRoutes } from "../navigation";
 
-export default () => {
+import { TravelContext } from '../context';
+
+export default ({ route }) => {
   const Tab = createBottomTabNavigator();
+  const id_viagem = route.params.id_viagem;
 
   return (
+  <TravelContext.Provider value={id_viagem}>
     <Tab.Navigator initialRouteName={TravelRoutes.Detail}>
       <Tab.Screen name={TravelRoutes.Detail} component={DetailTravel} />
       <Tab.Screen name={SpotRoutes.Stack} component={SpotStack} />
       <Tab.Screen name={ExpenseRoutes.Stack} component={ExpenseStack} />
     </Tab.Navigator>
+  </TravelContext.Provider>
   );
 };

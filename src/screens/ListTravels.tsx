@@ -13,8 +13,8 @@ export default ({ navigation }) => {
   useFocusEffect(
     useCallback(() => {
       getTravels()
-        .then(res => setTravels(res.data))
-        .catch(err => console.log(err));
+        .then((res) => setTravels(res.data))
+        .catch((err) => console.log(err));
       return () => {};
     }, [])
   );
@@ -25,15 +25,19 @@ export default ({ navigation }) => {
 
       <FlatList
         data={travels}
-        renderItem={t => (
+        renderItem={(t) => (
           <BPCardTravelList
             travel={t.item}
-            onPress={() => navigation.navigate(TravelRoutes.Stack)}
+            onPress={() =>
+              navigation.navigate(TravelRoutes.Stack, {
+                id_viagem: t.item.id_viagem,
+              })
+            }
             width="85%"
             height={100}
           />
         )}
-        keyExtractor={t => t.id_viagem.toString()}
+        keyExtractor={(t) => t.id_viagem.toString()}
       />
 
       <FabHome />
