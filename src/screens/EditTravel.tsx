@@ -18,9 +18,10 @@ import {
 import { BPButton } from "../components/buttons";
 import BPHeader from "../components/header";
 import { TravelContext } from "../context";
-import { Travel, getTravel } from "../api/travel";
+import { Travel, getTravel, editTravel } from "../api/travel";
 import { formatDate } from "../helpers/utils";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { TravelRoutes } from "../navigation";
 
 export default ({ navigation }) => {
   const { idViagem } = useContext(TravelContext);
@@ -46,6 +47,28 @@ export default ({ navigation }) => {
       return () => {};
     }, [])
   );
+
+  const onEditTravel = async () => {
+    let travel: Travel = {
+      nome_viagem: name,
+      descricao: description,
+      orcamento_viagem: budget,
+      dt_inicio: startDate,
+      dt_fim: endDate,
+      id_viagem: idViagem
+    };
+
+    editTravel(travel)
+      .then(() => {
+        Alert.alert("Editado com sucesso");
+        navigation.goBack();
+      })
+      .catch((err) => {
+        console.log(err);
+        Alert.alert("Erro ao editar viagem");
+        navigation.goBack();
+      });
+  };
 
   return (
     <View style={styles.view}>
@@ -85,10 +108,7 @@ export default ({ navigation }) => {
             onChangeText={(t) => setEndDate(t)}
           />
 
-          <BPButton
-            text="Atualizar"
-            onPress={() => console.log("Atualiza dados")}
-          />
+          <BPButton text="Atualizar" onPress={onEditTravel} />
         </KeyboardAwareScrollView>
       </TouchableWithoutFeedback>
       <FAB />
