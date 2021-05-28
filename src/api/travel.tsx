@@ -54,6 +54,7 @@ export async function getTravel(idTravel: number) {
   return data;
 }
 
+// TODO: testar
 export async function editTravel(travel: Travel) {
   let user = firebase.auth().currentUser;
   let token = await user.getIdToken();
@@ -63,6 +64,7 @@ export async function editTravel(travel: Travel) {
   });
 }
 
+// TODO: testar
 export async function deleteTravel(idTravel: number) {
   let user = firebase.auth().currentUser;
   let token = await user.getIdToken();

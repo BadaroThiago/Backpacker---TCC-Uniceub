@@ -1,27 +1,38 @@
-import React, { useContext } from "react";
-import { View, Text, FlatList } from "react-native";
+import React, { useContext, useCallback, useState } from "react";
+import { Text, View } from "react-native";
+import { BPCardDetailTrip, BPCardDetailTrip_2 } from "../components/card";
+import { useFocusEffect } from "@react-navigation/native";
+import BPFab from "../components/FAB";
+import BPHeader from "../components/header";
+import { TravelContext } from "../context";
+import { TravelRoutes } from "../navigation";
 import { styles } from "../styles";
 
-import { BPCardDetailTrip, BPCardDetailTrip_2 } from "../components/card";
-import BPFab from "../components/FAB";
-
-import BPHeader from "../components/header";
-
-import { TravelRoutes } from "../navigation";
-import { TravelContext } from "../context";
+import { Travel, getTravel } from "../api/travel";
 
 export default ({ navigation }) => {
   const id_viagem = useContext(TravelContext);
-  console.log(id_viagem);
+  const [travel, setTravel] = useState<Travel>();
 
-  return (
+  useFocusEffect(
+    useCallback(() => {
+      getTravel(id_viagem)
+        .then((res) => setTravel(res.data))
+        .catch((err) => console.log(err));
+      return () => {};
+    }, [])
+  );
+
+  return travel === undefined ? (
+    <View style={styles.view}></View>
+  ) : (
     <View style={styles.view}>
       <BPHeader
         showMenuButton={false}
         onPress={() => navigation.navigate(TravelRoutes.List)}
       />
 
-      <Text style={styles.title2}> Nome da Viagem </Text>
+      <Text style={styles.title2}>{travel.nome_viagem}</Text>
 
       <BPCardDetailTrip description="adsfasdf" width="85%" height={200} />
       <BPCardDetailTrip_2 width="85%" height={310} />
