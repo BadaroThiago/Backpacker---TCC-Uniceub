@@ -11,12 +11,12 @@ import { styles } from "../styles";
 import { Travel, getTravel } from "../api/travel";
 
 export default ({ navigation }) => {
-  const id_viagem = useContext(TravelContext);
+  const { idViagem } = useContext(TravelContext);
   const [travel, setTravel] = useState<Travel>();
 
   useFocusEffect(
     useCallback(() => {
-      getTravel(id_viagem)
+      getTravel(idViagem)
         .then((res) => setTravel(res.data))
         .catch((err) => console.log(err));
       return () => {};

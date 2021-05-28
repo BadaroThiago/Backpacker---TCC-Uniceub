@@ -14,7 +14,7 @@ export const BPDateInput = ({ value, placeholder, onChangeText }) => {
       textContentType="none"
       autoCorrect={false}
       value={value}
-      type={"datetime"}
+      type="datetime"
       options={{ format: "DD/MM/YYYY" }}
     />
   );
@@ -30,6 +30,21 @@ export const BPTextInput = ({ value, placeholder, onChangeText }) => {
       textContentType="none"
       autoCorrect={false}
       value={value}
+    />
+  );
+};
+
+export const BPBudgetInput = ({ value, placeholder, onChangeText }) => {
+  return (
+    <TextInputMask
+      style={styles.input}
+      placeholderTextColor="#ccc"
+      placeholder={placeholder}
+      onChangeText={onChangeText}
+      textContentType="none"
+      autoCorrect={false}
+      value={value}
+      type="money"
     />
   );
 };

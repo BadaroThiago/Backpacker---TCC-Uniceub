@@ -26,9 +26,9 @@ const MyComponent = () => {
               onPress: () => navigation.navigate(UserRoutes.Edit),
             },
             {
-              icon: "account-cog",
-              label: "Editar Viajante",
-              onPress: () => navigation.navigate("AddTravel"),
+              icon: "pencil",
+              label: "Editar Viagem",
+              onPress: () => navigation.navigate(TravelRoutes.Edit),
             },
             // {
             // icon: 'account-plus',
