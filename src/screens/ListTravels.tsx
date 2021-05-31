@@ -21,7 +21,7 @@ export default ({ navigation }) => {
         ]}
         renderItem={(doc) => (
           <BPCardTravelList
-            onPress={() => navigation.navigate(TravelRoutes.Stack)}
+            onPress={() => navigation.navigate(ExpenseRoutes.Stack)}
             name={doc.item.nome}
             width="85%"
             height={100}
