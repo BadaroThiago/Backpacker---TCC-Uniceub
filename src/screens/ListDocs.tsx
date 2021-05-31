@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { View, Text, FlatList, ScrollView } from "react-native";
+import React from "react";
+import { View, Text, FlatList } from "react-native";
 // import { useNavigation } from "@react-navigation/native";
 
 import BPHeader from "../components/header";
 import { BPCardDocsList } from "../components/card";
 import { styles } from "../styles";
 
-import { TravelRoutes } from "../navigation";
+import { DocRoutes, TravelRoutes } from "../navigation";
 
 export default ({ navigation }) => {
-  // const navigation = useNavigation();
-
   return (
     <View style={styles.view}>
       <BPHeader
@@ -35,10 +33,14 @@ export default ({ navigation }) => {
           { id: "adasdfdddf", nome: "Nome do documento 3" },
           { id: "adasdfaaaaaaaf", nome: "Nome do documento 3" },
         ]}
-        renderItem={doc => (
-          <BPCardDocsList name={doc.item.nome} width="85%" height={60} />
+        renderItem={(doc) => (
+          <BPCardDocsList
+            onPress={() => navigation.navigate(DocRoutes.Detail)}
+            width="85%"
+            height={60}
+          />
         )}
-        keyExtractor={t => t.id}
+        keyExtractor={(t) => t.id}
       />
     </View>
   );

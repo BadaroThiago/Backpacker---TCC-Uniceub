@@ -1,13 +1,11 @@
 import { useFocusEffect } from "@react-navigation/native";
-import React, { useCallback, useContext, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { FlatList, Text, View } from "react-native";
 import { getTravels, Travel } from "../api/travel";
 import { BPCardTravelList } from "../components/cards/BPCardTravelList";
 import FabHome from "../components/FAB";
 import { TravelRoutes } from "../navigation";
 import { styles } from "../styles";
-
-import { TravelContext } from "../context";
 
 export default ({ navigation }) => {
   const [travels, setTravels] = useState<[Travel]>();

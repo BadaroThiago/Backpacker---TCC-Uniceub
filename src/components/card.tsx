@@ -218,10 +218,10 @@ export const BPCardDetailTrip_2 = ({ width, height }) => {
   );
 };
 
-export const BPCardDocsList = ({ name, width, height }) => {
+export const BPCardDocsList = ({ onPress, width, height }) => {
   return (
     <View>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={onPress}>
         <Card
           style={{
             ...styles.card,
@@ -252,7 +252,7 @@ export const BPCardDocsList = ({ name, width, height }) => {
               }}
               numberOfLines={2}
             >
-              {name}
+              "teste"
             </Text>
           </View>
         </Card>
@@ -261,10 +261,10 @@ export const BPCardDocsList = ({ name, width, height }) => {
   );
 };
 
-export const BPCardExpenseList = ({ name, width, height }) => {
+export const BPCardExpenseList = ({ name, width, height, onPress }) => {
   return (
     <View>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={onPress}>
         <Card
           style={{
             ...styles.card,

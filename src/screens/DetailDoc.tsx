@@ -12,6 +12,7 @@ import {
 import { BPCardLocal } from "../components/card";
 import BPFab from "../components/FAB";
 import BPHeader from "../components/header";
+import { DocRoutes } from "../navigation";
 
 export default () => {
   const navigation = useNavigation();
@@ -36,7 +37,7 @@ export default () => {
       />
       <BPButtonDelete2
         text="EDITAR"
-        onPress={() => navigation.navigate("AddLocal")}
+        onPress={() => navigation.navigate(DocRoutes.Edit)}
       />
       <BPButtonDelete
         text="EXCLUIR"
