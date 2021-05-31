@@ -1,7 +1,7 @@
 import Constants from "expo-constants";
 import { Platform } from "react-native";
 
-const localhost = Platform.OS === "ios" ? "http://localhost:8081" : "10.0.2.2:8081";
+const localhost = Platform.OS === "ios" ? "http://localhost:8081" : "http://10.0.2.2:8081";
 
 const ENV = {
   dev: {

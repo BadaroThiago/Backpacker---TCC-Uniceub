@@ -13,7 +13,10 @@ if (!firebase.apps.length) {
   const config = getEnvVars().firebase;
   firebase.initializeApp(config);
 
-  firebase.auth().useEmulator("http://localhost:9099/");
+  if (__DEV__) {
+    firebase.auth().useEmulator("http://localhost:9099/");
+  }
+
   console.log("Firebase is on!");
 }
 
