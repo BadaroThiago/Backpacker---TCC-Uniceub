@@ -46,7 +46,6 @@ export async function getTravel(idTravel: number) {
   return data;
 }
 
-// TODO: testar
 export async function editTravel(travel: Travel) {
   travel.orcamento_viagem = parseFloat(travel.orcamento_viagem as string);
   travel.dt_inicio = moment(travel.dt_inicio, "dd/mm/yyyy").unix();
@@ -60,7 +59,6 @@ export async function editTravel(travel: Travel) {
   });
 }
 
-// TODO: testar
 export async function deleteTravel(idTravel: number) {
   let user = firebase.auth().currentUser;
   let token = await user.getIdToken();
