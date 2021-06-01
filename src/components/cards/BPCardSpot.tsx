@@ -51,16 +51,12 @@ export const BPCardLocal = ({ spot, onPress }: Props) => {
               alignItems: "flex-end",
             }}
           >
-            {spot.dt_planejada ? (
-              <Text style={{ flex: 1, fontSize: 12 }}>
-                <IconAndText
-                  nome="calendar"
-                  text={formatDate(spot.dt_planejada as Date)}
-                />
-              </Text>
-            ) : (
-              <View />
-            )}
+            <Text style={{ flex: 1, fontSize: 12 }}>
+              <IconAndText
+                nome="calendar"
+                text={formatDate(spot.dt_planejada as Date)}
+              />
+            </Text>
           </View>
         </Card>
       </TouchableOpacity>

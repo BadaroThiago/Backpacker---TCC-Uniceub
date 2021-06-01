@@ -8,6 +8,6 @@ export const numberToCurrency = (v: number) => {
   return v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 };
 
-export const formatDate = (d: Date) => {
-  return moment(d).format("DD/MM/YYYY");
+export const formatDate = (date: Date) => {
+  return date ? moment(date).format("DD/MM/YYYY") : "A definir";
 };

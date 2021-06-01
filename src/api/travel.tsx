@@ -11,8 +11,14 @@ export async function createTravel(travelData: Travel) {
   travelData.orcamento_viagem = parseFloat(
     travelData.orcamento_viagem as string
   );
-  travelData.dt_inicio = moment(travelData.dt_inicio, "dd/mm/yyyy").unix();
-  travelData.dt_fim = moment(travelData.dt_fim, "dd/mm/yyyy").unix();
+
+  travelData.dt_inicio
+    ? (travelData.dt_inicio = moment(travelData.dt_inicio, "dd/mm/yyyy").unix())
+    : (travelData.dt_inicio = undefined);
+
+  travelData.dt_fim
+    ? (travelData.dt_fim = moment(travelData.dt_fim, "dd/mm/yyyy").unix())
+    : (travelData.dt_fim = undefined);
 
   let user = firebase.auth().currentUser;
   let token = await user.getIdToken();

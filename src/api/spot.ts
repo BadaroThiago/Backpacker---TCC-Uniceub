@@ -8,6 +8,12 @@ import { Spot } from "../models/spot";
 const BASE_API = `${getEnvVars().apiUrl}/spot`;
 
 export async function createSpot(spotData: Spot) {
+  if (spotData.dt_planejada) {
+    spotData.dt_planejada = moment(spotData.dt_planejada, "DD/MM/YYYY").unix();
+  } else {
+    spotData.dt_planejada = undefined
+  }
+
   let user = firebase.auth().currentUser;
   let token = await user.getIdToken();
 

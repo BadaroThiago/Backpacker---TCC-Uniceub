@@ -1,9 +1,6 @@
 import React, { useContext, useState } from "react";
-import { useNavigation } from "@react-navigation/native";
 import { View, Text, Alert } from "react-native";
 import { styles } from "../styles";
-
-import FAB from "../components/FAB";
 
 import {
   BPTextInput,
