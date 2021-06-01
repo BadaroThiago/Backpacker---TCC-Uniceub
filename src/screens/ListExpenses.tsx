@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { View, Text, FlatList, ScrollView } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import React from "react";
+import { View, Text, FlatList } from "react-native";
 
 import BPHeader from "../components/header";
 import { BPCardExpenseList, BPCardExpensesInfo } from "../components/card";
 import { styles } from "../styles";
 
-import { TravelRoutes } from '../navigation';
-
-// TODO: Converter para ser uma stack
+import { TravelRoutes, ExpenseRoutes } from "../navigation";
 
 export default ({ navigation }) => {
   return (
@@ -33,14 +30,19 @@ export default ({ navigation }) => {
           { id: "adasdfdddf", nome: "Nome do gasto 3" },
           { id: "adasdfaaaaaaaf", nome: "Nome do gasto 3" },
         ]}
-        renderItem={(doc) => (
-          <BPCardExpenseList name={doc.item.nome} width="85%" height={60} />
+        renderItem={doc => (
+          <BPCardExpenseList
+            onPress={() => navigation.navigate(ExpenseRoutes.Detail)}
+            name={doc.item.nome}
+            width="85%"
+            height={60}
+          />
         )}
-        keyExtractor={(t) => t.id}
-        ListHeaderComponent={<Text style={styles.listHeader}>Todos os gastos</Text>}
+        keyExtractor={t => t.id}
+        ListHeaderComponent={
+          <Text style={styles.listHeader}>Todos os gastos</Text>
+        }
       />
-
-
     </View>
   );
 };

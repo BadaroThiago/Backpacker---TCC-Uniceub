@@ -12,25 +12,23 @@ import {
 import { BPCardLocal } from "../components/card";
 import BPFab from "../components/FAB";
 import BPHeader from "../components/header";
+import { DocRoutes } from "../navigation";
 
 export default () => {
   const navigation = useNavigation();
 
   return (
     <View style={styles.view}>
-      <BPHeader
-        showMenuButton={false}
-        onPress={() => navigation.goBack()}
-      />
+      <BPHeader showMenuButton={false} onPress={() => navigation.goBack()} />
 
       <Text style={styles.title2}> Nome Documento </Text>
 
       <FlatList
         data={[{ id: "adf", nome: "Nome da viagem 1" }]}
-        renderItem={(doc) => (
+        renderItem={doc => (
           <BPCardLocal name={doc.item.nome} width="85%" height={160} />
         )}
-        keyExtractor={(t) => t.id}
+        keyExtractor={t => t.id}
       />
 
       <BPButton
@@ -39,7 +37,7 @@ export default () => {
       />
       <BPButtonDelete2
         text="EDITAR"
-        onPress={() => navigation.navigate("AddLocal")}
+        onPress={() => navigation.navigate(DocRoutes.Edit)}
       />
       <BPButtonDelete
         text="EXCLUIR"

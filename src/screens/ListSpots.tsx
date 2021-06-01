@@ -26,7 +26,7 @@ export default ({ navigation }) => {
           { id: "adffdfgy", nome: "Nome da viagem 3" },
           { id: "adfqwee", nome: "Nome da viagem 4" },
         ]}
-        renderItem={(spot) => (
+        renderItem={spot => (
           <BPCardLocal
             width="85%"
             height={100}
@@ -36,7 +36,7 @@ export default ({ navigation }) => {
             }}
           />
         )}
-        keyExtractor={(t) => t.id}
+        keyExtractor={t => t.id}
       />
 
       <BPFab />

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigation } from "@react-navigation/native";
 import { View, Text, TouchableOpacity, Alert } from "react-native";
 import { styles, colorConstants } from "../styles";
 
@@ -8,38 +7,31 @@ import { BPButton } from "../components/buttons";
 
 import firebase from "firebase";
 
-import { StackRoutes } from '../navigation';
+import { StackRoutes } from "../navigation";
 
 export default ({ navigation }) => {
-  const [emailField, setEmailField] = useState<string>("");
-  const [passwordField, setPasswordField] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
   let login = () => {
-    navigation.navigate(StackRoutes.Home);
-    // TODO: DEBUGGGG
-    // firebase
-      // .auth()
-      // .signInWithEmailAndPassword(emailField, passwordField)
-      // .then(() => {
-        // navigation.navigate("Home");
-        // Alert.alert("Bem vindo!");
-      // })
-      // .catch((err) => {
-        // Alert.alert("Falha ao logar", err.message);
-      // });
-
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(() => {
+        navigation.navigate(StackRoutes.Home);
+      })
+      .catch(err => {
+        Alert.alert("Falha ao logar", err.message);
+      });
   };
 
   return (
     <View style={styles.view}>
       <Text style={styles.title}>Entrar</Text>
 
-      <BPEmailInput onChangeText={(t) => setEmailField(t)} />
+      <BPEmailInput value={email} onChangeText={t => setEmail(t)} />
 
-      <BPPasswordInput
-        placeholder="Senha"
-        onChangeText={(t) => setPasswordField(t)}
-      />
+      <BPPasswordInput placeholder="Senha" onChangeText={t => setPassword(t)} />
 
       <BPButton text="ENTRAR" onPress={login} />
 
@@ -55,8 +47,10 @@ export default ({ navigation }) => {
         </Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.smallText}
-        onPress={() => navigation.navigate('ResetPassword')}>
+      <TouchableOpacity
+        style={styles.smallText}
+        onPress={() => navigation.navigate("ResetPassword")}
+      >
         <Text style={{ color: colorConstants.WhiteText }}>
           Esqueceu sua senha?{" "}
         </Text>

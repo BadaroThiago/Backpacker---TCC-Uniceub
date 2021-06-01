@@ -4,8 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import AuthNavigation from "../screens/AuthNavigation";
 import HomeNavigation from "../screens/HomeNavigation";
 
-import { StackRoutes } from '../navigation';
-
+import { StackRoutes } from "../navigation";
 
 const Stack = createStackNavigator();
 

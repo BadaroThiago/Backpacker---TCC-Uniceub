@@ -1,26 +1,35 @@
-import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
+import React, { useContext, useState } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Text, View, TouchableOpacity } from "react-native";
 
-import ExpenseStack from '../screens/ExpenseStack';
-import SpotStack from '../screens/SpotStack';
-// import DocumentStack from '../screens/DocumentStack';
-import DetailTravel from '../screens/DetailTravel';
-// import AddTravel from '../screens/AddTravel';
+import ExpenseStack from "../screens/ExpenseStack";
+import SpotStack from "../screens/SpotStack";
+import TravelStack from "../screens/TravelStack";
+import DocumentStack from "../screens/DocumentStack";
 
-import { ExpenseRoutes, TravelRoutes, SpotRoutes } from '../navigation';
+import {
+  ExpenseRoutes,
+  TravelRoutes,
+  SpotRoutes,
+  DocRoutes,
+} from "../navigation";
 
-export default () => {
+import { TravelContext } from "../context";
+
+export default ({ route }) => {
+  const [idViagem, setIdViagem] = useState(route.params.id_viagem);
   const Tab = createBottomTabNavigator();
 
+  const value = { idViagem, setIdViagem };
+
   return (
-      <Tab.Navigator
-        initialRouteName={TravelRoutes.Detail}
-      >
-        <Tab.Screen name={TravelRoutes.Detail} component={DetailTravel} />
+    // @ts-ignore
+    <TravelContext.Provider value={value}>
+      <Tab.Navigator initialRouteName={TravelRoutes.Stack}>
+        <Tab.Screen name={TravelRoutes.Stack} component={TravelStack} />
         <Tab.Screen name={SpotRoutes.Stack} component={SpotStack} />
         <Tab.Screen name={ExpenseRoutes.Stack} component={ExpenseStack} />
+        <Tab.Screen name={DocRoutes.Stack} component={DocumentStack} />
       </Tab.Navigator>
+    </TravelContext.Provider>
   );
 };

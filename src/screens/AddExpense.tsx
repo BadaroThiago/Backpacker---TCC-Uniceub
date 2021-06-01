@@ -28,22 +28,25 @@ export default ({ navigation }) => {
       <BPTextInput
         value={name}
         placeholder="Nome"
-        onChangeText={(t) => setName(t)}
+        onChangeText={t => setName(t)}
       />
 
       <BPTextInput
         value={amount}
         placeholder="Valor"
-        onChangeText={(t) => setAmount(t)}
+        onChangeText={t => setAmount(t)}
       />
 
       <BPDescriptionTextInput
         value={description}
         placeholder="Descrição (Opcional)"
-        onChangeText={(t) => setDescription(t)}
+        onChangeText={t => setDescription(t)}
       />
 
-      <BPButton text="Adicionar" onPress={() => navigation.navigate(ExpenseRoutes.List)} />
+      <BPButton
+        text="Adicionar"
+        onPress={() => navigation.navigate(ExpenseRoutes.List)}
+      />
 
       <FAB />
     </View>

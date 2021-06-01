@@ -26,10 +26,10 @@ export default ({ navigation }) => {
 
       <FlatList
         data={[{ id: "adf", nome: "Nome da viagem 1" }]}
-        renderItem={(doc) => (
+        renderItem={doc => (
           <BPCardLocal name={doc.item.nome} width="85%" height={160} />
         )}
-        keyExtractor={(t) => t.id}
+        keyExtractor={t => t.id}
       />
 
       <BPButton

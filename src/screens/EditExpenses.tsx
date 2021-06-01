@@ -22,7 +22,7 @@ export default ({ navigation }) => {
         onPress={() => navigation.navigate(DocRoutes.List)}
       />
 
-      <Text style={styles.title2}>Editar Documento</Text>
+      <Text style={styles.title2}>Editar Gastos</Text>
 
       <BPTextInput
         value={name}

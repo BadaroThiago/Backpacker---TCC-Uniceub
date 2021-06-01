@@ -4,11 +4,19 @@ import { NavigationContainer } from "@react-navigation/native";
 // import UserContextProvider from "./src/contexts/UserContext";
 import MainStack from "./src/stacks/MainStack";
 
-import firebase from "firebase";
-import apiKeys from "./keys";
+import getEnvVars from "./environment";
+
+import firebase from "firebase/app";
+import "firebase/auth";
 
 if (!firebase.apps.length) {
-  firebase.initializeApp(apiKeys.firebaseConfig);
+  const config = getEnvVars().firebase;
+  firebase.initializeApp(config);
+
+  if (__DEV__) {
+    firebase.auth().useEmulator("http://localhost:9099/");
+  }
+
   console.log("Firebase is on!");
 }
 
