@@ -1,15 +1,34 @@
-import React from "react";
-import { useNavigation } from "@react-navigation/native";
+import React, { useCallback, useContext, useState } from "react";
 import { View, Text, FlatList } from "react-native";
-import { styles } from "../styles";
+import { colorConstants, styles } from "../styles";
 
-import { BPCardLocal } from "../components/card";
-import BPFab from "../components/FAB";
+import FAB from "../components/FAB";
 import BPHeader from "../components/header";
 
 import { TravelRoutes, SpotRoutes } from "../navigation";
+import { getSpots } from "../api/spot";
+import { useFocusEffect } from "@react-navigation/native";
+import { TravelContext } from "../context";
+import { Spot } from "../models/spot";
+import { BPCardLocal } from "../components/cards/BPCardSpot";
 
 export default ({ navigation }) => {
+  const { idViagem } = useContext(TravelContext);
+  const [spots, setSpots] = useState<[Spot]>();
+
+  useFocusEffect(
+    useCallback(() => {
+      getSpots(idViagem)
+        .then((res) => {
+          setSpots(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      return () => {};
+    }, [])
+  );
+
   return (
     <View style={styles.view}>
       <BPHeader
@@ -20,26 +39,37 @@ export default ({ navigation }) => {
       <Text style={styles.title2}>Locais</Text>
 
       <FlatList
-        data={[
-          { id: "adfqwe", nome: "Nome da viagem 1" },
-          { id: "adfxxz", nome: "Nome da viagem 2" },
-          { id: "adffdfgy", nome: "Nome da viagem 3" },
-          { id: "adfqwee", nome: "Nome da viagem 4" },
-        ]}
-        renderItem={spot => (
+        data={spots}
+        renderItem={(spot) => (
           <BPCardLocal
-            width="85%"
-            height={100}
+            spot={spot.item}
             onPress={() => {
               console.log("Pressionou");
               navigation.navigate(SpotRoutes.Detail);
             }}
           />
         )}
-        keyExtractor={t => t.id}
+        keyExtractor={(t) => t.id_local.toString()}
+        ListEmptyComponent={
+          <View
+            style={{
+              alignItems: "center",
+            }}
+          >
+            <Text
+              style={{
+                fontWeight: "bold",
+                color: colorConstants.WhiteText,
+                fontSize: 18,
+              }}
+            >
+              Nenhum local a ser visitado
+            </Text>
+          </View>
+        }
       />
 
-      <BPFab />
+      <FAB context="spot" />
     </View>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useContext, useCallback, useState } from "react";
 import { Text, View } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
-import BPFab from "../components/FAB";
+import FAB from "../components/FAB";
 import BPHeader from "../components/header";
 import { TravelContext } from "../context";
 import { TravelRoutes } from "../navigation";
@@ -40,7 +40,7 @@ export default ({ navigation }) => {
       <BPCardDetailTravel travel={travel} />
       <BPCardDetailTravel2 travel={travel} />
 
-      <BPFab />
+      <FAB context="travel" />
     </View>
   );
 };

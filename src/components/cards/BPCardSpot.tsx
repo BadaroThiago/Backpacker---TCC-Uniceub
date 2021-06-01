@@ -1,0 +1,61 @@
+import React from "react";
+import { TouchableOpacity, View, Text } from "react-native";
+import { Card } from "react-native-paper";
+import { Spot } from "../../models/spot";
+import { colorConstants, styles } from "../../styles";
+import { IconAndText } from "../IconAndText";
+
+interface Props {
+  onPress: any;
+  spot: Spot;
+}
+
+export const BPCardLocal = ({ spot, onPress }: Props) => {
+  return (
+    <View>
+      <TouchableOpacity onPress={onPress}>
+        <Card
+          style={{
+            ...styles.card,
+            width: "85%",
+            height: 100,
+            alignSelf: "center",
+            padding: 10,
+            paddingHorizontal: 15,
+            marginBottom: 20,
+          }}
+        >
+          <View
+            style={{
+              flexDirection: "row",
+              height: "50%",
+            }}
+          >
+            <Text
+              style={{
+                flex: 1,
+                fontSize: 16,
+                color: colorConstants.WhiteText,
+                fontWeight: "bold",
+              }}
+            >
+              {spot.nome_local}
+            </Text>
+          </View>
+
+          <View
+            style={{
+              flexDirection: "row",
+              height: "50%",
+              alignItems: "flex-end",
+            }}
+          >
+            <Text style={{ flex: 1, fontSize: 12 }}>
+              <IconAndText nome="calendar" text="10/12/2022" />
+            </Text>
+          </View>
+        </Card>
+      </TouchableOpacity>
+    </View>
+  );
+};
