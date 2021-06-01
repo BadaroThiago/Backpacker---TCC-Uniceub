@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useState } from "react";
-import { View, Text } from "react-native";
+import { View, Text, Alert } from "react-native";
 import { styles } from "../styles";
 
 import {
@@ -13,7 +13,7 @@ import BPHeader from "../components/header";
 import { SpotRoutes } from "../navigation";
 import { useFocusEffect } from "@react-navigation/native";
 import { Spot } from "../models/spot";
-import { getSpot } from "../api/spot";
+import { deleteSpot, getSpot } from "../api/spot";
 import { BPCardSpotDetail } from "../components/cards/BPCardSpotDetail";
 
 export default ({ navigation, route }) => {
@@ -29,6 +29,25 @@ export default ({ navigation, route }) => {
       return () => {};
     }, [])
   );
+
+  const onDelete = async () => {
+    Alert.alert(
+      "Deletar local",
+      `Deseja mesmo excluir o local ${spot.nome_local}?`,
+      [
+        {
+          onPress: async () => {
+            deleteSpot(idLocal)
+              .then(() => navigation.navigate(SpotRoutes.List))
+              .catch((err) => console.log(err));
+          },
+          text: "Sim",
+          style: "destructive"
+        },
+        { onPress: () => {}, text: "Não" },
+      ]
+    );
+  };
 
   return spot === undefined ? (
     <View style={styles.view}></View>
@@ -49,12 +68,11 @@ export default ({ navigation, route }) => {
       />
       <BPButtonDelete2
         text="EDITAR LOCAL"
-        onPress={() => navigation.navigate(SpotRoutes.Edit, { id_local: idLocal })}
+        onPress={() =>
+          navigation.navigate(SpotRoutes.Edit, { id_local: idLocal })
+        }
       />
-      <BPButtonDelete
-        text="EXCLUIR"
-        onPress={() => navigation.navigate(SpotRoutes.List)}
-      />
+      <BPButtonDelete text="EXCLUIR" onPress={onDelete} />
     </View>
   );
 };

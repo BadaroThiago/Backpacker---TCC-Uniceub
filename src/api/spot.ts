@@ -11,7 +11,7 @@ export async function createSpot(spotData: Spot) {
   if (spotData.dt_planejada) {
     spotData.dt_planejada = moment(spotData.dt_planejada, "DD/MM/YYYY").unix();
   } else {
-    spotData.dt_planejada = undefined
+    spotData.dt_planejada = undefined;
   }
 
   let user = firebase.auth().currentUser;
@@ -54,12 +54,11 @@ export async function editSpot(spot: Spot) {
   });
 }
 
-// // TODO: testar
-// export async function deleteTravel(idTravel: number) {
-// let user = firebase.auth().currentUser;
-// let token = await user.getIdToken();
+export async function deleteSpot(idSpot: number) {
+  let user = firebase.auth().currentUser;
+  let token = await user.getIdToken();
 
-// await axios.delete(`${BASE_API}/${idTravel}`, {
-// headers: { Authorization: token },
-// });
-// }
+  await axios.delete(`${BASE_API}/${idSpot}`, {
+    headers: { Authorization: token },
+  });
+}

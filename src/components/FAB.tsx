@@ -4,7 +4,6 @@ import { FAB, Portal, Provider } from "react-native-paper";
 
 import { SpotRoutes, TravelRoutes, UserRoutes } from "../navigation";
 import { Alert } from "react-native";
-import { Travel } from "../models/travel";
 
 import { deleteTravel } from "../api/travel";
 import { TravelContext } from "../context";
