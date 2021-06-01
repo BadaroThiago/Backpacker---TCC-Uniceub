@@ -29,18 +29,16 @@ export async function getSpots(idViagem: number) {
   });
 }
 
-// export async function getTravel(idTravel: number) {
-// let user = firebase.auth().currentUser;
-// let token = await user.getIdToken();
+export async function getSpot(idTravel: number) {
+  let user = firebase.auth().currentUser;
+  let token = await user.getIdToken();
 
-// let url = `${BASE_API}/${idTravel}`;
+  let url = `${BASE_API}/${idTravel}`;
 
-// let data = await axios.get(url, {
-// headers: { Authorization: token },
-// });
-
-// return data;
-// }
+  return await axios.get(url, {
+    headers: { Authorization: token },
+  });
+}
 
 // // TODO: testar
 // export async function editTravel(travel: Travel) {

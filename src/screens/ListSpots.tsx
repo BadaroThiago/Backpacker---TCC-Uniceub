@@ -39,6 +39,7 @@ export default ({ navigation }) => {
       <Text style={styles.title2}>Locais</Text>
 
       <FlatList
+        contentContainerStyle={{ flexGrow: 1 }}
         data={spots}
         renderItem={(spot) => (
           <BPCardLocal
