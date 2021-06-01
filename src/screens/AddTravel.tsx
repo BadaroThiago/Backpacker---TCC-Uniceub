@@ -42,7 +42,7 @@ export default ({ navigation }) => {
         Alert.alert("Criado viagem com sucesso!");
         navigation.navigate(TravelRoutes.List);
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
         Alert.alert("Error", err.message);
         navigation.navigate(TravelRoutes.List);
@@ -63,31 +63,31 @@ export default ({ navigation }) => {
           <BPTextInput
             value={name}
             placeholder="Nome"
-            onChangeText={(t) => setName(t)}
+            onChangeText={t => setName(t)}
           />
 
           <BPDescriptionTextInput
             value={description}
             placeholder="Descrição (Opcional)"
-            onChangeText={(t) => setDescription(t)}
+            onChangeText={t => setDescription(t)}
           />
 
           <BPBudgetInput
             value={budget}
             placeholder="Meta de Gastos (Opcional)"
-            onChangeText={(t) => setBudget(t)}
+            onChangeText={t => setBudget(t)}
           />
 
           <BPDateInput
             value={startDate}
             placeholder="Data de Início (DD/MM/YYYY)"
-            onChangeText={(t) => setStartDate(t)}
+            onChangeText={t => setStartDate(t)}
           />
 
           <BPDateInput
             value={endDate}
             placeholder="Data de Término (DD/MM/YYYY)"
-            onChangeText={(t) => setEndDate(t)}
+            onChangeText={t => setEndDate(t)}
           />
           <BPButton text="Adicionar" onPress={addTravel} />
         </KeyboardAwareScrollView>

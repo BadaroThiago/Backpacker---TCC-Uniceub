@@ -33,14 +33,14 @@ export default ({ navigation }) => {
           { id: "adasdfdddf", nome: "Nome do documento 3" },
           { id: "adasdfaaaaaaaf", nome: "Nome do documento 3" },
         ]}
-        renderItem={(doc) => (
+        renderItem={doc => (
           <BPCardDocsList
             onPress={() => navigation.navigate(DocRoutes.Detail)}
             width="85%"
             height={60}
           />
         )}
-        keyExtractor={(t) => t.id}
+        keyExtractor={t => t.id}
       />
     </View>
   );

@@ -1,7 +1,7 @@
 import { useFocusEffect } from "@react-navigation/native";
 import React, { useCallback, useState } from "react";
 import { FlatList, Text, View } from "react-native";
-import { getTravels} from "../api/travel";
+import { getTravels } from "../api/travel";
 import { BPCardTravelList } from "../components/cards/BPCardTravelList";
 import FabHome from "../components/FAB";
 import { Travel } from "../models/travel";
@@ -14,8 +14,8 @@ export default ({ navigation }) => {
   useFocusEffect(
     useCallback(() => {
       getTravels()
-        .then((res) => setTravels(res.data))
-        .catch((err) => console.log(err));
+        .then(res => setTravels(res.data))
+        .catch(err => console.log(err));
       return () => {};
     }, [])
   );
@@ -26,7 +26,7 @@ export default ({ navigation }) => {
 
       <FlatList
         data={travels}
-        renderItem={(t) => (
+        renderItem={t => (
           <BPCardTravelList
             travel={t.item}
             onPress={() => {
@@ -38,7 +38,7 @@ export default ({ navigation }) => {
             height={100}
           />
         )}
-        keyExtractor={(t) => t.id_viagem.toString()}
+        keyExtractor={t => t.id_viagem.toString()}
       />
 
       <FabHome />

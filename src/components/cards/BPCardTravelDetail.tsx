@@ -26,7 +26,7 @@ export const BPCardDetailTravel = ({ travel }: Props) => {
             style={{
               flexDirection: "row",
               padding: 15,
-              marginBottom: 5
+              marginBottom: 5,
             }}
           >
             <Text

@@ -30,7 +30,7 @@ export default ({ navigation }) => {
           { id: "adasdfdddf", nome: "Nome do gasto 3" },
           { id: "adasdfaaaaaaaf", nome: "Nome do gasto 3" },
         ]}
-        renderItem={(doc) => (
+        renderItem={doc => (
           <BPCardExpenseList
             onPress={() => navigation.navigate(ExpenseRoutes.Detail)}
             name={doc.item.nome}
@@ -38,7 +38,7 @@ export default ({ navigation }) => {
             height={60}
           />
         )}
-        keyExtractor={(t) => t.id}
+        keyExtractor={t => t.id}
         ListHeaderComponent={
           <Text style={styles.listHeader}>Todos os gastos</Text>
         }

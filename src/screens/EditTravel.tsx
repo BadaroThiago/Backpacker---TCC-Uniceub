@@ -18,7 +18,7 @@ import {
 import { BPButton } from "../components/buttons";
 import BPHeader from "../components/header";
 import { TravelContext } from "../context";
-import {  getTravel, editTravel } from "../api/travel";
+import { getTravel, editTravel } from "../api/travel";
 import { formatDate } from "../helpers/utils";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Travel } from "../models/travel";
@@ -35,7 +35,7 @@ export default ({ navigation }) => {
   useFocusEffect(
     useCallback(() => {
       getTravel(idViagem)
-        .then((res) => {
+        .then(res => {
           let data: Travel = res.data;
           setName(data.nome_viagem);
           setDescription(data.descricao);
@@ -43,7 +43,7 @@ export default ({ navigation }) => {
           setStartDate(formatDate(data.dt_inicio as Date));
           setEndDate(formatDate(data.dt_fim as Date));
         })
-        .catch((err) => console.log(err));
+        .catch(err => console.log(err));
       return () => {};
     }, [])
   );
@@ -55,7 +55,7 @@ export default ({ navigation }) => {
       orcamento_viagem: budget,
       dt_inicio: startDate,
       dt_fim: endDate,
-      id_viagem: idViagem
+      id_viagem: idViagem,
     };
 
     editTravel(travel)
@@ -63,7 +63,7 @@ export default ({ navigation }) => {
         Alert.alert("Editado com sucesso");
         navigation.goBack();
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
         Alert.alert("Erro ao editar viagem");
         navigation.goBack();

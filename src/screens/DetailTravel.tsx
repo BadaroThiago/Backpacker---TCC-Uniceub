@@ -20,8 +20,8 @@ export default ({ navigation }) => {
   useFocusEffect(
     useCallback(() => {
       getTravel(idViagem)
-        .then((res) => setTravel(res.data))
-        .catch((err) => console.log(err));
+        .then(res => setTravel(res.data))
+        .catch(err => console.log(err));
       return () => {};
     }, [])
   );
@@ -37,7 +37,7 @@ export default ({ navigation }) => {
 
       <Text style={styles.title2}>{travel.nome_viagem}</Text>
 
-      <BPCardDetailTravel travel={travel}  />
+      <BPCardDetailTravel travel={travel} />
       <BPCardDetailTravel2 travel={travel} />
 
       <BPFab />

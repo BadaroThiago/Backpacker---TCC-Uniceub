@@ -8,7 +8,6 @@ import { styles, colorConstants } from "../../styles";
 import { formatDate } from "../../helpers/utils";
 import { Travel } from "../../models/travel";
 
-
 interface TravelCardProps {
   travel: Travel;
   width: any;
