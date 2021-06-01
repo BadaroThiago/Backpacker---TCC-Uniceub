@@ -45,8 +45,7 @@ export default ({ navigation }) => {
           <BPCardLocal
             spot={spot.item}
             onPress={() => {
-              console.log("Pressionou");
-              navigation.navigate(SpotRoutes.Detail);
+              navigation.navigate(SpotRoutes.Detail, { id_local: spot.item.id_local });
             }}
           />
         )}

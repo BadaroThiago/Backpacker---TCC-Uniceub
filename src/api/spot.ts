@@ -1,5 +1,6 @@
 import axios from "axios";
 import firebase from "firebase";
+import moment from "moment";
 
 import getEnvVars from "../../environment";
 import { Spot } from "../models/spot";
@@ -19,10 +20,6 @@ export async function getSpots(idViagem: number) {
   let user = firebase.auth().currentUser;
   let token = await user.getIdToken();
 
-  console.log("idViagem:", idViagem);
-  console.log(token);
-  console.log(BASE_API);
-
   return await axios.get(BASE_API, {
     headers: { Authorization: token },
     params: { id_viagem: idViagem },
@@ -40,19 +37,16 @@ export async function getSpot(idTravel: number) {
   });
 }
 
-// // TODO: testar
-// export async function editTravel(travel: Travel) {
-// travel.orcamento_viagem = parseFloat(travel.orcamento_viagem as string);
-// travel.dt_inicio = moment(travel.dt_inicio, "dd/mm/yyyy").unix();
-// travel.dt_fim = moment(travel.dt_fim, "dd/mm/yyyy").unix();
+export async function editSpot(spot: Spot) {
+  spot.dt_planejada = moment(spot.dt_planejada, "DD/MM/YYYY").unix();
 
-// let user = firebase.auth().currentUser;
-// let token = await user.getIdToken();
+  let user = firebase.auth().currentUser;
+  let token = await user.getIdToken();
 
-// await axios.put(`${BASE_API}/${travel.id_viagem}`, travel, {
-// headers: { Authorization: token },
-// });
-// }
+  await axios.put(`${BASE_API}/${spot.id_local}`, spot, {
+    headers: { Authorization: token },
+  });
+}
 
 // // TODO: testar
 // export async function deleteTravel(idTravel: number) {

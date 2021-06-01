@@ -1,6 +1,7 @@
 import React from "react";
 import { TouchableOpacity, View, Text } from "react-native";
 import { Card } from "react-native-paper";
+import { formatDate } from "../../helpers/utils";
 import { Spot } from "../../models/spot";
 import { colorConstants, styles } from "../../styles";
 import { IconAndText } from "../IconAndText";
@@ -50,9 +51,16 @@ export const BPCardLocal = ({ spot, onPress }: Props) => {
               alignItems: "flex-end",
             }}
           >
-            <Text style={{ flex: 1, fontSize: 12 }}>
-              <IconAndText nome="calendar" text="10/12/2022" />
-            </Text>
+            {spot.dt_planejada ? (
+              <Text style={{ flex: 1, fontSize: 12 }}>
+                <IconAndText
+                  nome="calendar"
+                  text={formatDate(spot.dt_planejada as Date)}
+                />
+              </Text>
+            ) : (
+              <View />
+            )}
           </View>
         </Card>
       </TouchableOpacity>

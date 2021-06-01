@@ -11,19 +11,19 @@ import {
 import BPHeader from "../components/header";
 
 import { SpotRoutes } from "../navigation";
-import { TravelContext } from "../context";
 import { useFocusEffect } from "@react-navigation/native";
 import { Spot } from "../models/spot";
 import { getSpot } from "../api/spot";
 import { BPCardSpotDetail } from "../components/cards/BPCardSpotDetail";
 
-export default ({ navigation }) => {
-  const { idViagem } = useContext(TravelContext);
+export default ({ navigation, route }) => {
+  const idLocal = route.params.id_local;
+
   const [spot, setSpot] = useState<Spot>();
 
   useFocusEffect(
     useCallback(() => {
-      getSpot(idViagem)
+      getSpot(idLocal)
         .then((res) => setSpot(res.data))
         .catch((err) => console.log(err));
       return () => {};
@@ -49,7 +49,7 @@ export default ({ navigation }) => {
       />
       <BPButtonDelete2
         text="EDITAR LOCAL"
-        onPress={() => navigation.navigate(SpotRoutes.Edit)}
+        onPress={() => navigation.navigate(SpotRoutes.Edit, { id_local: idLocal })}
       />
       <BPButtonDelete
         text="EXCLUIR"
