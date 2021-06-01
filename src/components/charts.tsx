@@ -45,8 +45,8 @@ export const BPGoalChart = ({ goal, currentValue, title }) => {
         ></LinearGradient>
       </View>
       <Text style={{ color: colorConstants.WhiteText }}>
-        R$ {numberToCurrency(currentValue)} gastos de R${" "}
-        {numberToCurrency(goal)}
+        {numberToCurrency(currentValue)} gastos de
+        {" " + numberToCurrency(goal)}
       </Text>
     </View>
   );
@@ -92,8 +92,8 @@ export const BPLocalChart = ({ goal, currentValue, title }) => {
         ></LinearGradient>
       </View>
       <Text style={{ color: colorConstants.WhiteText }}>
-        {numberToCurrency(currentValue)} locais viajados{" "}
-        {numberToCurrency(goal)}
+        {currentValue} locais visitados de
+        {" " + goal}
       </Text>
     </View>
   );

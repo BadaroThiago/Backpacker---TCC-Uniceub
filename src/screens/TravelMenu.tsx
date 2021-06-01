@@ -23,7 +23,7 @@ export default ({ route }) => {
       <Tab.Screen name={TravelRoutes.Stack} component={TravelStack} />
       <Tab.Screen name={SpotRoutes.Stack} component={SpotStack} />
       <Tab.Screen name={ExpenseRoutes.Stack} component={ExpenseStack} />
-      <Tab.Screen name={DocRoutes.Detail} component={DocumentStack} />
+      <Tab.Screen name={DocRoutes.Stack} component={DocumentStack} />
     </Tab.Navigator>
   </TravelContext.Provider>
   );

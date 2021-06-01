@@ -6,8 +6,8 @@ import { IconAndText } from "../IconAndText";
 import { styles, colorConstants } from "../../styles";
 
 import { formatDate } from "../../helpers/utils";
+import { Travel } from "../../models/travel";
 
-import { Travel } from "../../api/travel";
 
 interface TravelCardProps {
   travel: Travel;
@@ -68,13 +68,13 @@ export const BPCardTravelList = ({
               <IconAndText
                 nome="plane-departure"
                 text={formatDate(travel.dt_inicio as Date)}
-              ></IconAndText>
+              />
             </Text>
             <Text style={{ fontSize: 12 }}>
               <IconAndText
                 nome="plane-arrival"
                 text={formatDate(travel.dt_fim as Date)}
-              ></IconAndText>
+              />
             </Text>
           </View>
         </Card>

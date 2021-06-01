@@ -1,9 +1,10 @@
 import { useFocusEffect } from "@react-navigation/native";
 import React, { useCallback, useState } from "react";
 import { FlatList, Text, View } from "react-native";
-import { getTravels, Travel } from "../api/travel";
+import { getTravels} from "../api/travel";
 import { BPCardTravelList } from "../components/cards/BPCardTravelList";
 import FabHome from "../components/FAB";
+import { Travel } from "../models/travel";
 import { TravelRoutes } from "../navigation";
 import { styles } from "../styles";
 

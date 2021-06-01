@@ -1,28 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
-  View,
-  Text,
   Alert,
-  TouchableWithoutFeedback,
   Keyboard,
+  Text,
+  TouchableWithoutFeedback,
+  View,
 } from "react-native";
-import { styles } from "../styles";
-
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { createTravel } from "../api/travel";
+import { BPButton } from "../components/buttons";
 import FAB from "../components/FAB";
-
+import BPHeader from "../components/header";
 import {
-  BPTextInput,
+  BPBudgetInput,
   BPDateInput,
   BPDescriptionTextInput,
-  BPBudgetInput,
+  BPTextInput,
 } from "../components/inputs";
-import { BPButton } from "../components/buttons";
-import BPHeader from "../components/header";
-
-import { Travel, createTravel } from "../api/travel";
-
+import { Travel } from "../models/travel";
 import { TravelRoutes } from "../navigation";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { styles } from "../styles";
 
 export default ({ navigation }) => {
   const [name, setName] = useState<string>("");

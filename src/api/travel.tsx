@@ -3,17 +3,9 @@ import firebase from "firebase";
 
 import getEnvVars from "../../environment";
 import moment from "moment";
+import { Travel } from "../models/travel";
 
 const BASE_API = `${getEnvVars().apiUrl}/travel`;
-
-export interface Travel {
-  id_viagem?: number;
-  nome_viagem: string;
-  orcamento_viagem?: number | string;
-  dt_inicio?: Date | string | number;
-  dt_fim?: Date | string | number;
-  descricao?: string;
-}
 
 export async function createTravel(travelData: Travel) {
   travelData.orcamento_viagem = parseFloat(

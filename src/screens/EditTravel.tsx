@@ -18,10 +18,10 @@ import {
 import { BPButton } from "../components/buttons";
 import BPHeader from "../components/header";
 import { TravelContext } from "../context";
-import { Travel, getTravel, editTravel } from "../api/travel";
+import {  getTravel, editTravel } from "../api/travel";
 import { formatDate } from "../helpers/utils";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { TravelRoutes } from "../navigation";
+import { Travel } from "../models/travel";
 
 export default ({ navigation }) => {
   const { idViagem } = useContext(TravelContext);
@@ -81,31 +81,31 @@ export default ({ navigation }) => {
           <BPTextInput
             value={name}
             placeholder="Nome"
-            onChangeText={(t) => setName(t)}
+            onChangeText={(t: string) => setName(t)}
           />
 
           <BPDescriptionTextInput
             value={description}
             placeholder="Descrição (Opcional)"
-            onChangeText={(t) => setDescription(t)}
+            onChangeText={(t: string) => setDescription(t)}
           />
 
           <BPBudgetInput
             value={budget}
             placeholder="Meta de Gastos (Opcional)"
-            onChangeText={(t) => setBudget(t)}
+            onChangeText={(t: string) => setBudget(t)}
           />
 
           <BPDateInput
             value={startDate}
             placeholder="Data de Início (DD/MM/YYYY)"
-            onChangeText={(t) => setStartDate(t)}
+            onChangeText={(t: string) => setStartDate(t)}
           />
 
           <BPDateInput
             value={endDate}
             placeholder="Data de Término (DD/MM/YYYY)"
-            onChangeText={(t) => setEndDate(t)}
+            onChangeText={(t: string) => setEndDate(t)}
           />
 
           <BPButton text="Atualizar" onPress={onEditTravel} />

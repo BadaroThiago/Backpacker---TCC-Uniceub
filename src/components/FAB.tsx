@@ -17,8 +17,9 @@ const MyComponent = () => {
     <Provider>
       <Portal>
         <FAB.Group
+          visible={true}
           open={open}
-          icon={open ? "plus" : "plus"}
+          icon={open ? "minus" : "plus"}
           actions={[
             {
               icon: "account-edit",
@@ -26,16 +27,15 @@ const MyComponent = () => {
               onPress: () => navigation.navigate(UserRoutes.Edit),
             },
             {
+              icon: "delete",
+              label: "Deletar Viagem",
+              onPress: () => navigation.navigate("DetailTrip"),
+            },
+            {
               icon: "pencil",
               label: "Editar Viagem",
               onPress: () => navigation.navigate(TravelRoutes.Edit),
             },
-            // {
-            // icon: 'account-plus',
-            // label: 'Adicionar Viajante',
-            // onPress: () => navigation.navigate('DetailTrip'),
-            // small: false,
-            // },
             {
               icon: "plus",
               label: "Adicionar Viagem",
