@@ -72,7 +72,7 @@ export default ({ navigation }) => {
 
   return (
     <View style={styles.view}>
-      <BPHeader showMenuButton={false} onPress={() => navigation.goBack()} />
+      <BPHeader onPress={() => navigation.goBack()} />
 
       <Text style={styles.title2}>Editar Viagem</Text>
 
@@ -111,7 +111,6 @@ export default ({ navigation }) => {
           <BPButton text="Atualizar" onPress={onEditTravel} />
         </KeyboardAwareScrollView>
       </TouchableWithoutFeedback>
-      <FAB />
     </View>
   );
 };

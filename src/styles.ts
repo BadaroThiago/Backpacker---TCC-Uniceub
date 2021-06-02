@@ -49,7 +49,7 @@ export const styles = StyleSheet.create({
   },
 
   input: {
-    width: "90%",
+    width: "85%",
     height: 50,
     alignSelf: "center",
     backgroundColor: colorConstants.SecondaryBackground,
@@ -64,22 +64,23 @@ export const styles = StyleSheet.create({
   },
 
   descriptionInput: {
-    width: "90%",
-    height: 100,
+    width: "85%",
     alignSelf: "center",
     backgroundColor: colorConstants.SecondaryBackground,
+    height: 100,
     flexDirection: "row",
     marginTop: 10,
     marginBottom: 5,
     borderWidth: 2,
     paddingLeft: 10,
+    paddingTop: 15,
     borderColor: colorConstants.WhiteText,
     borderRadius: 3,
     color: colorConstants.WhiteText,
   },
 
   button: {
-    width: "90%",
+    width: "85%",
     height: 52,
     marginTop: 20,
 
@@ -93,7 +94,7 @@ export const styles = StyleSheet.create({
   },
 
   buttondel: {
-    width: "90%",
+    width: "85%",
     height: 52,
     marginTop: 10,
 
@@ -107,7 +108,7 @@ export const styles = StyleSheet.create({
   },
 
   buttondel2: {
-    width: "90%",
+    width: "85%",
     height: 52,
     marginTop: 10,
 

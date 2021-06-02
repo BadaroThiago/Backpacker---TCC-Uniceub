@@ -2,29 +2,34 @@ import React, { useContext } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { FAB, Portal, Provider } from "react-native-paper";
 
-import { TravelRoutes, UserRoutes } from "../navigation";
+import { SpotRoutes, TravelRoutes, UserRoutes } from "../navigation";
 import { Alert } from "react-native";
-import { Travel } from "../models/travel";
 
 import { deleteTravel } from "../api/travel";
 import { TravelContext } from "../context";
 
-const MyComponent = () => {
+type FABContext = "travel" | "spot";
+
+interface Props {
+  context: FABContext;
+}
+
+const MyComponent = ({ context }: Props) => {
   const navigation = useNavigation();
   const { idViagem } = useContext(TravelContext);
-
   const [state, setState] = React.useState({ open: false });
-
   const onStateChange = ({ open }) => setState({ open });
-
   const { open } = state;
 
-  const actions = [
+  const mainActions = [
     {
       icon: "account-edit",
       label: "Editar Perfil",
       onPress: () => navigation.navigate(UserRoutes.Edit),
     },
+  ];
+
+  const travelActions = [
     {
       icon: "delete",
       label: "Deletar Viagem",
@@ -61,6 +66,26 @@ const MyComponent = () => {
     },
   ];
 
+  const spotActions = [
+    {
+      icon: "plus",
+      label: "Adicionar Local",
+      onPress: () => navigation.navigate(SpotRoutes.Add),
+      small: false,
+    },
+  ];
+
+  const selectActions = () => {
+    switch (context) {
+      case "travel":
+        return [...mainActions, ...travelActions];
+      case "spot":
+        return [...mainActions, ...spotActions];
+      default:
+        return mainActions;
+    }
+  };
+
   return (
     <Provider>
       <Portal>
@@ -68,7 +93,7 @@ const MyComponent = () => {
           visible={true}
           open={open}
           icon={open ? "minus" : "plus"}
-          actions={actions}
+          actions={selectActions()}
           onStateChange={onStateChange}
           onPress={() => {
             if (open) {

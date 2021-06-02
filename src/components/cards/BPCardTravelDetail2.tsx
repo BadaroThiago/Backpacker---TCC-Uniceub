@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text } from "react-native";
 import { Card } from "react-native-paper";
-import { Travel } from "../../models/travel";
+import { countSpots, countVisitedSpots, Travel } from "../../models/travel";
 import { colorConstants, styles } from "../../styles";
 import { BPGoalChart, BPLocalChart } from "../charts";
 import { IconAndText } from "../IconAndText";
@@ -24,16 +24,16 @@ export const BPCardDetailTravel2 = ({ travel }: Props) => {
         }}
       >
         <View style={{ marginBottom: 1 }}>
-          <BPLocalChart goal={15} currentValue={9} title="Locais Visitados" />
-          {travel.orcamento_viagem > 0 ? (
-            <BPGoalChart
-              goal={travel.orcamento_viagem}
-              currentValue={1500}
-              title="Meta de gastos"
-            />
-          ) : (
-            <View />
-          )}
+          <BPLocalChart
+            goal={countSpots(travel)}
+            currentValue={countVisitedSpots(travel)}
+            title="Locais Visitados"
+          />
+          <BPGoalChart
+            goal={travel.orcamento_viagem}
+            currentValue={1500}
+            title="Meta de gastos"
+          />
         </View>
 
         <View>

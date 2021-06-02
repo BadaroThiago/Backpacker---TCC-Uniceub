@@ -63,6 +63,9 @@ export const BPDescriptionTextInput = ({
       textContentType="none"
       autoCorrect={false}
       value={value}
+      multiline={true}
+      textAlignVertical="top"
+      numberOfLines={10}
     />
   );
 };

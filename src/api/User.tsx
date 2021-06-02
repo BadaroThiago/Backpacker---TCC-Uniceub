@@ -51,7 +51,6 @@ export async function editUser(payload: UserFormFields) {
   // Caso os emais sejam diferentes, atualiza no firebase
   if (user.email !== payload.email) {
     await user.updateEmail(payload.email);
-    console.log(user);
     user = firebase.auth().currentUser;
   }
   // Caso tente atualiza a senha, garante que elas batem

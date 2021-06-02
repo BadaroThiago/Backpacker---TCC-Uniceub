@@ -52,7 +52,6 @@ export default ({ navigation }) => {
   return (
     <View style={styles.view}>
       <BPHeader
-        showMenuButton={false}
         onPress={() => navigation.navigate(TravelRoutes.List)}
       />
 
