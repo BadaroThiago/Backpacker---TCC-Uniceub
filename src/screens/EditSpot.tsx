@@ -1,7 +1,14 @@
 import { useFocusEffect } from "@react-navigation/native";
 import moment from "moment";
 import React, { useCallback, useContext, useState } from "react";
-import { Alert, Text, View } from "react-native";
+import {
+  Alert,
+  Keyboard,
+  Text,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { editSpot, getSpot } from "../api/spot";
 import { BPButton } from "../components/buttons";
 import BPHeader from "../components/header";
@@ -25,14 +32,14 @@ export default ({ navigation, route }) => {
   useFocusEffect(
     useCallback(() => {
       getSpot(idLocal)
-        .then(res => {
+        .then((res) => {
           let data: Spot = res.data;
           setName(data.nome_local);
           setDescription(data.descricao_local);
           setDate(moment(data.dt_planejada).format("DD/MM/YYYY"));
           setId(data.id_local);
         })
-        .catch(err => console.log(err));
+        .catch((err) => console.log(err));
       return () => {};
     }, [])
   );
@@ -50,7 +57,7 @@ export default ({ navigation, route }) => {
         console.log("Deu bom");
         navigation.navigate(SpotRoutes.List);
       })
-      .catch(err => Alert.alert("Erro ao atualizar lugar", err));
+      .catch((err) => Alert.alert("Erro ao atualizar lugar", err));
   };
 
   return (
@@ -62,23 +69,27 @@ export default ({ navigation, route }) => {
 
       <Text style={styles.title2}>Editar local</Text>
 
-      <BPTextInput
-        value={name}
-        placeholder="Nome"
-        onChangeText={(t: string) => setName(t)}
-      />
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <KeyboardAwareScrollView>
+          <BPTextInput
+            value={name}
+            placeholder="Nome"
+            onChangeText={(t: string) => setName(t)}
+          />
 
-      <BPDescriptionTextInput
-        value={description}
-        placeholder="Descrição (Opcional)"
-        onChangeText={(t: string) => setDescription(t)}
-      />
+          <BPDescriptionTextInput
+            value={description}
+            placeholder="Descrição (Opcional)"
+            onChangeText={(t: string) => setDescription(t)}
+          />
 
-      <BPDateInput
-        placeholder="Data de visita (DD/MM/YYYY)"
-        onChangeText={(t: string) => setDate(t)}
-        value={date}
-      />
+          <BPDateInput
+            placeholder="Data de visita (DD/MM/YYYY)"
+            onChangeText={(t: string) => setDate(t)}
+            value={date}
+          />
+        </KeyboardAwareScrollView>
+      </TouchableWithoutFeedback>
 
       <BPButton text="ATUALIZAR" onPress={onEditSpot} />
     </View>

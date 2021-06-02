@@ -27,7 +27,7 @@ export default () => {
   const [dateField, setDateField] = useState<string>("");
   const [emailField, setEmailField] = useState<string>("");
   const [passwordField, setPasswordField] = useState<string>("");
-  const [confirmPasswordField, setConfirmPasswordField] = useState<string>("");
+  // const [confirmPasswordField, setConfirmPasswordField] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   let signIn = async () => {
@@ -48,15 +48,12 @@ export default () => {
   return (
     <View style={styles.view}>
       <BPLoadingView isLoading={isLoading}>
+        <BPHeader showMenuButton={false} onPress={() => navigation.goBack()} />
+
+        <Text style={styles.title2}>Cadastrar</Text>
+
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <KeyboardAwareScrollView>
-            <BPHeader
-              showMenuButton={false}
-              onPress={() => navigation.goBack()}
-            />
-
-            <Text style={styles.title2}>Cadastrar</Text>
-
             <BPTextInput
               placeholder="Nome"
               onChangeText={(t: string) => setNamelField(t)}
@@ -77,11 +74,6 @@ export default () => {
             <BPPasswordInput
               placeholder="Senha"
               onChangeText={(t: string) => setPasswordField(t)}
-            />
-
-            <BPPasswordInput
-              placeholder="Confirme a senha"
-              onChangeText={(t: string) => setConfirmPasswordField(t)}
             />
 
             <BPButton text="CRIAR CONTA" onPress={signIn} />
