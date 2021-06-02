@@ -11,6 +11,8 @@ export const BPGoalChart = ({ goal, currentValue, title }) => {
     return `${v}%`;
   };
 
+  console.log("aqui:", goal);
+
   return (
     <View
       style={{
@@ -42,11 +44,14 @@ export const BPGoalChart = ({ goal, currentValue, title }) => {
             zIndex: -1,
             flexDirection: "column",
           }}
-        ></LinearGradient>
+        />
       </View>
       <Text style={{ color: colorConstants.WhiteText }}>
-        {numberToCurrency(currentValue)} gastos de
-        {" " + numberToCurrency(goal)}
+        {goal && goal > 0
+          ? `${numberToCurrency(currentValue)} gastos de ${numberToCurrency(
+              goal
+            )}`
+          : "Sem meta de gastos definida"}
       </Text>
     </View>
   );
@@ -91,10 +96,16 @@ export const BPLocalChart = ({ goal, currentValue, title }) => {
           }}
         ></LinearGradient>
       </View>
-      <Text style={{ color: colorConstants.WhiteText }}>
-        {currentValue} locais visitados de
-        {" " + goal}
-      </Text>
+      {goal === 0 ? (
+        <Text style={{ color: colorConstants.WhiteText }}>
+          Locais a serem visitados ainda não definidos
+        </Text>
+      ) : (
+        <Text style={{ color: colorConstants.WhiteText }}>
+          {currentValue} locais visitados de
+          {" " + goal}
+        </Text>
+      )}
     </View>
   );
 };
