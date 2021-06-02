@@ -9,9 +9,11 @@ import {
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { createUser } from "../api/User";
+import { BPLoadingView } from "../screens/Loading";
 import { BPButton } from "../components/buttons";
 import BPHeader from "../components/header";
 import {
+  BPDateInput,
   BPEmailInput,
   BPPasswordInput,
   BPTextInput,
@@ -26,56 +28,66 @@ export default () => {
   const [emailField, setEmailField] = useState<string>("");
   const [passwordField, setPasswordField] = useState<string>("");
   const [confirmPasswordField, setConfirmPasswordField] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   let signIn = async () => {
+    setIsLoading(true);
     createUser(nameField, emailField, passwordField, dateField)
       .then(() => {
         navigation.navigate("SignIn");
         Alert.alert("Bem vindo!");
       })
-      .catch(err => {
+      .catch((err) => {
         Alert.alert("Falha ao logar", err.message);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
   return (
     <View style={styles.view}>
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <KeyboardAwareScrollView>
-          <BPHeader
-            showMenuButton={false}
-            onPress={() => navigation.goBack()}
-          />
+      <BPLoadingView isLoading={isLoading}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <KeyboardAwareScrollView>
+            <BPHeader
+              showMenuButton={false}
+              onPress={() => navigation.goBack()}
+            />
 
-          <Text style={styles.title2}>Cadastrar</Text>
+            <Text style={styles.title2}>Cadastrar</Text>
 
-          <BPTextInput
-            placeholder="Nome"
-            onChangeText={t => setNamelField(t)}
-            value={undefined}
-          />
+            <BPTextInput
+              placeholder="Nome"
+              onChangeText={(t: string) => setNamelField(t)}
+              value={undefined}
+            />
 
-          <BPTextInput
-            placeholder="Data de Nascimento (DD/MM/YYYY)"
-            onChangeText={t => setDateField(t)}
-            value={undefined}
-          />
+            <BPDateInput
+              placeholder="Data de Nascimento (DD/MM/YYYY)"
+              onChangeText={(t: string) => setDateField(t)}
+              value={dateField}
+            />
 
-          <BPEmailInput onChangeText={t => setEmailField(t)} />
+            <BPEmailInput
+              onChangeText={(t: string) => setEmailField(t)}
+              value={emailField}
+            />
 
-          <BPPasswordInput
-            placeholder="Senha"
-            onChangeText={t => setPasswordField(t)}
-          />
+            <BPPasswordInput
+              placeholder="Senha"
+              onChangeText={(t: string) => setPasswordField(t)}
+            />
 
-          <BPPasswordInput
-            placeholder="Confirme a senha"
-            onChangeText={t => setConfirmPasswordField(t)}
-          />
+            <BPPasswordInput
+              placeholder="Confirme a senha"
+              onChangeText={(t: string) => setConfirmPasswordField(t)}
+            />
 
-          <BPButton text="CRIAR CONTA" onPress={signIn} />
-        </KeyboardAwareScrollView>
-      </TouchableWithoutFeedback>
+            <BPButton text="CRIAR CONTA" onPress={signIn} />
+          </KeyboardAwareScrollView>
+        </TouchableWithoutFeedback>
+      </BPLoadingView>
     </View>
   );
 };

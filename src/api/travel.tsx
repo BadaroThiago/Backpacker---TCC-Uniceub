@@ -54,8 +54,14 @@ export async function getTravel(idTravel: number) {
 
 export async function editTravel(travel: Travel) {
   travel.orcamento_viagem = parseFloat(travel.orcamento_viagem as string);
-  travel.dt_inicio = moment(travel.dt_inicio, "dd/mm/yyyy").unix();
-  travel.dt_fim = moment(travel.dt_fim, "dd/mm/yyyy").unix();
+
+  travel.dt_inicio
+    ? (travel.dt_inicio = moment(travel.dt_inicio, "dd/mm/yyyy").unix())
+    : (travel.dt_inicio = undefined);
+
+  travel.dt_fim
+    ? (travel.dt_fim = moment(travel.dt_fim, "dd/mm/yyyy").unix())
+    : (travel.dt_fim = undefined);
 
   let user = firebase.auth().currentUser;
   let token = await user.getIdToken();
