@@ -11,8 +11,6 @@ export const BPGoalChart = ({ goal, currentValue, title }) => {
     return `${v}%`;
   };
 
-  console.log("aqui:", goal);
-
   return (
     <View
       style={{
