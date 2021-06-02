@@ -29,11 +29,11 @@ export const BPCardDetailTravel2 = ({ travel }: Props) => {
             currentValue={countVisitedSpots(travel)}
             title="Locais Visitados"
           />
-            <BPGoalChart
-              goal={travel.orcamento_viagem}
-              currentValue={1500}
-              title="Meta de gastos"
-            />
+          <BPGoalChart
+            goal={travel.orcamento_viagem}
+            currentValue={1500}
+            title="Meta de gastos"
+          />
         </View>
 
         <View>

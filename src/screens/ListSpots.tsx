@@ -19,10 +19,10 @@ export default ({ navigation }) => {
   useFocusEffect(
     useCallback(() => {
       getSpots(idViagem)
-        .then((res) => {
+        .then(res => {
           setSpots(res.data);
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
       return () => {};
@@ -41,15 +41,17 @@ export default ({ navigation }) => {
       <FlatList
         contentContainerStyle={{ flexGrow: 1 }}
         data={spots}
-        renderItem={(spot) => (
+        renderItem={spot => (
           <BPCardLocal
             spot={spot.item}
             onPress={() => {
-              navigation.navigate(SpotRoutes.Detail, { id_local: spot.item.id_local });
+              navigation.navigate(SpotRoutes.Detail, {
+                id_local: spot.item.id_local,
+              });
             }}
           />
         )}
-        keyExtractor={(t) => t.id_local.toString()}
+        keyExtractor={t => t.id_local.toString()}
         ListEmptyComponent={
           <View
             style={{

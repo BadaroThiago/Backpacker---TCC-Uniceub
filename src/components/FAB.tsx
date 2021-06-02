@@ -41,7 +41,7 @@ const MyComponent = ({ context }: Props) => {
                 .then(() => {
                   navigation.navigate(TravelRoutes.List);
                 })
-                .catch((err) => {
+                .catch(err => {
                   console.log(err);
                   Alert.alert("Erro ao deletar viagem");
                 });

@@ -17,8 +17,9 @@ export const countSpots = (travel: Travel): number => {
 export const countVisitedSpots = (travel: Travel) => {
   if (travel.spots) {
     return travel.spots.reduce(
-      (acc: number, value: Spot) => acc + (value.visitado ? 1 : 0)
-    , 0);
+      (acc: number, value: Spot) => acc + (value.visitado ? 1 : 0),
+      0
+    );
   }
 
   return 0;

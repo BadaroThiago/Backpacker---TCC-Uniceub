@@ -34,7 +34,7 @@ export default ({ navigation }) => {
       .then(() => {
         navigation.navigate(SpotRoutes.List);
       })
-      .catch((err) => {
+      .catch(err => {
         Alert.alert("Erro ao criar local", err);
       });
   };
@@ -66,10 +66,7 @@ export default ({ navigation }) => {
         value={date}
       />
 
-      <BPButton
-        text="ADICIONAR"
-        onPress={addSpot}
-      />
+      <BPButton text="ADICIONAR" onPress={addSpot} />
     </View>
   );
 };

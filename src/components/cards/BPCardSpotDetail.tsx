@@ -20,7 +20,7 @@ export const BPCardSpotDetail = ({ spot }: Props) => {
           maxHeight: 300,
           alignSelf: "center",
           padding: 10,
-          marginBottom: 10
+          marginBottom: 10,
         }}
       >
         <View>
@@ -29,7 +29,7 @@ export const BPCardSpotDetail = ({ spot }: Props) => {
               fontSize: 16,
               color: colorConstants.WhiteText,
               fontWeight: "bold",
-              marginBottom: 30
+              marginBottom: 30,
             }}
           >
             {spot.descricao_local}

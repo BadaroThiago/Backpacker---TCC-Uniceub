@@ -24,8 +24,8 @@ export default ({ navigation, route }) => {
   useFocusEffect(
     useCallback(() => {
       getSpot(idLocal)
-        .then((res) => setSpot(res.data))
-        .catch((err) => console.log(err));
+        .then(res => setSpot(res.data))
+        .catch(err => console.log(err));
       return () => {};
     }, [])
   );
@@ -39,10 +39,10 @@ export default ({ navigation, route }) => {
           onPress: async () => {
             deleteSpot(idLocal)
               .then(() => navigation.navigate(SpotRoutes.List))
-              .catch((err) => console.log(err));
+              .catch(err => console.log(err));
           },
           text: "Sim",
-          style: "destructive"
+          style: "destructive",
         },
         { onPress: () => {}, text: "Não" },
       ]

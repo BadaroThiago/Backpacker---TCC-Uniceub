@@ -14,6 +14,7 @@ if (!firebase.apps.length) {
   firebase.initializeApp(config);
 
   if (__DEV__) {
+    console.log("Firebase is setting emulator on...");
     firebase.auth().useEmulator("http://localhost:9099/");
   }
 

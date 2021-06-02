@@ -25,14 +25,14 @@ export default ({ navigation, route }) => {
   useFocusEffect(
     useCallback(() => {
       getSpot(idLocal)
-        .then((res) => {
+        .then(res => {
           let data: Spot = res.data;
           setName(data.nome_local);
           setDescription(data.descricao_local);
           setDate(moment(data.dt_planejada).format("DD/MM/YYYY"));
           setId(data.id_local);
         })
-        .catch((err) => console.log(err));
+        .catch(err => console.log(err));
       return () => {};
     }, [])
   );
@@ -50,7 +50,7 @@ export default ({ navigation, route }) => {
         console.log("Deu bom");
         navigation.navigate(SpotRoutes.List);
       })
-      .catch((err) => Alert.alert("Erro ao atualizar lugar", err));
+      .catch(err => Alert.alert("Erro ao atualizar lugar", err));
   };
 
   return (

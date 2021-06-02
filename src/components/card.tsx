@@ -7,7 +7,6 @@ import { styles, colorConstants } from "../styles";
 import { BPTextExpenseInfo } from "../components/expenses/text";
 import { BPGoalChart } from "../components/charts";
 
-
 export const BPCardDocsList = ({ onPress, width, height }) => {
   return (
     <View>
