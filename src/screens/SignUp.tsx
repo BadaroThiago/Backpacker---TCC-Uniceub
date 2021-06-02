@@ -48,7 +48,7 @@ export default () => {
   return (
     <View style={styles.view}>
       <BPLoadingView isLoading={isLoading}>
-        <BPHeader showMenuButton={false} onPress={() => navigation.goBack()} />
+        <BPHeader onPress={() => navigation.goBack()} />
 
         <Text style={styles.title2}>Cadastrar</Text>
 
