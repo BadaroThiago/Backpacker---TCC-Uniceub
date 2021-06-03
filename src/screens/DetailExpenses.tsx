@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { View, Text, FlatList } from "react-native";
+import { View, Text, FlatList, Alert } from "react-native";
 import { styles } from "../styles";
 
 import {
@@ -14,7 +14,7 @@ import { ExpenseRoutes } from "../navigation";
 import { BPCardExpense } from "../components/cards/BPCardExpense";
 import { Expense } from "../models/expenses";
 import { useFocusEffect } from "@react-navigation/native";
-import { getExpense } from "../api/expenses";
+import { deleteExpense, getExpense } from "../api/expenses";
 import { BPLoadingView2 } from "../screens/Loading";
 
 export default ({ navigation, route }) => {
@@ -33,6 +33,25 @@ export default ({ navigation, route }) => {
       return () => {};
     }, [])
   );
+
+  const onDelete = async () => {
+    Alert.alert(
+      "Deletar local",
+      `Deseja mesmo excluir o gasto ${expense.nome_gasto}?`,
+      [
+        {
+          onPress: async () => {
+            deleteExpense(idExpense)
+              .then(() => navigation.navigate(ExpenseRoutes.List))
+              .catch(err => console.log(err));
+          },
+          text: "Sim",
+          style: "destructive",
+        },
+        { onPress: () => {}, text: "Não" },
+      ]
+    );
+  };
 
   return !expense ? (
     <View style={styles.view} />
@@ -56,7 +75,7 @@ export default ({ navigation, route }) => {
             })
           }
         />
-        <BPButtonDelete text="EXCLUIR" onPress={() => console.log("Delete")} />
+        <BPButtonDelete text="EXCLUIR" onPress={onDelete} />
       </BPLoadingView2>
     </View>
   );

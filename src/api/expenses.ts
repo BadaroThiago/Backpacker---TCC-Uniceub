@@ -55,7 +55,6 @@ export async function editExpense(expense: Expense) {
   expense.dt_gasto = moment(expense.dt_gasto, "DD/MM/YYYY").unix();
   expense.valor_gasto = currencyToNumber(expense.valor_gasto as string);
 
-
   let user = firebase.auth().currentUser;
   let token = await user.getIdToken();
 
@@ -64,11 +63,11 @@ export async function editExpense(expense: Expense) {
   });
 }
 
-// export async function deleteSpot(idSpot: number) {
-// let user = firebase.auth().currentUser;
-// let token = await user.getIdToken();
+export async function deleteExpense(idExpense: number) {
+  let user = firebase.auth().currentUser;
+  let token = await user.getIdToken();
 
-// await axios.delete(`${BASE_API}/${idSpot}`, {
-// headers: { Authorization: token },
-// });
-// }
+  await axios.delete(`${BASE_API}/${idExpense}`, {
+    headers: { Authorization: token },
+  });
+}
