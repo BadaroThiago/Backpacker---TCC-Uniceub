@@ -19,10 +19,10 @@ export default ({ navigation }) => {
   useFocusEffect(
     useCallback(() => {
       getSpots(idViagem)
-        .then(res => {
+        .then((res) => {
           setSpots(res.data);
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
       return () => {};
@@ -31,17 +31,14 @@ export default ({ navigation }) => {
 
   return (
     <View style={styles.view}>
-      <BPHeader
-        showMenuButton={false}
-        onPress={() => navigation.navigate(TravelRoutes.List)}
-      />
+      <BPHeader onPress={() => navigation.navigate(TravelRoutes.List)} />
 
       <Text style={styles.title2}>Locais</Text>
 
       <FlatList
         contentContainerStyle={{ flexGrow: 1 }}
         data={spots}
-        renderItem={spot => (
+        renderItem={(spot) => (
           <BPCardLocal
             spot={spot.item}
             onPress={() => {
@@ -51,11 +48,14 @@ export default ({ navigation }) => {
             }}
           />
         )}
-        keyExtractor={t => t.id_local.toString()}
+        keyExtractor={(t) => t.id_local.toString()}
         ListEmptyComponent={
           <View
             style={{
               alignItems: "center",
+              justifyContent: "center",
+              width: "100%",
+              height: "100%",
             }}
           >
             <Text

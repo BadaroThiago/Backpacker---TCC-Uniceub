@@ -2,13 +2,13 @@ import React, { useContext } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { FAB, Portal, Provider } from "react-native-paper";
 
-import { SpotRoutes, TravelRoutes, UserRoutes } from "../navigation";
+import { ExpenseRoutes, SpotRoutes, TravelRoutes, UserRoutes } from "../navigation";
 import { Alert } from "react-native";
 
 import { deleteTravel } from "../api/travel";
 import { TravelContext } from "../context";
 
-type FABContext = "travel" | "spot";
+type FABContext = "travel" | "spot" | "expense";
 
 interface Props {
   context: FABContext;
@@ -75,12 +75,23 @@ const MyComponent = ({ context }: Props) => {
     },
   ];
 
+  const expenseActions = [
+    {
+      icon: "plus",
+      label: "Adicionar Gasto",
+      onPress: () => navigation.navigate(ExpenseRoutes.Add),
+      small: false,
+    },
+  ]
+
   const selectActions = () => {
     switch (context) {
       case "travel":
         return [...mainActions, ...travelActions];
       case "spot":
         return [...mainActions, ...spotActions];
+      case "expense":
+        return [...mainActions, ...expenseActions];
       default:
         return mainActions;
     }
