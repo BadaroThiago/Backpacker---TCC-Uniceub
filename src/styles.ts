@@ -157,7 +157,7 @@ export const styles = StyleSheet.create({
     backgroundColor: colorConstants.SecondaryBackground,
     borderRadius: 6,
     shadowColor: "black",
-    shadowOpacity: 0.4,
+    shadowOpacity: 0.7,
     shadowOffset: { width: 0, height: 3 },
   },
 });

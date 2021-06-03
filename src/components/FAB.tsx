@@ -101,6 +101,7 @@ const MyComponent = ({ context }: Props) => {
     <Provider>
       <Portal>
         <FAB.Group
+        fabStyle={{ zIndex: 1 }}
           visible={true}
           open={open}
           icon={open ? "minus" : "plus"}

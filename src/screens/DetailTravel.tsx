@@ -27,11 +27,10 @@ export default ({ navigation }) => {
   );
 
   return travel === undefined ? (
-    <View style={styles.view}></View>
+    <View style={styles.view} />
   ) : (
-    <View style={styles.view}>
+    <View style={{ ...styles.view, zIndex: -1 }}>
       <BPHeader
-        showMenuButton={false}
         onPress={() => navigation.navigate(TravelRoutes.List)}
       />
 
