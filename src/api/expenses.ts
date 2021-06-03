@@ -47,20 +47,26 @@ export async function getExpense(idExpense: number) {
   let url = `${BASE_API}/${idExpense}`;
 
   return await axios.get(url, {
-  headers: { Authorization: token },
+    headers: { Authorization: token },
   });
 }
 
-// export async function editSpot(spot: Spot) {
-// spot.dt_planejada = moment(spot.dt_planejada, "DD/MM/YYYY").unix();
+export async function editExpense(expense: Expense) {
+  console.log("Chegou aqui!");
+  console.log("Expense antes:", expense);
 
-// let user = firebase.auth().currentUser;
-// let token = await user.getIdToken();
+  // expense.dt_gasto = moment(expense.dt_gasto, "DD/MM/YYYY").unix();
+  // expense.valor_gasto = currencyToNumber(expense.valor_gasto as string);
 
-// await axios.put(`${BASE_API}/${spot.id_local}`, spot, {
-// headers: { Authorization: token },
-// });
-// }
+  console.log("Expense depois:", expense);
+
+  let user = firebase.auth().currentUser;
+  let token = await user.getIdToken();
+
+  return await axios.put(`${BASE_API}/${expense.id_gasto}`, expense, {
+    headers: { Authorization: token },
+  });
+}
 
 // export async function deleteSpot(idSpot: number) {
 // let user = firebase.auth().currentUser;

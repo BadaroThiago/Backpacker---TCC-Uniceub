@@ -34,7 +34,9 @@ export default ({ navigation, route }) => {
     }, [])
   );
 
-  return !expense ? <View style={styles.view} /> : (
+  return !expense ? (
+    <View style={styles.view} />
+  ) : (
     <View style={styles.view}>
       <BPHeader onPress={() => navigation.navigate(ExpenseRoutes.List)} />
       <BPLoadingView2 isLoading={isLoading}>
@@ -48,7 +50,11 @@ export default ({ navigation, route }) => {
         />
         <BPButtonDelete2
           text="EDITAR"
-          onPress={() => navigation.navigate(ExpenseRoutes.Edit)}
+          onPress={() =>
+            navigation.navigate(ExpenseRoutes.Edit, {
+              idExpense: expense.id_gasto,
+            })
+          }
         />
         <BPButtonDelete text="EXCLUIR" onPress={() => console.log("Delete")} />
       </BPLoadingView2>
