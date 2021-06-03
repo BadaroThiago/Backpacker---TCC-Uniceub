@@ -40,16 +40,16 @@ export async function getExpenses(idViagem: number) {
   return obj;
 }
 
-// export async function getSpot(idTravel: number) {
-// let user = firebase.auth().currentUser;
-// let token = await user.getIdToken();
+export async function getExpense(idExpense: number) {
+  let user = firebase.auth().currentUser;
+  let token = await user.getIdToken();
 
-// let url = `${BASE_API}/${idTravel}`;
+  let url = `${BASE_API}/${idExpense}`;
 
-// return await axios.get(url, {
-// headers: { Authorization: token },
-// });
-// }
+  return await axios.get(url, {
+  headers: { Authorization: token },
+  });
+}
 
 // export async function editSpot(spot: Spot) {
 // spot.dt_planejada = moment(spot.dt_planejada, "DD/MM/YYYY").unix();

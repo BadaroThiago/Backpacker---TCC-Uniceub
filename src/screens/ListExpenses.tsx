@@ -51,7 +51,11 @@ export default ({ navigation }) => {
               renderItem={(expense) => (
                 <BPCardExpenseList
                   expense={expense.item}
-                  onPress={() => navigation.navigate(ExpenseRoutes.Detail)}
+                  onPress={() =>
+                    navigation.navigate(ExpenseRoutes.Detail, {
+                      idExpense: expense.item.id_gasto,
+                    })
+                  }
                 />
               )}
               keyExtractor={(t) => t.id_gasto.toString()}
