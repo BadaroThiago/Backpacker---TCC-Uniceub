@@ -52,13 +52,9 @@ export async function getExpense(idExpense: number) {
 }
 
 export async function editExpense(expense: Expense) {
-  console.log("Chegou aqui!");
-  console.log("Expense antes:", expense);
+  expense.dt_gasto = moment(expense.dt_gasto, "DD/MM/YYYY").unix();
+  expense.valor_gasto = currencyToNumber(expense.valor_gasto as string);
 
-  // expense.dt_gasto = moment(expense.dt_gasto, "DD/MM/YYYY").unix();
-  // expense.valor_gasto = currencyToNumber(expense.valor_gasto as string);
-
-  console.log("Expense depois:", expense);
 
   let user = firebase.auth().currentUser;
   let token = await user.getIdToken();

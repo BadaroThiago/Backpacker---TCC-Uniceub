@@ -60,7 +60,6 @@ export default ({ navigation, route }) => {
     console.log("Aqui foi chamado:", expense);
     editExpense(expense)
       .then(() => {
-        console.log("Deu bom");
         navigation.navigate(ExpenseRoutes.List);
       })
       .catch((err) => {

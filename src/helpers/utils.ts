@@ -8,10 +8,12 @@ export const numberToCurrency = (v: number) => {
   return v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 };
 
-export const currencyToNumber = (v: string) => {
+export const currencyToNumber = (v: string | number) => {
   if (!v) {
     return;
   }
+
+  if (typeof v === 'number') { return v }
 
   return parseFloat(
     v
