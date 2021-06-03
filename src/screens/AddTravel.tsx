@@ -12,7 +12,7 @@ import { BPButton } from "../components/buttons";
 import FAB from "../components/FAB";
 import BPHeader from "../components/header";
 import {
-  BPBudgetInput,
+    BPAmountInput,
   BPDateInput,
   BPDescriptionTextInput,
   BPTextInput,
@@ -71,7 +71,7 @@ export default ({ navigation }) => {
             onChangeText={t => setDescription(t)}
           />
 
-          <BPBudgetInput
+          <BPAmountInput
             value={budget}
             placeholder="Meta de Gastos (Opcional)"
             onChangeText={t => setBudget(t)}
@@ -91,7 +91,6 @@ export default ({ navigation }) => {
           <BPButton text="Adicionar" onPress={addTravel} />
         </KeyboardAwareScrollView>
       </TouchableWithoutFeedback>
-      <FAB />
     </View>
   );
 };
