@@ -27,7 +27,6 @@ export default ({ navigation }) => {
         .then((res) => {
           setExpenses(res.expense);
           setTravel(res.travel);
-          console.log(res);
         })
         .catch((err) => {
           console.log(err);

@@ -34,7 +34,7 @@ export const BPTextInput = ({ value, placeholder, onChangeText }) => {
   );
 };
 
-export const BPBudgetInput = ({ value, placeholder, onChangeText }) => {
+export const BPAmountInput = ({ value, placeholder, onChangeText }) => {
   return (
     <TextInputMask
       style={styles.input}

@@ -3,12 +3,19 @@ import firebase from "firebase";
 import moment from "moment";
 
 import getEnvVars from "../../environment";
+import { currencyToNumber } from "../helpers/utils";
 import { Expense } from "../models/expenses";
 import { getTravel } from "./travel";
 
 const BASE_API = `${getEnvVars().apiUrl}/expense`;
 
 export async function createExpense(expenseData: Expense) {
+  expenseData.valor_gasto = currencyToNumber(expenseData.valor_gasto as string);
+
+  expenseData.dt_gasto
+    ? (expenseData.dt_gasto = moment(expenseData.dt_gasto, "DD/MM/YYYY").unix())
+    : (expenseData.dt_gasto = undefined);
+
   let user = firebase.auth().currentUser;
   let token = await user.getIdToken();
 
@@ -29,7 +36,6 @@ export async function getExpenses(idViagem: number) {
   let resTravel = await getTravel(idViagem);
 
   let obj = { travel: resTravel.data, expense: resExpense.data };
-  console.log(obj);
 
   return obj;
 }
