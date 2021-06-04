@@ -9,11 +9,9 @@ import { currencyToNumber } from "../helpers/utils";
 const BASE_API = `${getEnvVars().apiUrl}/travel`;
 
 export async function createTravel(travelData: Travel) {
-  console.log(travelData);
   travelData.orcamento_viagem = currencyToNumber(
     travelData.orcamento_viagem as string
   );
-  console.log(travelData);
 
   travelData.dt_inicio
     ? (travelData.dt_inicio = moment(travelData.dt_inicio, "dd/mm/yyyy").unix())
