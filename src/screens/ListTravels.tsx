@@ -41,7 +41,7 @@ export default ({ navigation }) => {
         keyExtractor={t => t.id_viagem.toString()}
       />
 
-      <FAB context="travel" />
+      <FAB context="home" />
     </View>
   );
 };

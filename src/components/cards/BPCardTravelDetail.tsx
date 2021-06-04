@@ -72,7 +72,7 @@ export const BPCardDetailTravel = ({ travel }: Props) => {
         </Text>
         <Text style={{ fontSize: 12 }}>
           <IconAndText
-            nome="amazon"
+            nome="dollar-sign"
             text={numberToCurrency(travel.orcamento_viagem as number)}
           ></IconAndText>
         </Text>

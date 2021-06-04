@@ -1,4 +1,5 @@
 import { Spot } from "../models/spot";
+import { Expense } from "./expenses";
 
 export interface Travel {
   id_viagem?: number;
@@ -8,6 +9,7 @@ export interface Travel {
   dt_fim?: Date | string | number;
   descricao?: string;
   spots?: [Spot];
+  expenses?: [Expense]
 }
 
 export const countSpots = (travel: Travel): number => {

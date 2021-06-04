@@ -13,7 +13,7 @@ import {
   BPTextInput,
   BPDescriptionTextInput,
   BPDateInput,
-  BPBudgetInput,
+  BPAmountInput,
 } from "../components/inputs";
 import { BPButton } from "../components/buttons";
 import BPHeader from "../components/header";
@@ -90,7 +90,7 @@ export default ({ navigation }) => {
             onChangeText={(t: string) => setDescription(t)}
           />
 
-          <BPBudgetInput
+          <BPAmountInput
             value={budget}
             placeholder="Meta de Gastos (Opcional)"
             onChangeText={(t: string) => setBudget(t)}

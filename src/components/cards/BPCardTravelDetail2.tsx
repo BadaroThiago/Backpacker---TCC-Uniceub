@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text } from "react-native";
+import { sumExpenses } from "../../models/expenses";
 import { countSpots, countVisitedSpots, Travel } from "../../models/travel";
 import { styles } from "../../styles";
 import { BPGoalChart, BPLocalChart } from "../charts";
@@ -29,7 +30,7 @@ export const BPCardDetailTravel2 = ({ travel }: Props) => {
         />
         <BPGoalChart
           goal={travel.orcamento_viagem}
-          currentValue={1500}
+          currentValue={sumExpenses(travel.expenses)}
           title="Meta de gastos"
         />
       </View>

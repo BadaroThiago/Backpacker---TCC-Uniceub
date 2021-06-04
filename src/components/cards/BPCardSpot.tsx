@@ -1,6 +1,5 @@
 import React from "react";
 import { TouchableOpacity, View, Text } from "react-native";
-import { Card } from "react-native-paper";
 import { formatDate } from "../../helpers/utils";
 import { Spot } from "../../models/spot";
 import { colorConstants, styles } from "../../styles";

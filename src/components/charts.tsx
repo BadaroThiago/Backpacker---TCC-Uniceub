@@ -7,6 +7,7 @@ import { LinearGradient } from "expo-linear-gradient";
 
 export const BPGoalChart = ({ goal, currentValue, title }) => {
   const value = () => {
+    if (currentValue > goal) return "100%";
     let v = (currentValue * 100) / goal;
     return `${v}%`;
   };
