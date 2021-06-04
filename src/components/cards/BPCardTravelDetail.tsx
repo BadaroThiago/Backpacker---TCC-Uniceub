@@ -68,7 +68,7 @@ export const BPCardDetailTravel = ({ travel }: Props) => {
         }}
       >
         <Text style={{ flex: 1, fontSize: 12 }}>
-          <IconAndText nome="users" text="5 viajantes"></IconAndText>
+          <IconAndText nome="users" text="1 viajante"></IconAndText>
         </Text>
         <Text style={{ fontSize: 12 }}>
           <IconAndText

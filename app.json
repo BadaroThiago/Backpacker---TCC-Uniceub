@@ -2,7 +2,7 @@
   "expo": {
     "name": "backpackers",
     "slug": "backpackers",
-    "version": "1.4.2",
+    "version": "1.4.3",
     "orientation": "portrait",
     "splash": {
       "resizeMode": "contain",
@@ -22,7 +22,7 @@
     },
     "android": {
       "package": "com.sempreceub.backpacker",
-      "versionCode": 9
+      "versionCode": 10
     }
   }
 }

@@ -52,7 +52,7 @@ export const BPCardTravelList = ({
               {travel.nome_viagem}
             </Text>
             <Text style={{ fontSize: 12 }}>
-              <IconAndText nome="users" text="5"></IconAndText>
+              <IconAndText nome="users" text="1"></IconAndText>
             </Text>
           </View>
 
