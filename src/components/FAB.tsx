@@ -3,6 +3,7 @@ import { useNavigation } from "@react-navigation/native";
 import { FAB, Portal, Provider } from "react-native-paper";
 
 import {
+    AuthRoutes,
   ExpenseRoutes,
   SpotRoutes,
   TravelRoutes,
@@ -12,6 +13,7 @@ import { Alert } from "react-native";
 
 import { deleteTravel } from "../api/travel";
 import { TravelContext } from "../context";
+import firebase from "firebase";
 
 type FABContext = "travel" | "spot" | "expense" | "home";
 
@@ -30,6 +32,14 @@ const MyComponent = ({ context }: Props) => {
   }, [navigation]);
 
   const mainActions = [
+    { 
+      icon: "logout",
+      label: "Sair",
+      onPress: () => {
+        firebase.auth().signOut();
+        navigation.navigate(AuthRoutes.SignIn);
+      }
+    },
     {
       icon: "account-edit",
       label: "Editar Perfil",
