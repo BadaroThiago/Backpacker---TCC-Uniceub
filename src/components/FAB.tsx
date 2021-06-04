@@ -3,7 +3,7 @@ import { useNavigation } from "@react-navigation/native";
 import { FAB, Portal, Provider } from "react-native-paper";
 
 import {
-    AuthRoutes,
+  AuthRoutes,
   ExpenseRoutes,
   SpotRoutes,
   TravelRoutes,
@@ -32,13 +32,13 @@ const MyComponent = ({ context }: Props) => {
   }, [navigation]);
 
   const mainActions = [
-    { 
+    {
       icon: "logout",
       label: "Sair",
       onPress: () => {
         firebase.auth().signOut();
         navigation.navigate(AuthRoutes.SignIn);
-      }
+      },
     },
     {
       icon: "account-edit",

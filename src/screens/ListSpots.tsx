@@ -1,6 +1,6 @@
 import React, { useCallback, useContext, useState } from "react";
 import { View, Text, FlatList } from "react-native";
-import { colorConstants, styles } from "../styles";
+import { styles } from "../styles";
 
 import FAB from "../components/FAB";
 import BPHeader from "../components/header";
@@ -11,6 +11,7 @@ import { useFocusEffect } from "@react-navigation/native";
 import { TravelContext } from "../context";
 import { Spot } from "../models/spot";
 import { BPCardLocal } from "../components/cards/BPCardSpot";
+import { BPEmptyListView } from '../components/emptyList';
 
 export default ({ navigation }) => {
   const { idViagem } = useContext(TravelContext);
@@ -37,6 +38,7 @@ export default ({ navigation }) => {
 
       <FlatList
         contentContainerStyle={{ flexGrow: 1 }}
+        style={{ flex: 1 }}
         data={spots}
         renderItem={(spot) => (
           <BPCardLocal
@@ -49,26 +51,7 @@ export default ({ navigation }) => {
           />
         )}
         keyExtractor={(t) => t.id_local.toString()}
-        ListEmptyComponent={
-          <View
-            style={{
-              alignItems: "center",
-              justifyContent: "center",
-              width: "100%",
-              height: "100%",
-            }}
-          >
-            <Text
-              style={{
-                fontWeight: "bold",
-                color: colorConstants.WhiteText,
-                fontSize: 18,
-              }}
-            >
-              Nenhum local a ser visitado
-            </Text>
-          </View>
-        }
+        ListEmptyComponent={<BPEmptyListView text="Nenhum local adicionado"/>}
       />
 
       <FAB context="spot" />

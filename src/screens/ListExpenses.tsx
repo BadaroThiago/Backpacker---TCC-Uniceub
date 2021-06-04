@@ -14,6 +14,7 @@ import { BPCardExpensesInfo } from "../components/cards/BPCardExpenseInfo";
 import { Travel } from "../models/travel";
 import { BPLoadingView2 } from "../screens/Loading";
 import FAB from "../components/FAB";
+import { BPEmptyListView } from "../components/emptyList";
 
 export default ({ navigation }) => {
   const { idViagem } = useContext(TravelContext);
@@ -48,6 +49,7 @@ export default ({ navigation }) => {
 
             <FlatList
               data={expenses}
+              contentContainerStyle={{ flexGrow: 1 }}
               renderItem={(expense) => (
                 <BPCardExpenseList
                   expense={expense.item}
@@ -61,6 +63,12 @@ export default ({ navigation }) => {
               keyExtractor={(t) => t.id_gasto.toString()}
               ListHeaderComponent={
                 <Text style={styles.listHeader}>Todos os gastos</Text>
+              }
+              ListEmptyComponent={
+                <BPEmptyListView
+                  text="Nenhum gasto cadastrado"
+                  style={{ fontWeight: "normal", fontSize: 16 }}
+                />
               }
             />
           </View>

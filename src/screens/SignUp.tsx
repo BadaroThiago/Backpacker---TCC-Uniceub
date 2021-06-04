@@ -19,6 +19,7 @@ import {
   BPTextInput,
 } from "../components/inputs";
 import { styles } from "../styles";
+import { StackRoutes } from "../navigation";
 
 export default () => {
   const navigation = useNavigation();
@@ -34,7 +35,7 @@ export default () => {
     setIsLoading(true);
     createUser(nameField, emailField, passwordField, dateField)
       .then(() => {
-        navigation.navigate("SignIn");
+        navigation.navigate(StackRoutes.Home);
         Alert.alert("Bem vindo!");
       })
       .catch((err) => {
