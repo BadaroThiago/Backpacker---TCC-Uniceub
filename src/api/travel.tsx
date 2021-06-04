@@ -4,11 +4,12 @@ import firebase from "firebase";
 import getEnvVars from "../../environment";
 import moment from "moment";
 import { Travel } from "../models/travel";
+import { currencyToNumber } from "../helpers/utils";
 
 const BASE_API = `${getEnvVars().apiUrl}/travel`;
 
 export async function createTravel(travelData: Travel) {
-  travelData.orcamento_viagem = parseFloat(
+  travelData.orcamento_viagem = currencyToNumber(
     travelData.orcamento_viagem as string
   );
 
@@ -53,7 +54,7 @@ export async function getTravel(idTravel: number) {
 }
 
 export async function editTravel(travel: Travel) {
-  travel.orcamento_viagem = parseFloat(travel.orcamento_viagem as string);
+  travel.orcamento_viagem = currencyToNumber(travel.orcamento_viagem as string);
 
   travel.dt_inicio
     ? (travel.dt_inicio = moment(travel.dt_inicio, "dd/mm/yyyy").unix())

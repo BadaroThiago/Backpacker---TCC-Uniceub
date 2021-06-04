@@ -1,7 +1,6 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 
-// import UserContextProvider from "./src/contexts/UserContext";
 import MainStack from "./src/stacks/MainStack";
 
 import getEnvVars from "./environment";
@@ -15,7 +14,8 @@ if (!firebase.apps.length) {
 
   if (__DEV__) {
     console.log("Firebase is setting emulator on...");
-    firebase.auth().useEmulator("http://localhost:9099/");
+    console.log(getEnvVars().apiUrl);
+    firebase.auth().useEmulator(getEnvVars().firebaseUrl);
   }
 
   console.log("Firebase is on!");

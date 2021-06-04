@@ -1,6 +1,6 @@
 import React, { useCallback, useContext, useState } from "react";
 import { View, Text, FlatList } from "react-native";
-import { colorConstants, styles } from "../styles";
+import { styles } from "../styles";
 
 import FAB from "../components/FAB";
 import BPHeader from "../components/header";
@@ -11,6 +11,7 @@ import { useFocusEffect } from "@react-navigation/native";
 import { TravelContext } from "../context";
 import { Spot } from "../models/spot";
 import { BPCardLocal } from "../components/cards/BPCardSpot";
+import { BPEmptyListView } from '../components/emptyList';
 
 export default ({ navigation }) => {
   const { idViagem } = useContext(TravelContext);
@@ -19,10 +20,10 @@ export default ({ navigation }) => {
   useFocusEffect(
     useCallback(() => {
       getSpots(idViagem)
-        .then(res => {
+        .then((res) => {
           setSpots(res.data);
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
       return () => {};
@@ -31,17 +32,15 @@ export default ({ navigation }) => {
 
   return (
     <View style={styles.view}>
-      <BPHeader
-        showMenuButton={false}
-        onPress={() => navigation.navigate(TravelRoutes.List)}
-      />
+      <BPHeader onPress={() => navigation.navigate(TravelRoutes.List)} />
 
       <Text style={styles.title2}>Locais</Text>
 
       <FlatList
         contentContainerStyle={{ flexGrow: 1 }}
+        style={{ flex: 1 }}
         data={spots}
-        renderItem={spot => (
+        renderItem={(spot) => (
           <BPCardLocal
             spot={spot.item}
             onPress={() => {
@@ -51,24 +50,8 @@ export default ({ navigation }) => {
             }}
           />
         )}
-        keyExtractor={t => t.id_local.toString()}
-        ListEmptyComponent={
-          <View
-            style={{
-              alignItems: "center",
-            }}
-          >
-            <Text
-              style={{
-                fontWeight: "bold",
-                color: colorConstants.WhiteText,
-                fontSize: 18,
-              }}
-            >
-              Nenhum local a ser visitado
-            </Text>
-          </View>
-        }
+        keyExtractor={(t) => t.id_local.toString()}
+        ListEmptyComponent={<BPEmptyListView text="Nenhum local adicionado"/>}
       />
 
       <FAB context="spot" />

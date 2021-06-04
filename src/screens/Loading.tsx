@@ -27,3 +27,11 @@ export const BPLoadingView = ({ children, isLoading }) => {
     </View>
   );
 };
+
+export const BPLoadingView2 = ({ children, isLoading }) => {
+  return (
+    <View style={{ flex: 1 }}>
+      {isLoading ? <LoadingView /> : children}
+    </View>
+  );
+};

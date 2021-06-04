@@ -25,11 +25,11 @@ export default ({ navigation }) => {
 
   useEffect(() => {
     getUser()
-      .then(res => {
+      .then((res) => {
         setEmailField(res.data.email);
         setNamelField(res.data.nome_usuario);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }, []);
@@ -46,6 +46,7 @@ export default ({ navigation }) => {
 
       Alert.alert("Atualizado com sucesso!");
       setShouldUpdateUser(false);
+      navigation.goBack();
     } catch (err) {
       console.log(err);
       Alert.alert("Erro ao atualizar dados", err.message);
@@ -66,46 +67,44 @@ export default ({ navigation }) => {
     }
   };
 
-  const onChangeName = name => {
+  const onChangeName = (name) => {
     setNamelField(name);
     setShouldUpdateUser(true);
   };
 
-  const onChangeEmail = email => {
+  const onChangeEmail = (email) => {
     setEmailField(email);
     setShouldUpdateUser(true);
   };
 
   return (
     <View style={styles.view}>
-      <BPHeader showMenuButton={false} onPress={() => navigation.goBack()} />
+      <BPHeader onPress={() => navigation.goBack()} />
 
       <Text style={styles.title2}>Editar Perfil</Text>
 
       <BPTextInput
         value={nameField}
         placeholder="Nome"
-        onChangeText={t => onChangeName(t)}
+        onChangeText={(t) => onChangeName(t)}
       />
 
-      <BPEmailInput value={emailField} onChangeText={t => onChangeEmail(t)} />
+      <BPEmailInput value={emailField} onChangeText={(t) => onChangeEmail(t)} />
 
       <BPPasswordInput
         placeholder="Senha"
-        onChangeText={t => setPasswordField(t)}
+        onChangeText={(t) => setPasswordField(t)}
       />
 
       <BPPasswordInput
         placeholder="Confirme a senha"
-        onChangeText={t => setConfirmPasswordField(t)}
+        onChangeText={(t) => setConfirmPasswordField(t)}
       />
 
       <BPButton text="SALVAR" onPress={updateUser} />
 
-      <BPButtonDelete text="DESATIVAR CONTA" onPress={() => removeUser(true)} />
-      <BPButtonDelete2 text="EXCLUIR CONTA" onPress={() => removeUser()} />
-
-      <FAB />
+      <BPButtonDelete2 text="DESATIVAR CONTA" onPress={() => removeUser(true)} />
+      <BPButtonDelete text="EXCLUIR CONTA" onPress={() => removeUser()} />
     </View>
   );
 };

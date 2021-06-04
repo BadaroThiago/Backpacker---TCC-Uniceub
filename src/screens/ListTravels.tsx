@@ -3,6 +3,7 @@ import React, { useCallback, useState } from "react";
 import { FlatList, Text, View } from "react-native";
 import { getTravels } from "../api/travel";
 import { BPCardTravelList } from "../components/cards/BPCardTravelList";
+import { BPEmptyListView } from "../components/emptyList";
 import FAB from "../components/FAB";
 import { Travel } from "../models/travel";
 import { TravelRoutes } from "../navigation";
@@ -26,6 +27,7 @@ export default ({ navigation }) => {
 
       <FlatList
         data={travels}
+        contentContainerStyle={{ flexGrow: 1 }}
         renderItem={t => (
           <BPCardTravelList
             travel={t.item}
@@ -39,9 +41,10 @@ export default ({ navigation }) => {
           />
         )}
         keyExtractor={t => t.id_viagem.toString()}
+        ListEmptyComponent={<BPEmptyListView text="Nenhuma viagem planejada"/>}
       />
 
-      <FAB context="travel" />
+      <FAB context="home" />
     </View>
   );
 };
