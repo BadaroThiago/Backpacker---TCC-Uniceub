@@ -26,7 +26,7 @@ export default () => {
 
         navigation.navigate("SignIn");
       })
-      .catch((err) => {
+      .catch(err => {
         Alert.alert("Falha ao enviar email", err.message);
       });
   };
@@ -51,7 +51,7 @@ export default () => {
         </Text>
       </View>
 
-      <BPEmailInput onChangeText={(t) => setEmail(t)} />
+      <BPEmailInput onChangeText={t => setEmail(t)} />
 
       <BPButton text="REDEFINIR SENHA" onPress={sendRecoverEmail} />
     </View>

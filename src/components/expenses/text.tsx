@@ -1,7 +1,6 @@
 import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
-import { Card } from "react-native-paper";
-import { styles, colorConstants } from "../../styles";
+import { View, Text } from "react-native";
+import { colorConstants } from "../../styles";
 import { numberToCurrency } from "../../helpers/utils";
 
 export const BPTextExpenseInfo = ({ title, value }) => {

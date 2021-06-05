@@ -1,9 +1,9 @@
 import axios from "axios";
 import firebase from "firebase";
 import moment from "moment";
+import getEnvVars from "../../environment";
 
-const BASE_API = "https://tcc-backpacker.herokuapp.com/user";
-// const BASE_API = "http://localhost:8081/user";
+const BASE_API = `${getEnvVars().apiUrl}/user`;
 
 export interface UserFormFields {
   nome_usuario?: string;
@@ -51,7 +51,6 @@ export async function editUser(payload: UserFormFields) {
   // Caso os emais sejam diferentes, atualiza no firebase
   if (user.email !== payload.email) {
     await user.updateEmail(payload.email);
-    console.log(user);
     user = firebase.auth().currentUser;
   }
   // Caso tente atualiza a senha, garante que elas batem

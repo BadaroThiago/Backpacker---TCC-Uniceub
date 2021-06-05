@@ -1,28 +1,22 @@
+import firebase from "firebase";
 import React, { useEffect, useState } from "react";
-import { useNavigation } from "@react-navigation/native";
-import { View, Text, Alert } from "react-native";
-import { styles } from "../styles";
-
-import FabButton from "../components/fabButton";
-
-import {
-  BPEmailInput,
-  BPPasswordInput,
-  BPTextInput,
-} from "../components/inputs";
+import { Alert, Text, View } from "react-native";
+import { deleteUser, editUser, getUser, UserFormFields } from "../api/User";
 import {
   BPButton,
   BPButtonDelete,
   BPButtonDelete2,
 } from "../components/buttons";
+import FAB from "../components/FAB";
 import BPHeader from "../components/header";
+import {
+  BPEmailInput,
+  BPPasswordInput,
+  BPTextInput,
+} from "../components/inputs";
+import { styles } from "../styles";
 
-import { getUser, editUser, deleteUser, UserFormFields } from "../api/User";
-import firebase from "firebase";
-
-export default () => {
-  const navigation = useNavigation();
-
+export default ({ navigation }) => {
   const [nameField, setNamelField] = useState<string>("");
   const [emailField, setEmailField] = useState<string>("");
   const [passwordField, setPasswordField] = useState<string>("");
@@ -52,6 +46,7 @@ export default () => {
 
       Alert.alert("Atualizado com sucesso!");
       setShouldUpdateUser(false);
+      navigation.goBack();
     } catch (err) {
       console.log(err);
       Alert.alert("Erro ao atualizar dados", err.message);
@@ -84,10 +79,7 @@ export default () => {
 
   return (
     <View style={styles.view}>
-      <BPHeader
-        showMenuButton={false}
-        onPress={() => navigation.navigate("Home")}
-      />
+      <BPHeader onPress={() => navigation.goBack()} />
 
       <Text style={styles.title2}>Editar Perfil</Text>
 
@@ -111,10 +103,8 @@ export default () => {
 
       <BPButton text="SALVAR" onPress={updateUser} />
 
-      <BPButtonDelete text="DESATIVAR CONTA" onPress={() => removeUser(true)} />
-      <BPButtonDelete2 text="EXCLUIR CONTA" onPress={() => removeUser()} />
-
-      <FabButton render={navigation} style={{ top: 700, right: 50 }} />
+      <BPButtonDelete2 text="DESATIVAR CONTA" onPress={() => removeUser(true)} />
+      <BPButtonDelete text="EXCLUIR CONTA" onPress={() => removeUser()} />
     </View>
   );
 };
