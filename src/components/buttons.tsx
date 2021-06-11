@@ -25,3 +25,11 @@ export const BPButtonDelete2 = ({ text, onPress }) => {
     </TouchableOpacity>
   );
 };
+
+export const PickerImage = ({ text, onPress }) => {
+  return (
+    <TouchableOpacity style={styles.input} onPress={onPress}>
+      <Text style={styles.buttonImage}>{text}</Text>
+    </TouchableOpacity>
+  );
+};

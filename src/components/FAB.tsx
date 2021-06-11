@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { FAB, Portal, Provider } from "react-native-paper";
 
+
 import {
   AuthRoutes,
   ExpenseRoutes,
@@ -75,6 +76,11 @@ const MyComponent = ({ context }: Props) => {
       icon: "pencil",
       label: "Editar Viagem",
       onPress: () => navigation.navigate(TravelRoutes.Edit),
+    },
+    {
+      icon: "account-multiple-plus",
+      label: "Adicionar Viajante",
+      onPress: () => navigation.navigate(TravelRoutes.Traveler),
     },
     {
       icon: "plus",

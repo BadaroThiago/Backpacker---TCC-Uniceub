@@ -70,12 +70,12 @@ export const BPDescriptionTextInput = ({
   );
 };
 
-export const BPEmailInput = ({ value, onChangeText }) => {
+export const BPEmailInput = ({ value, onChangeText, placeholder }) => {
   return (
     <TextInput
       style={styles.input}
       placeholderTextColor="#ccc"
-      placeholder="Email"
+      placeholder={placeholder}
       onChangeText={onChangeText}
       textContentType="emailAddress"
       autoCompleteType="email"
