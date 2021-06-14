@@ -12,6 +12,7 @@ export enum AuthRoutes {
 export enum TravelRoutes {
   Stack = "StackTravel",
   Add = "AddTravel",
+  Traveler = "AddTraveler",
   Edit = "EditTravel",
   Detail = "DetailTravel",
   List = "ListTravels",

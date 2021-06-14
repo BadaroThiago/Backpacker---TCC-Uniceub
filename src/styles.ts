@@ -140,6 +140,15 @@ export const styles = StyleSheet.create({
     color: "white",
     fontWeight: "bold",
   },
+
+  buttonImage: {
+    fontSize: 14,
+    justifyContent: "center",
+    alignSelf: "center",
+    alignItems: "center",
+    color: "#ccc",
+  },
+  
   buttonText2: {
     fontSize: 18,
     color: "#1DA1F2",
