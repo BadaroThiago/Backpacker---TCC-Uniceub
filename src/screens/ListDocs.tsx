@@ -4,12 +4,14 @@ import { View, Text, FlatList } from "react-native";
 import BPHeader from "../components/header";
 import { BPCardDocsList } from "../components/card";
 import { styles } from "../styles";
+import FAB from "../components/FAB";
 
 import { DocRoutes, TravelRoutes } from "../navigation";
 import { Document } from "../models/document";
 import { useFocusEffect } from "@react-navigation/native";
 import { getDocuments } from "../api/document";
 import { TravelContext } from "../context";
+import { BPEmptyListView } from "../components/emptyList";
 
 export default ({ navigation }) => {
   const { idViagem } = useContext(TravelContext);
@@ -38,12 +40,19 @@ export default ({ navigation }) => {
         data={docs}
         renderItem={(doc) => (
           <BPCardDocsList
-            onPress={() => navigation.navigate(DocRoutes.Detail)}
+            onPress={() =>
+              navigation.navigate(DocRoutes.Detail, {
+                id_doc: doc.item.id_documento,
+              })
+            }
             name={doc.item.nome_documento}
           />
         )}
         keyExtractor={(t) => t.id_documento.toString()}
+        ListEmptyComponent={<BPEmptyListView text="Nenhum documento adicionado"/>}
       />
+
+      <FAB context="document" />
     </View>
   );
 };

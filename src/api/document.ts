@@ -29,16 +29,18 @@ export async function getDocuments(idViagem: number) {
   return res.data;
 }
 
-// export async function getExpense(idExpense: number) {
-  // let user = firebase.auth().currentUser;
-  // let token = await user.getIdToken();
+export async function getDocument(idDocument: number) {
+  let user = firebase.auth().currentUser;
+  let token = await user.getIdToken();
 
-  // let url = `${BASE_API}/${idExpense}`;
+  let url = `${BASE_API}/${idDocument}`;
 
-  // return await axios.get(url, {
-    // headers: { Authorization: token },
-  // });
-// }
+  let res = await axios.get(url, {
+    headers: { Authorization: token },
+  });
+
+  return res.data;
+}
 
 // export async function editExpense(expense: Expense) {
   // expense.dt_gasto = moment(expense.dt_gasto, "DD/MM/YYYY").unix();

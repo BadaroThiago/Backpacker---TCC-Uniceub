@@ -16,13 +16,10 @@ export default () => {
       initialRouteName={DocRoutes.List}
       screenOptions={{ headerShown: false }}
     >
-      <Stack.Screen name={DocRoutes.List} component={ListDocs}></Stack.Screen>
-      <Stack.Screen name={DocRoutes.Add} component={AddDoc}></Stack.Screen>
-      <Stack.Screen name={DocRoutes.Edit} component={EditDoc}></Stack.Screen>
-      <Stack.Screen
-        name={DocRoutes.Detail}
-        component={DetailDoc}
-      ></Stack.Screen>
+      <Stack.Screen name={DocRoutes.List} component={ListDocs} />
+      <Stack.Screen name={DocRoutes.Add} component={AddDoc} />
+      <Stack.Screen name={DocRoutes.Edit} component={EditDoc} />
+      <Stack.Screen name={DocRoutes.Detail} component={DetailDoc} />
     </Stack.Navigator>
   );
 };

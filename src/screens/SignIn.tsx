@@ -34,7 +34,11 @@ export default ({ navigation }) => {
       <BPLoadingView isLoading={isLoading}>
         <Text style={styles.title}>Entrar</Text>
 
-        <BPEmailInput value={email} onChangeText={(t) => setEmail(t)} />
+        <BPEmailInput
+          value={email}
+          onChangeText={(t) => setEmail(t)}
+          placeholder="Email"
+        />
 
         <BPPasswordInput
           placeholder="Senha"
