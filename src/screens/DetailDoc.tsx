@@ -24,8 +24,8 @@ export default ({ navigation, route }) => {
   useFocusEffect(
     useCallback(() => {
       getDocument(idDoc)
-        .then(data => setDoc(data))
-        .catch(err => console.log(err));
+        .then((data) => setDoc(data))
+        .catch((err) => console.log(err));
       return () => {};
     }, [])
   );
@@ -38,7 +38,7 @@ export default ({ navigation, route }) => {
 
       <Text style={styles.title2}>{doc.nome_documento}</Text>
 
-      <BPCardDocDetail doc={doc}/>
+      <BPCardDocDetail doc={doc} />
 
       <BPButton
         text="VISUALIZAR ANEXO"
@@ -46,7 +46,9 @@ export default ({ navigation, route }) => {
       />
       <BPButtonDelete2
         text="EDITAR"
-        onPress={() => navigation.navigate(DocRoutes.Edit)}
+        onPress={() =>
+          navigation.navigate(DocRoutes.Edit, { idDoc: doc.id_documento })
+        }
       />
       <BPButtonDelete text="EXCLUIR" onPress={() => console.log("Excluir")} />
     </View>

@@ -4,5 +4,5 @@ export interface Document {
   id_categoria_documento?: number;
   nome_documento: string;
   descricao: string,
-  imagem_path: string;
+  imagem_path?: string;
 }

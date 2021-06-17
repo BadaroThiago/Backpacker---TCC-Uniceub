@@ -42,17 +42,14 @@ export async function getDocument(idDocument: number) {
   return res.data;
 }
 
-// export async function editExpense(expense: Expense) {
-  // expense.dt_gasto = moment(expense.dt_gasto, "DD/MM/YYYY").unix();
-  // expense.valor_gasto = currencyToNumber(expense.valor_gasto as string);
+export async function editDocument(document: Document) {
+  let user = firebase.auth().currentUser;
+  let token = await user.getIdToken();
 
-  // let user = firebase.auth().currentUser;
-  // let token = await user.getIdToken();
-
-  // return await axios.put(`${BASE_API}/${expense.id_gasto}`, expense, {
-    // headers: { Authorization: token },
-  // });
-// }
+  return await axios.put(`${BASE_API}/${document.id_documento}`, document, {
+    headers: { Authorization: token },
+  });
+}
 
 // export async function deleteExpense(idExpense: number) {
   // let user = firebase.auth().currentUser;
