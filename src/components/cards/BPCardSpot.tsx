@@ -4,13 +4,17 @@ import { formatDate } from "../../helpers/utils";
 import { Spot } from "../../models/spot";
 import { colorConstants, styles } from "../../styles";
 import { IconAndText } from "../IconAndText";
+import CheckBox from '@react-native-community/checkbox';
+
 
 interface Props {
   onPress: any;
   spot: Spot;
+  setSelection: any;
+  isSelected: boolean;
 }
 
-export const BPCardLocal = ({ spot, onPress }: Props) => {
+export const BPCardLocal = ({ spot, onPress, setSelection, isSelected }: Props) => {``
   return (
     <View
       style={{
@@ -21,8 +25,8 @@ export const BPCardLocal = ({ spot, onPress }: Props) => {
         padding: 10,
         paddingHorizontal: 15,
         marginBottom: 20,
-      }}
-    >
+      }}>
+
       <TouchableOpacity onPress={onPress}>
         <View
           style={{
@@ -41,7 +45,7 @@ export const BPCardLocal = ({ spot, onPress }: Props) => {
             {spot.nome_local}
           </Text>
         </View>
-
+        
         <View
           style={{
             flexDirection: "row",
@@ -49,12 +53,19 @@ export const BPCardLocal = ({ spot, onPress }: Props) => {
             alignItems: "flex-end",
           }}
         >
-          <Text style={{ flex: 1, fontSize: 12 }}>
+          <Text style={{ flex: 1, fontSize: 12, marginBottom: 5}}>
             <IconAndText
               nome="calendar"
               text={formatDate(spot.dt_planejada as Date)}
             />
           </Text>
+
+          <CheckBox
+            value={isSelected}
+            onValueChange={setSelection}
+            style={styles.checkbox}
+          />
+
         </View>
       </TouchableOpacity>
     </View>

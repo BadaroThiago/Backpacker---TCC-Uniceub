@@ -16,6 +16,7 @@ import { BPEmptyListView } from '../components/emptyList';
 export default ({ navigation }) => {
   const { idViagem } = useContext(TravelContext);
   const [spots, setSpots] = useState<[Spot]>();
+  const [ isSelected, setSelection ] = useState(false);
 
   useFocusEffect(
     useCallback(() => {
@@ -43,6 +44,8 @@ export default ({ navigation }) => {
         renderItem={(spot) => (
           <BPCardLocal
             spot={spot.item}
+            isSelected={isSelected}
+            setSelection={setSelection}
             onPress={() => {
               navigation.navigate(SpotRoutes.Detail, {
                 id_local: spot.item.id_local,
