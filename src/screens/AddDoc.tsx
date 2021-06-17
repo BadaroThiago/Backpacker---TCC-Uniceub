@@ -24,13 +24,12 @@ export default ({ navigation }) => {
     let document: Document = {
       id_viagem: idViagem,
       nome_documento: name,
-      descricao: description,
-      imagem_path: ""
+      descricao: description
     }
 
     try {
       await createDocument(document);
-      navigation.navigate(DocRoutes.Stack);
+      navigation.navigate(DocRoutes.List);
     } catch (err) {
       console.log(err);
       Alert.alert("Erro ao criar document", err.message);
@@ -58,11 +57,9 @@ export default ({ navigation }) => {
       />
 
       <BPButton
-        text="Adicionar"
+        text="ADICIONAR"
         onPress={onAdd}
       />
-
-      <FAB context="document" />
     </View>
   );
 };

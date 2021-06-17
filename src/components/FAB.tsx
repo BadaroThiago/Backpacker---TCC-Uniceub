@@ -112,7 +112,7 @@ const MyComponent = ({ context }: Props) => {
   const documentActions = [
     {
       icon: "plus",
-      label: "Adicionar Document",
+      label: "Adicionar Documento",
       onPress: () => navigation.navigate(DocRoutes.Add),
       small: false,
     },

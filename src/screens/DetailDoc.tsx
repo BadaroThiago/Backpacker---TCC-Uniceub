@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import { View, Text, Alert } from "react-native";
 import { styles } from "../styles";
 
@@ -24,8 +24,8 @@ export default ({ navigation, route }) => {
   useFocusEffect(
     useCallback(() => {
       getDocument(idDoc)
-        .then((data) => setDoc(data))
-        .catch((err) => console.log(err));
+        .then(data => setDoc(data))
+        .catch(err => console.log(err));
       return () => {};
     }, [])
   );
@@ -47,17 +47,17 @@ export default ({ navigation, route }) => {
         { onPress: () => {}, text: "Não" },
       ]
     );
-  }
+  };
 
   return doc === undefined ? (
-    <View style={styles.view}></View>
+    <View style={styles.view} />
   ) : (
     <View style={styles.view}>
       <BPHeader onPress={() => navigation.goBack()} />
 
       <Text style={styles.title2}>{doc.nome_documento}</Text>
 
-      <BPCardDocDetail doc={doc} />
+      {doc.descricao ? <BPCardDocDetail doc={doc} /> : <View />}
 
       <BPButton
         text="VISUALIZAR ANEXO"

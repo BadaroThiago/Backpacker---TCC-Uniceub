@@ -12,6 +12,8 @@ export async function createDocument(documentData: Document) {
   let user = firebase.auth().currentUser;
   let token = await user.getIdToken();
 
+  console.log(documentData);
+
   await axios.post(`${BASE_API}/new`, documentData, {
     headers: { Authorization: token },
   });
