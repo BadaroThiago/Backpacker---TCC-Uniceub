@@ -51,11 +51,11 @@ export async function editDocument(document: Document) {
   });
 }
 
-// export async function deleteExpense(idExpense: number) {
-  // let user = firebase.auth().currentUser;
-  // let token = await user.getIdToken();
+export async function deleteDocument(idDocument: number) {
+  let user = firebase.auth().currentUser;
+  let token = await user.getIdToken();
 
-  // await axios.delete(`${BASE_API}/${idExpense}`, {
-    // headers: { Authorization: token },
-  // });
-// }
+  await axios.delete(`${BASE_API}/${idDocument}`, {
+    headers: { Authorization: token },
+  });
+}

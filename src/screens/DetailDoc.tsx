@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { View, Text } from "react-native";
+import { View, Text, Alert } from "react-native";
 import { styles } from "../styles";
 
 import {
@@ -14,7 +14,7 @@ import BPHeader from "../components/header";
 import { DocRoutes } from "../navigation";
 import { BPCardDocDetail } from "../components/cards/BPCardDocDetail";
 import { useFocusEffect } from "@react-navigation/native";
-import { getDocument } from "../api/document";
+import { deleteDocument, getDocument } from "../api/document";
 
 export default ({ navigation, route }) => {
   const idDoc = route.params.id_doc;
@@ -29,6 +29,25 @@ export default ({ navigation, route }) => {
       return () => {};
     }, [])
   );
+
+  const onDelete = async () => {
+    Alert.alert(
+      "Deletar documento",
+      `Deseja mesmo excluir o documento ${doc.nome_documento}?`,
+      [
+        {
+          onPress: async () => {
+            deleteDocument(idDoc)
+              .then(() => navigation.navigate(DocRoutes.List))
+              .catch(err => console.log(err));
+          },
+          text: "Sim",
+          style: "destructive",
+        },
+        { onPress: () => {}, text: "Não" },
+      ]
+    );
+  }
 
   return doc === undefined ? (
     <View style={styles.view}></View>
@@ -50,7 +69,7 @@ export default ({ navigation, route }) => {
           navigation.navigate(DocRoutes.Edit, { idDoc: doc.id_documento })
         }
       />
-      <BPButtonDelete text="EXCLUIR" onPress={() => console.log("Excluir")} />
+      <BPButtonDelete text="EXCLUIR" onPress={onDelete} />
     </View>
   );
 };
