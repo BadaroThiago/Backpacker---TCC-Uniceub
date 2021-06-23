@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, TouchableOpacity, Alert } from "react-native";
 import { styles, colorConstants } from "../styles";
+
 
 import { BPEmailInput, BPPasswordInput } from "../components/inputs";
 import { BPButton } from "../components/buttons";
@@ -9,25 +10,40 @@ import { BPLoadingView } from "./Loading";
 import firebase from "firebase";
 
 import { StackRoutes, AuthRoutes } from "../navigation";
+import { getToken, setToken } from "../api/Auth";
 
 export default ({ navigation }) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
+
+  useEffect(() => {
+    getToken().then(() => {
+      navigation.navigate(StackRoutes.Home);
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+  }, []);
+
+
   let login = () => {
-    setIsLoading(true);
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(() => {
-        navigation.navigate(StackRoutes.Home);
-      })
-      .catch((err) => {
-        Alert.alert("Falha ao logar", err.message);
-      })
-      .finally(() => setIsLoading(false));
-  };
+    try {
+      setIsLoading(true);
+      firebase
+       .auth()
+       .signInWithEmailAndPassword(email, password)
+
+      setToken(email,password)
+      navigation.navigate(StackRoutes.Home);
+    } catch (error) {
+      Alert.alert("Falha ao logar", error.message);
+    }
+    finally{
+      setIsLoading(false)
+    }
+  }
 
   return (
     <View style={styles.view}>
