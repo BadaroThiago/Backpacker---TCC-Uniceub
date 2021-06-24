@@ -48,6 +48,11 @@ export const styles = StyleSheet.create({
     color: colorConstants.WhiteText,
   },
 
+  checkbox: {
+    alignSelf: "flex-end",
+    marginBottom: 25,
+  },
+
   input: {
     width: "85%",
     height: 50,

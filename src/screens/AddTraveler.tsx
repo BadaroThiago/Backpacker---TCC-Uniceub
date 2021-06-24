@@ -3,7 +3,7 @@ import { useNavigation } from "@react-navigation/native";
 import { View, Text } from "react-native";
 import { styles } from "../styles";
 
-import { BPEmailInput } from "../components/inputs";
+import { BPEmailInput, BPTextInput } from "../components/inputs";
 import { BPButton } from "../components/buttons";
 import BPHeader from "../components/header";
 
