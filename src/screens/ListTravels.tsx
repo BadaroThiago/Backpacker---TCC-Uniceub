@@ -41,7 +41,7 @@ export default ({ navigation }) => {
           />
         )}
         keyExtractor={t => t.id_viagem.toString()}
-        ListEmptyComponent={<BPEmptyListView text="Nenhuma viagem planejada"/>}
+        ListEmptyComponent={<BPEmptyListView text="Nenhuma viagem planejada" />}
       />
 
       <FAB context="home" />

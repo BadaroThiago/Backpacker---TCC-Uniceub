@@ -25,11 +25,11 @@ export default ({ navigation }) => {
 
   useEffect(() => {
     getUser()
-      .then((res) => {
+      .then(res => {
         setEmailField(res.data.email);
         setNamelField(res.data.nome_usuario);
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
   }, []);
@@ -67,12 +67,12 @@ export default ({ navigation }) => {
     }
   };
 
-  const onChangeName = (name) => {
+  const onChangeName = name => {
     setNamelField(name);
     setShouldUpdateUser(true);
   };
 
-  const onChangeEmail = (email) => {
+  const onChangeEmail = email => {
     setEmailField(email);
     setShouldUpdateUser(true);
   };
@@ -86,24 +86,27 @@ export default ({ navigation }) => {
       <BPTextInput
         value={nameField}
         placeholder="Nome"
-        onChangeText={(t) => onChangeName(t)}
+        onChangeText={t => onChangeName(t)}
       />
 
-      <BPEmailInput value={emailField} onChangeText={(t) => onChangeEmail(t)} />
+      <BPEmailInput value={emailField} onChangeText={t => onChangeEmail(t)} />
 
       <BPPasswordInput
         placeholder="Senha"
-        onChangeText={(t) => setPasswordField(t)}
+        onChangeText={t => setPasswordField(t)}
       />
 
       <BPPasswordInput
         placeholder="Confirme a senha"
-        onChangeText={(t) => setConfirmPasswordField(t)}
+        onChangeText={t => setConfirmPasswordField(t)}
       />
 
       <BPButton text="SALVAR" onPress={updateUser} />
 
-      <BPButtonDelete2 text="DESATIVAR CONTA" onPress={() => removeUser(true)} />
+      <BPButtonDelete2
+        text="DESATIVAR CONTA"
+        onPress={() => removeUser(true)}
+      />
       <BPButtonDelete text="EXCLUIR CONTA" onPress={() => removeUser()} />
     </View>
   );

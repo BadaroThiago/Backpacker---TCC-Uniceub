@@ -153,7 +153,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     color: "#ccc",
   },
-  
+
   buttonText2: {
     fontSize: 18,
     color: "#1DA1F2",

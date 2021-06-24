@@ -11,20 +11,20 @@ import { useFocusEffect } from "@react-navigation/native";
 import { TravelContext } from "../context";
 import { Spot } from "../models/spot";
 import { BPCardLocal } from "../components/cards/BPCardSpot";
-import { BPEmptyListView } from '../components/emptyList';
+import { BPEmptyListView } from "../components/emptyList";
 
 export default ({ navigation }) => {
   const { idViagem } = useContext(TravelContext);
   const [spots, setSpots] = useState<[Spot]>();
-  const [ isSelected, setSelection ] = useState(false);
+  const [isSelected, setSelection] = useState(false);
 
   useFocusEffect(
     useCallback(() => {
       getSpots(idViagem)
-        .then((res) => {
+        .then(res => {
           setSpots(res.data);
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
       return () => {};
@@ -41,7 +41,7 @@ export default ({ navigation }) => {
         contentContainerStyle={{ flexGrow: 1 }}
         style={{ flex: 1 }}
         data={spots}
-        renderItem={(spot) => (
+        renderItem={spot => (
           <BPCardLocal
             spot={spot.item}
             isSelected={isSelected}
@@ -53,8 +53,8 @@ export default ({ navigation }) => {
             }}
           />
         )}
-        keyExtractor={(t) => t.id_local.toString()}
-        ListEmptyComponent={<BPEmptyListView text="Nenhum local adicionado"/>}
+        keyExtractor={t => t.id_local.toString()}
+        ListEmptyComponent={<BPEmptyListView text="Nenhum local adicionado" />}
       />
 
       <FAB context="spot" />

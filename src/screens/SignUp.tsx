@@ -38,7 +38,7 @@ export default () => {
         navigation.navigate(StackRoutes.Home);
         Alert.alert("Bem vindo!");
       })
-      .catch((err) => {
+      .catch(err => {
         Alert.alert("Falha ao logar", err.message);
       })
       .finally(() => {

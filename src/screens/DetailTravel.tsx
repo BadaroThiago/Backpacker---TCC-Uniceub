@@ -30,9 +30,7 @@ export default ({ navigation }) => {
     <View style={styles.view} />
   ) : (
     <View style={{ ...styles.view, zIndex: -1 }}>
-      <BPHeader
-        onPress={() => navigation.navigate(TravelRoutes.List)}
-      />
+      <BPHeader onPress={() => navigation.navigate(TravelRoutes.List)} />
 
       <Text style={styles.title2}>{travel.nome_viagem}</Text>
 

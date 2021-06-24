@@ -53,9 +53,7 @@ export default ({ navigation, route }) => {
     <View style={styles.view}></View>
   ) : (
     <View style={styles.view}>
-      <BPHeader
-        onPress={() => navigation.navigate(SpotRoutes.List)}
-      />
+      <BPHeader onPress={() => navigation.navigate(SpotRoutes.List)} />
 
       <Text style={styles.title2}>{spot.nome_local}</Text>
 

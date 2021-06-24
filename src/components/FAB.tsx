@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { FAB, Portal, Provider } from "react-native-paper";
 
-
 import {
   AuthRoutes,
   ExpenseRoutes,
@@ -60,7 +59,7 @@ const MyComponent = ({ context }: Props) => {
                 .then(() => {
                   navigation.navigate(TravelRoutes.List);
                 })
-                .catch((err) => {
+                .catch(err => {
                   console.log(err);
                   Alert.alert("Erro ao deletar viagem");
                 });

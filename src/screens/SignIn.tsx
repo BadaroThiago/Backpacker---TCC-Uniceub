@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { View, Text, TouchableOpacity, Alert } from "react-native";
 import { styles, colorConstants } from "../styles";
 
-
 import { BPEmailInput, BPPasswordInput } from "../components/inputs";
 import { BPButton } from "../components/buttons";
 import { BPLoadingView } from "./Loading";
@@ -17,44 +16,40 @@ export default ({ navigation }) => {
   const [password, setPassword] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-
   useEffect(() => {
-    getToken().then(() => {
-      navigation.navigate(StackRoutes.Home);
-    })
-    .catch((error) => {
-      console.log(error)
-    })
+    getToken()
+      .then(() => {
+        navigation.navigate(StackRoutes.Home);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }, []);
-
 
   let login = () => {
     try {
       setIsLoading(true);
-      firebase
-       .auth()
-       .signInWithEmailAndPassword(email, password)
+      firebase.auth().signInWithEmailAndPassword(email, password);
 
-      setToken(email,password)
+      setToken(email, password);
       navigation.navigate(StackRoutes.Home);
     } catch (error) {
       Alert.alert("Falha ao logar", error.message);
+    } finally {
+      setIsLoading(false);
     }
-    finally{
-      setIsLoading(false)
-    }
-  }
+  };
 
   return (
     <View style={styles.view}>
       <BPLoadingView isLoading={isLoading}>
         <Text style={styles.title}>Entrar</Text>
 
-        <BPEmailInput value={email} onChangeText={(t) => setEmail(t)} />
+        <BPEmailInput value={email} onChangeText={t => setEmail(t)} />
 
         <BPPasswordInput
           placeholder="Senha"
-          onChangeText={(t) => setPassword(t)}
+          onChangeText={t => setPassword(t)}
         />
 
         <BPButton text="ENTRAR" onPress={login} />

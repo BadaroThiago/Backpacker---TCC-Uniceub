@@ -1,5 +1,5 @@
 import moment from "moment";
-import currencyFormatter from 'currency-formatter';
+import currencyFormatter from "currency-formatter";
 
 export const numberToCurrency = (v: number) => {
   if (!v || v === 0) {
@@ -14,11 +14,13 @@ export const currencyToNumber = (v: string | number) => {
     return;
   }
 
-  if (typeof v === 'number') { return v }
+  if (typeof v === "number") {
+    return v;
+  }
 
   return parseFloat(
     v
-      .replace(".", "")  // remove o `.` dos milhares
+      .replace(".", "") // remove o `.` dos milhares
       .replace(",", ".") // substitui a virgula por ponto
       .replace("R$", "") // remove o R$
   );

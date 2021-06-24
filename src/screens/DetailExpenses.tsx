@@ -25,11 +25,11 @@ export default ({ navigation, route }) => {
   useFocusEffect(
     useCallback(() => {
       getExpense(idExpense)
-        .then((res) => {
+        .then(res => {
           setExpense(res.data);
           setIsLoading(false);
         })
-        .catch((err) => console.log(err));
+        .catch(err => console.log(err));
       return () => {};
     }, [])
   );

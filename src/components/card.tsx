@@ -46,5 +46,3 @@ export const BPCardDocsList = ({ onPress, width, height }) => {
     </View>
   );
 };
-
-

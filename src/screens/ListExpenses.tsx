@@ -25,11 +25,11 @@ export default ({ navigation }) => {
   useFocusEffect(
     useCallback(() => {
       getExpenses(idViagem)
-        .then((res) => {
+        .then(res => {
           setExpenses(res.expense);
           setTravel(res.travel);
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
       setIsLoading(false);
@@ -50,7 +50,7 @@ export default ({ navigation }) => {
             <FlatList
               data={expenses}
               contentContainerStyle={{ flexGrow: 1 }}
-              renderItem={(expense) => (
+              renderItem={expense => (
                 <BPCardExpenseList
                   expense={expense.item}
                   onPress={() =>
@@ -60,7 +60,7 @@ export default ({ navigation }) => {
                   }
                 />
               )}
-              keyExtractor={(t) => t.id_gasto.toString()}
+              keyExtractor={t => t.id_gasto.toString()}
               ListHeaderComponent={
                 <Text style={styles.listHeader}>Todos os gastos</Text>
               }

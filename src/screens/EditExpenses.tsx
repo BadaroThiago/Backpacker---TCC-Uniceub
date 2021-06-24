@@ -36,7 +36,7 @@ export default ({ navigation, route }) => {
   useFocusEffect(
     useCallback(() => {
       getExpense(idExpense)
-        .then((res) => {
+        .then(res => {
           let data: Expense = res.data;
           setName(data.nome_gasto);
           setDescription(data.descricao_gasto);
@@ -44,7 +44,7 @@ export default ({ navigation, route }) => {
           setAmount(data.valor_gasto as string);
           setId(data.id_gasto);
         })
-        .catch((err) => console.log(err));
+        .catch(err => console.log(err));
       return () => {};
     }, [])
   );
@@ -62,7 +62,7 @@ export default ({ navigation, route }) => {
       .then(() => {
         navigation.navigate(ExpenseRoutes.List);
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
         Alert.alert("Erro ao editar o gasto", err);
       });

@@ -9,7 +9,7 @@ export interface Travel {
   dt_fim?: Date | string | number;
   descricao?: string;
   spots?: [Spot];
-  expenses?: [Expense]
+  expenses?: [Expense];
 }
 
 export const countSpots = (travel: Travel): number => {

@@ -41,16 +41,14 @@ export default ({ navigation }) => {
       .then(() => {
         navigation.navigate(SpotRoutes.List);
       })
-      .catch((err) => {
+      .catch(err => {
         Alert.alert("Erro ao criar local", err);
       });
   };
 
   return (
     <View style={styles.view}>
-      <BPHeader
-        onPress={() => navigation.navigate(SpotRoutes.List)}
-      />
+      <BPHeader onPress={() => navigation.navigate(SpotRoutes.List)} />
 
       <Text style={styles.title2}>Adicionar local</Text>
 
