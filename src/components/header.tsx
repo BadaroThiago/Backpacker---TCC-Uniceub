@@ -5,10 +5,7 @@ import { styles } from "../styles";
 export default ({ onPress }) => {
   return (
     <View style={styles.header}>
-      <TouchableOpacity
-        onPress={onPress}
-        style={{ width: 40}}
-      >
+      <TouchableOpacity onPress={onPress} style={{ width: 40 }}>
         <Image source={require("../assets/Arrow.png")} />
       </TouchableOpacity>
     </View>

@@ -15,12 +15,9 @@ export default () => {
       initialRouteName={AuthRoutes.SignIn}
       screenOptions={{ headerShown: false }}
     >
-      <Stack.Screen name={AuthRoutes.SignIn} component={SignIn}></Stack.Screen>
-      <Stack.Screen name={AuthRoutes.SignUp} component={SignUp}></Stack.Screen>
-      <Stack.Screen
-        name={AuthRoutes.ResetPassword}
-        component={ResetPassword}
-      ></Stack.Screen>
+      <Stack.Screen name={AuthRoutes.SignIn} component={SignIn} />
+      <Stack.Screen name={AuthRoutes.SignUp} component={SignUp} />
+      <Stack.Screen name={AuthRoutes.ResetPassword} component={ResetPassword} />
     </Stack.Navigator>
   );
 };

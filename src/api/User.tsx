@@ -1,7 +1,7 @@
 import axios from "axios";
 import firebase from "firebase";
-import moment from "moment";
 import getEnvVars from "../../environment";
+import { parseDate } from "../helpers/utils";
 
 const BASE_API = `${getEnvVars().apiUrl}/user`;
 
@@ -19,16 +19,21 @@ export async function createUser(
   password: string,
   date: string
 ) {
-  await firebase.auth().createUserWithEmailAndPassword(email, password);
-
-  let unixDate = moment(date, "DD/MM/YYYY");
-
-  await axios.post(`${BASE_API}/new`, {
+  let payload = {
     nome: name,
     email: email,
-    dt_nascimento: unixDate.unix(),
-    id_firebase: firebase.auth().currentUser.uid,
-  });
+    password: password
+  }
+
+  let parsedDate = parseDate(date);
+  if (parsedDate) {
+    // @ts-ignore
+    payload.dt_nascimento = parsedDate;
+  }
+
+  console.log(payload);
+
+  await axios.post(`${BASE_API}/new`, payload);
 }
 
 export async function getUser() {

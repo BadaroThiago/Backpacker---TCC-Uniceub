@@ -9,5 +9,8 @@ export interface Expense {
 }
 
 export const sumExpenses = (expenses: [Expense]) => {
-  return expenses.reduce((acc, value) => (acc += value.valor_gasto as number), 0);
+  return expenses.reduce(
+    (acc, value) => (acc += value.valor_gasto as number),
+    0
+  );
 };

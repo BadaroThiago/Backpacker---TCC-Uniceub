@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, TouchableOpacity, Alert } from "react-native";
 import { styles, colorConstants } from "../styles";
 
@@ -9,24 +9,35 @@ import { BPLoadingView } from "./Loading";
 import firebase from "firebase";
 
 import { StackRoutes, AuthRoutes } from "../navigation";
+import { getToken, setToken } from "../api/Auth";
 
 export default ({ navigation }) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  let login = () => {
-    setIsLoading(true);
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
+  useEffect(() => {
+    getToken()
       .then(() => {
         navigation.navigate(StackRoutes.Home);
       })
-      .catch((err) => {
-        Alert.alert("Falha ao logar", err.message);
-      })
-      .finally(() => setIsLoading(false));
+      .catch((error) => {
+        console.log("SignIn:", error);
+      });
+  }, []);
+
+  let login = async () => {
+    setIsLoading(true);
+    try {
+      await firebase.auth().signInWithEmailAndPassword(email, password);
+      await setToken(email, password);
+      navigation.navigate(StackRoutes.Home);
+    } catch (error) {
+      console.log(error);
+      Alert.alert("Falha ao logar", error.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -42,7 +53,7 @@ export default ({ navigation }) => {
 
         <BPPasswordInput
           placeholder="Senha"
-          onChangeText={(t) => setPassword(t)}
+          onChangeText={(t: string) => setPassword(t)}
         />
 
         <BPButton text="ENTRAR" onPress={login} />

@@ -12,7 +12,7 @@ import { BPButton } from "../components/buttons";
 import FAB from "../components/FAB";
 import BPHeader from "../components/header";
 import {
-    BPAmountInput,
+  BPAmountInput,
   BPDateInput,
   BPDescriptionTextInput,
   BPTextInput,
@@ -45,15 +45,12 @@ export default ({ navigation }) => {
       .catch(err => {
         console.log(err);
         Alert.alert("Error", err.message);
-        navigation.navigate(TravelRoutes.List);
       });
   };
 
   return (
     <View style={styles.view}>
-      <BPHeader
-        onPress={() => navigation.navigate(TravelRoutes.List)}
-      />
+      <BPHeader onPress={() => navigation.navigate(TravelRoutes.List)} />
 
       <Text style={styles.title2}>Adicionar Viagem</Text>
 

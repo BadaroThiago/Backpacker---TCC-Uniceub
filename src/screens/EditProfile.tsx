@@ -89,7 +89,11 @@ export default ({ navigation }) => {
         onChangeText={(t) => onChangeName(t)}
       />
 
-      <BPEmailInput value={emailField} onChangeText={(t) => onChangeEmail(t)} />
+      <BPEmailInput
+        placeholder="Email"
+        value={emailField}
+        onChangeText={(t) => onChangeEmail(t)}
+      />
 
       <BPPasswordInput
         placeholder="Senha"
@@ -103,7 +107,10 @@ export default ({ navigation }) => {
 
       <BPButton text="SALVAR" onPress={updateUser} />
 
-      <BPButtonDelete2 text="DESATIVAR CONTA" onPress={() => removeUser(true)} />
+      <BPButtonDelete2
+        text="DESATIVAR CONTA"
+        onPress={() => removeUser(true)}
+      />
       <BPButtonDelete text="EXCLUIR CONTA" onPress={() => removeUser()} />
     </View>
   );

@@ -30,8 +30,6 @@ export const BPLoadingView = ({ children, isLoading }) => {
 
 export const BPLoadingView2 = ({ children, isLoading }) => {
   return (
-    <View style={{ flex: 1 }}>
-      {isLoading ? <LoadingView /> : children}
-    </View>
+    <View style={{ flex: 1 }}>{isLoading ? <LoadingView /> : children}</View>
   );
 };

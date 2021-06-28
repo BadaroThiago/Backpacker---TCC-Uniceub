@@ -20,6 +20,8 @@ import {
 } from "../components/inputs";
 import { styles } from "../styles";
 import { StackRoutes } from "../navigation";
+import firebase from "firebase";
+import { setToken } from "../api/Auth";
 
 export default () => {
   const navigation = useNavigation();
@@ -31,19 +33,20 @@ export default () => {
   // const [confirmPasswordField, setConfirmPasswordField] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  let signIn = async () => {
+  let signUp = async () => {
     setIsLoading(true);
-    createUser(nameField, emailField, passwordField, dateField)
-      .then(() => {
-        navigation.navigate(StackRoutes.Home);
-        Alert.alert("Bem vindo!");
-      })
-      .catch((err) => {
-        Alert.alert("Falha ao logar", err.message);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+    try {
+      await createUser(nameField, emailField, passwordField, dateField);
+      await firebase.auth().signInWithEmailAndPassword(emailField, passwordField);
+      await setToken(emailField, passwordField);
+      navigation.navigate(StackRoutes.Home);
+      Alert.alert("Bem vindo!");
+    } catch (err) {
+      console.log("SignUp:", err);
+      Alert.alert("Falha ao criar conta", err.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -68,6 +71,7 @@ export default () => {
             />
 
             <BPEmailInput
+              placeholder="Email"
               onChangeText={(t: string) => setEmailField(t)}
               value={emailField}
             />
@@ -77,7 +81,7 @@ export default () => {
               onChangeText={(t: string) => setPasswordField(t)}
             />
 
-            <BPButton text="CRIAR CONTA" onPress={signIn} />
+            <BPButton text="CRIAR CONTA" onPress={signUp} />
           </KeyboardAwareScrollView>
         </TouchableWithoutFeedback>
       </BPLoadingView>

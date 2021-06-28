@@ -4,7 +4,7 @@ import { colorConstants } from "../styles";
 
 interface Props {
   text: string;
-  style?: TextStyle
+  style?: TextStyle;
 }
 
 export const BPEmptyListView = ({ text, style }: Props) => {

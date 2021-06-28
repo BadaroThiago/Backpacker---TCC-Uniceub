@@ -2,12 +2,12 @@ import React from "react";
 import { TouchableOpacity, View } from "react-native";
 import { Card } from "react-native-paper";
 import { Expense } from "../../models/expenses";
-import {  styles } from "../../styles";
+import { styles } from "../../styles";
 import { BPTextExpenseInfo } from "../expenses/text";
 
 interface Props {
-  expense: Expense
-  onPress: any
+  expense: Expense;
+  onPress: any;
 }
 
 export const BPCardExpenseList = ({ expense, onPress }: Props) => {
@@ -32,11 +32,13 @@ export const BPCardExpenseList = ({ expense, onPress }: Props) => {
               height: "100%",
             }}
           >
-            <BPTextExpenseInfo title={expense.nome_gasto} value={expense.valor_gasto} />
+            <BPTextExpenseInfo
+              title={expense.nome_gasto}
+              value={expense.valor_gasto}
+            />
           </View>
         </Card>
       </TouchableOpacity>
     </View>
   );
 };
-

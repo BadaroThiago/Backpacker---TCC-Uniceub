@@ -1,6 +1,15 @@
 import moment from "moment";
 import React, { useContext, useState, useEffect } from "react";
-import { Alert, Keyboard, Text, TouchableWithoutFeedback, View, Platform, Button, Image } from "react-native";
+import {
+  Alert,
+  Keyboard,
+  Text,
+  TouchableWithoutFeedback,
+  View,
+  Platform,
+  Button,
+  Image,
+} from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { createExpense } from "../api/expenses";
 import { BPButton, PickerImage } from "../components/buttons";
@@ -16,7 +25,7 @@ import { Expense } from "../models/expenses";
 import { ExpenseRoutes } from "../navigation";
 import { styles } from "../styles";
 
-import * as ImagePicker from 'expo-image-picker';
+import * as ImagePicker from "expo-image-picker";
 
 export default ({ navigation }) => {
   const { idViagem } = useContext(TravelContext);
@@ -35,8 +44,8 @@ export default ({ navigation }) => {
         dt_gasto: date,
         descricao_gasto: description,
         valor_gasto: amount,
-        id_viagem: idViagem 
-      }
+        id_viagem: idViagem,
+      };
       console.log(expense);
       await createExpense(expense);
       navigation.navigate(ExpenseRoutes.List);
@@ -44,14 +53,16 @@ export default ({ navigation }) => {
       console.log(err);
       Alert.alert("Erro ao adicionar gasto", err);
     }
-  }
+  };
 
   useEffect(() => {
     (async () => {
-      if (Platform.OS !== 'web') {
-        const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-        if (status !== 'granted') {
-          alert('Sorry, we need camera roll permissions to make this work!');
+      if (Platform.OS !== "web") {
+        const {
+          status,
+        } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+        if (status !== "granted") {
+          alert("Sorry, we need camera roll permissions to make this work!");
         }
       }
     })();
@@ -103,17 +114,10 @@ export default ({ navigation }) => {
             placeholder="Descrição (Opcional)"
             onChangeText={(t: string) => setDescription(t)}
           />
-          
-          <PickerImage
-            text="Anexar Imagem"
-            onPress={pickImage}
-          />
 
-          <BPButton
-            text="Adicionar"
-            onPress={onAddExpense}
-          />
+          <PickerImage text="Anexar Imagem" onPress={pickImage} />
 
+          <BPButton text="Adicionar" onPress={onAddExpense} />
         </KeyboardAwareScrollView>
       </TouchableWithoutFeedback>
     </View>

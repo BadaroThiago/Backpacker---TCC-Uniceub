@@ -1,8 +1,8 @@
 import moment from "moment";
-import currencyFormatter from 'currency-formatter';
+import currencyFormatter from "currency-formatter";
 
 export const numberToCurrency = (v: number) => {
-  if (!v || v === 0) {
+  if (v === undefined || v === null) {
     return "Sem meta de gastos";
   }
 
@@ -14,11 +14,13 @@ export const currencyToNumber = (v: string | number) => {
     return;
   }
 
-  if (typeof v === 'number') { return v }
+  if (typeof v === "number") {
+    return v;
+  }
 
   return parseFloat(
     v
-      .replace(".", "")  // remove o `.` dos milhares
+      .replace(".", "") // remove o `.` dos milhares
       .replace(",", ".") // substitui a virgula por ponto
       .replace("R$", "") // remove o R$
   );
@@ -27,3 +29,11 @@ export const currencyToNumber = (v: string | number) => {
 export const formatDate = (date: Date) => {
   return date ? moment(date).format("DD/MM/YYYY") : "A definir";
 };
+
+export const parseDate = (date: string) => {
+  let d = moment(date, "DD/MM/YYYY");
+
+  if (d.isValid()) {
+    return d.unix();
+  }
+}

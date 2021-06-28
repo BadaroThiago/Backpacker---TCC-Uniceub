@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { FAB, Portal, Provider } from "react-native-paper";
 
-
 import {
   AuthRoutes,
     DocRoutes,
@@ -16,6 +15,7 @@ import { Alert } from "react-native";
 import { deleteTravel } from "../api/travel";
 import { TravelContext } from "../context";
 import firebase from "firebase";
+import { deleteTokens } from "../api/Auth";
 
 type FABContext = "travel" | "spot" | "expense" | "home" | "document";
 
@@ -39,6 +39,7 @@ const MyComponent = ({ context }: Props) => {
       label: "Sair",
       onPress: () => {
         firebase.auth().signOut();
+        deleteTokens();
         navigation.navigate(AuthRoutes.SignIn);
       },
     },
@@ -61,7 +62,7 @@ const MyComponent = ({ context }: Props) => {
                 .then(() => {
                   navigation.navigate(TravelRoutes.List);
                 })
-                .catch((err) => {
+                .catch(err => {
                   console.log(err);
                   Alert.alert("Erro ao deletar viagem");
                 });
