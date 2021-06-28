@@ -16,7 +16,7 @@ export default ({ navigation }) => {
     useCallback(() => {
       getTravels()
         .then(res => setTravels(res.data))
-        .catch(err => console.log(err));
+        .catch(err => console.log("ListTravels:", err));
       return () => {};
     }, [])
   );

@@ -29,3 +29,13 @@ export const currencyToNumber = (v: string | number) => {
 export const formatDate = (date: Date) => {
   return date ? moment(date).format("DD/MM/YYYY") : "A definir";
 };
+
+export const parseDate = (date: string) => {
+  let d = moment(date, "DD/MM/YYYY");
+
+  if (d.isValid()) {
+    return d.unix();
+  }
+
+  throw new Error(`Data ${date} não é uma data válida`);
+}

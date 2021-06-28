@@ -6,14 +6,18 @@ export const getToken = async () => {
   let password = await AsyncStorage.getItem("password");
 
   if (email && password) {
-    firebase.auth().signInWithEmailAndPassword(email, password);
+    await firebase.auth().signInWithEmailAndPassword(email, password);
     return;
   }
 
-  throw new Error("Não encontrou usuário e senha");
+  throw new Error("Usuario nao logado previamente");
 };
 
 export const setToken = async (email: string, password: string) => {
   await AsyncStorage.setItem("email", email);
   await AsyncStorage.setItem("password", password);
 };
+
+export const deleteTokens = async () => {
+  await AsyncStorage.multiRemove(["email", "password"]);
+}

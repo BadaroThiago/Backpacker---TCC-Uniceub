@@ -14,6 +14,7 @@ import { Alert } from "react-native";
 import { deleteTravel } from "../api/travel";
 import { TravelContext } from "../context";
 import firebase from "firebase";
+import { deleteTokens } from "../api/Auth";
 
 type FABContext = "travel" | "spot" | "expense" | "home";
 
@@ -37,6 +38,7 @@ const MyComponent = ({ context }: Props) => {
       label: "Sair",
       onPress: () => {
         firebase.auth().signOut();
+        deleteTokens();
         navigation.navigate(AuthRoutes.SignIn);
       },
     },

@@ -21,19 +21,19 @@ export default ({ navigation }) => {
       .then(() => {
         navigation.navigate(StackRoutes.Home);
       })
-      .catch(error => {
-        console.log(error);
+      .catch((error) => {
+        console.log("SignIn:", error);
       });
   }, []);
 
-  let login = () => {
+  let login = async () => {
+    setIsLoading(true);
     try {
-      setIsLoading(true);
-      firebase.auth().signInWithEmailAndPassword(email, password);
-
-      setToken(email, password);
+      await firebase.auth().signInWithEmailAndPassword(email, password);
+      await setToken(email, password);
       navigation.navigate(StackRoutes.Home);
     } catch (error) {
+      console.log(error);
       Alert.alert("Falha ao logar", error.message);
     } finally {
       setIsLoading(false);
@@ -45,11 +45,15 @@ export default ({ navigation }) => {
       <BPLoadingView isLoading={isLoading}>
         <Text style={styles.title}>Entrar</Text>
 
-        <BPEmailInput value={email} onChangeText={t => setEmail(t)} />
+        <BPEmailInput
+          placeholder="Email"
+          value={email}
+          onChangeText={(t: string) => setEmail(t)}
+        />
 
         <BPPasswordInput
           placeholder="Senha"
-          onChangeText={t => setPassword(t)}
+          onChangeText={(t: string) => setPassword(t)}
         />
 
         <BPButton text="ENTRAR" onPress={login} />

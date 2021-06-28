@@ -4,7 +4,7 @@ import firebase from "firebase";
 import getEnvVars from "../../environment";
 import moment from "moment";
 import { Travel } from "../models/travel";
-import { currencyToNumber } from "../helpers/utils";
+import { currencyToNumber, validatesDate } from "../helpers/utils";
 
 const BASE_API = `${getEnvVars().apiUrl}/travel`;
 
@@ -13,13 +13,14 @@ export async function createTravel(travelData: Travel) {
     travelData.orcamento_viagem as string
   );
 
-  travelData.dt_inicio
-    ? (travelData.dt_inicio = moment(travelData.dt_inicio, "dd/mm/yyyy").unix())
-    : (travelData.dt_inicio = undefined);
+  if (!travelData.nome_viagem) {
+    travelData.nome_viagem = undefined;
+  }
 
-  travelData.dt_fim
-    ? (travelData.dt_fim = moment(travelData.dt_fim, "dd/mm/yyyy").unix())
-    : (travelData.dt_fim = undefined);
+  travelData.dt_inicio = validatesDate(travelData.dt_inicio as string);
+  travelData.dt_fim = validatesDate(travelData.dt_fim as string);
+
+  console.log(travelData);
 
   let user = firebase.auth().currentUser;
   let token = await user.getIdToken();
