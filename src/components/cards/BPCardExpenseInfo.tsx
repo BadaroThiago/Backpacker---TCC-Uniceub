@@ -34,14 +34,21 @@ export const BPCardExpensesInfo = ({ expenses, travel }: Props) => {
             currentValue={sumExpenses(expenses)}
             title="Meta de gastos"
           />
-          <BPGoalChart goal={1500} currentValue={1000} title="Meta diária" />
+          <BPGoalChart
+            goal={travel.orcamento_viagem}
+            currentValue={sumExpenses(expenses)}
+            title="Meta diária"
+          />
         </View>
         <View>
           <BPTextExpenseInfo
             title="Total já gasto:"
             value={sumExpenses(expenses)}
           />
-          <BPTextExpenseInfo title="Total por viajante:" value={10000} />
+          <BPTextExpenseInfo
+            title="Total por viajante:"
+            value={sumExpenses(expenses)}
+          />
         </View>
       </Card>
     </View>

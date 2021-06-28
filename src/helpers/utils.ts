@@ -2,7 +2,7 @@ import moment from "moment";
 import currencyFormatter from "currency-formatter";
 
 export const numberToCurrency = (v: number) => {
-  if (!v || v === 0) {
+  if (v === undefined || v === null) {
     return "Sem meta de gastos";
   }
 
@@ -36,6 +36,4 @@ export const parseDate = (date: string) => {
   if (d.isValid()) {
     return d.unix();
   }
-
-  throw new Error(`Data ${date} não é uma data válida`);
 }

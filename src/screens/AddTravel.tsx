@@ -45,7 +45,6 @@ export default ({ navigation }) => {
       .catch(err => {
         console.log(err);
         Alert.alert("Error", err.message);
-        navigation.navigate(TravelRoutes.List);
       });
   };
 

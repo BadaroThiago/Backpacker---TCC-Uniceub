@@ -4,7 +4,7 @@ import firebase from "firebase";
 import getEnvVars from "../../environment";
 import moment from "moment";
 import { Travel } from "../models/travel";
-import { currencyToNumber, validatesDate } from "../helpers/utils";
+import { currencyToNumber, parseDate } from "../helpers/utils";
 
 const BASE_API = `${getEnvVars().apiUrl}/travel`;
 
@@ -17,8 +17,8 @@ export async function createTravel(travelData: Travel) {
     travelData.nome_viagem = undefined;
   }
 
-  travelData.dt_inicio = validatesDate(travelData.dt_inicio as string);
-  travelData.dt_fim = validatesDate(travelData.dt_fim as string);
+  travelData.dt_inicio = parseDate(travelData.dt_inicio as string);
+  travelData.dt_fim = parseDate(travelData.dt_fim as string);
 
   console.log(travelData);
 
@@ -50,6 +50,8 @@ export async function getTravel(idTravel: number) {
   let data = await axios.get(url, {
     headers: { Authorization: token },
   });
+
+  console.log(data.data);
 
   return data;
 }
