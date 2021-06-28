@@ -4,15 +4,20 @@ import { Card } from "react-native-paper";
 
 import { styles, colorConstants } from "../styles";
 
-export const BPCardDocsList = ({ onPress, width, height }) => {
+interface Props {
+  onPress: any;
+  name: string;
+}
+
+export const BPCardDocsList = ({ onPress, name }: Props) => {
   return (
     <View>
       <TouchableOpacity onPress={onPress}>
         <Card
           style={{
             ...styles.card,
-            height,
-            width,
+            height: 60,
+            width: "85%",
             alignSelf: "center",
             padding: 10,
             paddingHorizontal: 15,
@@ -21,11 +26,9 @@ export const BPCardDocsList = ({ onPress, width, height }) => {
         >
           <View
             style={{
-              // backgroundColor: "red",
               alignItems: "baseline",
               width: "100%",
               height: "100%",
-              // backgroundColor: 'blue',
               justifyContent: "center",
             }}
           >
@@ -38,7 +41,7 @@ export const BPCardDocsList = ({ onPress, width, height }) => {
               }}
               numberOfLines={2}
             >
-              "teste"
+              {name}
             </Text>
           </View>
         </Card>

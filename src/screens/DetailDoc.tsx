@@ -1,6 +1,5 @@
-import React from "react";
-import { useNavigation } from "@react-navigation/native";
-import { View, Text, FlatList } from "react-native";
+import React, { useCallback, useContext, useState } from "react";
+import { View, Text, Alert } from "react-native";
 import { styles } from "../styles";
 
 import {
@@ -9,42 +8,68 @@ import {
   BPButtonDelete2,
 } from "../components/buttons";
 
-import { BPCardLocal } from "../components/card";
-import BPFab from "../components/FAB";
+import { Document } from "../models/document";
+
 import BPHeader from "../components/header";
 import { DocRoutes } from "../navigation";
+import { BPCardDocDetail } from "../components/cards/BPCardDocDetail";
+import { useFocusEffect } from "@react-navigation/native";
+import { deleteDocument, getDocument } from "../api/document";
 
-export default () => {
-  const navigation = useNavigation();
+export default ({ navigation, route }) => {
+  const idDoc = route.params.id_doc;
 
-  return (
+  const [doc, setDoc] = useState<Document>();
+
+  useFocusEffect(
+    useCallback(() => {
+      getDocument(idDoc)
+        .then(data => setDoc(data))
+        .catch(err => console.log(err));
+      return () => {};
+    }, [])
+  );
+
+  const onDelete = async () => {
+    Alert.alert(
+      "Deletar documento",
+      `Deseja mesmo excluir o documento ${doc.nome_documento}?`,
+      [
+        {
+          onPress: async () => {
+            deleteDocument(idDoc)
+              .then(() => navigation.navigate(DocRoutes.List))
+              .catch(err => console.log(err));
+          },
+          text: "Sim",
+          style: "destructive",
+        },
+        { onPress: () => {}, text: "Não" },
+      ]
+    );
+  };
+
+  return doc === undefined ? (
+    <View style={styles.view} />
+  ) : (
     <View style={styles.view}>
-      <BPHeader showMenuButton={false} onPress={() => navigation.goBack()} />
+      <BPHeader onPress={() => navigation.goBack()} />
 
-      <Text style={styles.title2}> Nome Documento </Text>
+      <Text style={styles.title2}>{doc.nome_documento}</Text>
 
-      <FlatList
-        data={[{ id: "adf", nome: "Nome da viagem 1" }]}
-        renderItem={doc => (
-          <BPCardLocal name={doc.item.nome} width="85%" height={160} />
-        )}
-        keyExtractor={t => t.id}
-      />
+      {doc.descricao ? <BPCardDocDetail doc={doc} /> : <View />}
 
       <BPButton
         text="VISUALIZAR ANEXO"
-        onPress={() => navigation.navigate("Local")}
+        onPress={() => console.log("Mostra imagem")}
       />
       <BPButtonDelete2
         text="EDITAR"
-        onPress={() => navigation.navigate(DocRoutes.Edit)}
+        onPress={() =>
+          navigation.navigate(DocRoutes.Edit, { idDoc: doc.id_documento })
+        }
       />
-      <BPButtonDelete
-        text="EXCLUIR"
-        onPress={() => navigation.navigate("Local")}
-      />
-
-      <BPFab />
+      <BPButtonDelete text="EXCLUIR" onPress={onDelete} />
     </View>
   );
 };

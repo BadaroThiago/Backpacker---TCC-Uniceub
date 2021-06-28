@@ -4,6 +4,7 @@ import { FAB, Portal, Provider } from "react-native-paper";
 
 import {
   AuthRoutes,
+    DocRoutes,
   ExpenseRoutes,
   SpotRoutes,
   TravelRoutes,
@@ -16,7 +17,7 @@ import { TravelContext } from "../context";
 import firebase from "firebase";
 import { deleteTokens } from "../api/Auth";
 
-type FABContext = "travel" | "spot" | "expense" | "home";
+type FABContext = "travel" | "spot" | "expense" | "home" | "document";
 
 interface Props {
   context: FABContext;
@@ -109,6 +110,15 @@ const MyComponent = ({ context }: Props) => {
     },
   ];
 
+  const documentActions = [
+    {
+      icon: "plus",
+      label: "Adicionar Documento",
+      onPress: () => navigation.navigate(DocRoutes.Add),
+      small: false,
+    },
+  ];
+
   const homeActions = [
     {
       icon: "plus",
@@ -124,6 +134,8 @@ const MyComponent = ({ context }: Props) => {
         return [...mainActions, ...travelActions];
       case "spot":
         return [...mainActions, ...spotActions];
+      case "document":
+        return [...mainActions, ...documentActions];
       case "expense":
         return [...mainActions, ...expenseActions];
       case "home":

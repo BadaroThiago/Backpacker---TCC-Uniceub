@@ -46,9 +46,9 @@ export default ({ navigation }) => {
         <Text style={styles.title}>Entrar</Text>
 
         <BPEmailInput
-          placeholder="Email"
           value={email}
-          onChangeText={(t: string) => setEmail(t)}
+          onChangeText={(t) => setEmail(t)}
+          placeholder="Email"
         />
 
         <BPPasswordInput
