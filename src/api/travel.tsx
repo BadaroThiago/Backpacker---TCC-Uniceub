@@ -20,8 +20,6 @@ export async function createTravel(travelData: Travel) {
   travelData.dt_inicio = parseDate(travelData.dt_inicio as string);
   travelData.dt_fim = parseDate(travelData.dt_fim as string);
 
-  console.log(travelData);
-
   let user = firebase.auth().currentUser;
   let token = await user.getIdToken();
 

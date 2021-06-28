@@ -39,7 +39,7 @@ export default ({ navigation }) => {
   return (
     <View style={styles.view}>
       <BPHeader
-        onPress={() => navigation.navigate(DocRoutes.Stack)}
+        onPress={() => navigation.navigate(DocRoutes.List)}
       />
 
       <Text style={styles.title2}>Adicionar Documento</Text>

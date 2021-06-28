@@ -37,6 +37,8 @@ export default ({ navigation }) => {
       <Text style={styles.title2}>Documentos</Text>
 
       <FlatList
+        contentContainerStyle={{ flexGrow: 1 }}
+        style={{ flex: 1 }}
         data={docs}
         renderItem={(doc) => (
           <BPCardDocsList
