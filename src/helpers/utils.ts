@@ -36,4 +36,6 @@ export const parseDate = (date: string) => {
   if (d.isValid()) {
     return d.unix();
   }
+
+  return undefined;
 }

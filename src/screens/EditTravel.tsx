@@ -65,8 +65,7 @@ export default ({ navigation }) => {
       })
       .catch(err => {
         console.log(err);
-        Alert.alert("Erro ao editar viagem");
-        navigation.goBack();
+        Alert.alert("Erro ao editar viagem", err.message);
       });
   };
 

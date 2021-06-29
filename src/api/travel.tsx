@@ -8,22 +8,43 @@ import { currencyToNumber, parseDate } from "../helpers/utils";
 
 const BASE_API = `${getEnvVars().apiUrl}/travel`;
 
-export async function createTravel(travelData: Travel) {
-  travelData.orcamento_viagem = currencyToNumber(
-    travelData.orcamento_viagem as string
-  );
+function validateInputs(payload: Travel): [Travel, string[]] {
+  let errors = new Array<string>();
 
-  if (!travelData.nome_viagem) {
-    travelData.nome_viagem = undefined;
+  if (!payload.nome_viagem) {
+    errors = errors.concat("- Nome");
   }
 
-  travelData.dt_inicio = parseDate(travelData.dt_inicio as string);
-  travelData.dt_fim = parseDate(travelData.dt_fim as string);
+  // Valida datas
+  let dt_inicio = parseDate(payload.dt_inicio as string);
+  if (!dt_inicio && payload.dt_inicio) { errors = errors.concat("- Data inicio") }
+
+  let dt_fim = parseDate(payload.dt_fim as string);
+  if (!dt_fim && payload.dt_fim) { errors = errors.concat("- Data fim") }
+
+  if (dt_inicio && dt_fim && dt_fim < dt_inicio) { errors = errors.concat("- Data inicio apos data fim") }
+
+  payload.dt_inicio = dt_inicio;
+  payload.dt_fim = dt_fim;
+
+  let orcamento_viagem = currencyToNumber(payload.orcamento_viagem as string);
+  if (orcamento_viagem && orcamento_viagem < 0) { errors = errors.concat("Meta de gastos") }
+
+  payload.orcamento_viagem = orcamento_viagem;
+
+  return [payload, errors];
+}
+
+export async function createTravel(travelData: Travel) {
+  let [payload, errors] = validateInputs(travelData);
+  if (errors.length > 0) {
+    throw new Error(`Os seguintes campos estao invalidos:\n${errors.join("\n")}`);
+  }
 
   let user = firebase.auth().currentUser;
   let token = await user.getIdToken();
 
-  await axios.post(`${BASE_API}/new`, travelData, {
+  await axios.post(`${BASE_API}/new`, payload, {
     headers: { Authorization: token },
   });
 }
@@ -49,26 +70,22 @@ export async function getTravel(idTravel: number) {
     headers: { Authorization: token },
   });
 
-  console.log(data.data);
-
   return data;
 }
 
 export async function editTravel(travel: Travel) {
-  travel.orcamento_viagem = currencyToNumber(travel.orcamento_viagem as string);
+  if (travel.dt_inicio === "A definir") { travel.dt_inicio = "" }
+  if (travel.dt_fim === "A definir") { travel.dt_fim = "" }
 
-  travel.dt_inicio
-    ? (travel.dt_inicio = moment(travel.dt_inicio, "dd/mm/yyyy").unix())
-    : (travel.dt_inicio = undefined);
-
-  travel.dt_fim
-    ? (travel.dt_fim = moment(travel.dt_fim, "dd/mm/yyyy").unix())
-    : (travel.dt_fim = undefined);
+  let [payload, errors] = validateInputs(travel);
+  if (errors.length > 0) {
+    throw new Error(`Os seguintes campos estao invalidos:\n${errors.join("\n")}`);
+  }
 
   let user = firebase.auth().currentUser;
   let token = await user.getIdToken();
 
-  await axios.put(`${BASE_API}/${travel.id_viagem}`, travel, {
+  await axios.put(`${BASE_API}/${travel.id_viagem}`, payload, {
     headers: { Authorization: token },
   });
 }
