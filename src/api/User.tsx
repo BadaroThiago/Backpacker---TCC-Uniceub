@@ -31,8 +31,6 @@ export async function createUser(
     payload.dt_nascimento = parsedDate;
   }
 
-  console.log(payload);
-
   await axios.post(`${BASE_API}/new`, payload);
 }
 

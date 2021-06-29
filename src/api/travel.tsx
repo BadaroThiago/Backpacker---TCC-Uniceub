@@ -2,7 +2,6 @@ import axios from "axios";
 import firebase from "firebase";
 
 import getEnvVars from "../../environment";
-import moment from "moment";
 import { Travel } from "../models/travel";
 import { currencyToNumber, parseDate } from "../helpers/utils";
 
@@ -17,18 +16,27 @@ function validateInputs(payload: Travel): [Travel, string[]] {
 
   // Valida datas
   let dt_inicio = parseDate(payload.dt_inicio as string);
-  if (!dt_inicio && payload.dt_inicio) { errors = errors.concat("- Data inicio") }
+  if (!dt_inicio && payload.dt_inicio) {
+    errors = errors.concat("- Data início");
+  }
 
   let dt_fim = parseDate(payload.dt_fim as string);
-  if (!dt_fim && payload.dt_fim) { errors = errors.concat("- Data fim") }
+  if (!dt_fim && payload.dt_fim) {
+    errors = errors.concat("- Data fim");
+  }
 
-  if (dt_inicio && dt_fim && dt_fim < dt_inicio) { errors = errors.concat("- Data inicio apos data fim") }
+  if (dt_inicio && dt_fim && dt_fim < dt_inicio) {
+    errors = errors.concat("- Data início após data fim");
+  }
 
   payload.dt_inicio = dt_inicio;
   payload.dt_fim = dt_fim;
 
+  // Valida orcamento
   let orcamento_viagem = currencyToNumber(payload.orcamento_viagem as string);
-  if (orcamento_viagem && orcamento_viagem < 0) { errors = errors.concat("Meta de gastos") }
+  if (orcamento_viagem && orcamento_viagem < 0) {
+    errors = errors.concat("Meta de gastos");
+  }
 
   payload.orcamento_viagem = orcamento_viagem;
 
@@ -38,7 +46,9 @@ function validateInputs(payload: Travel): [Travel, string[]] {
 export async function createTravel(travelData: Travel) {
   let [payload, errors] = validateInputs(travelData);
   if (errors.length > 0) {
-    throw new Error(`Os seguintes campos estao invalidos:\n${errors.join("\n")}`);
+    throw new Error(
+      `Os seguintes campos estão inválidos:\n${errors.join("\n")}`
+    );
   }
 
   let user = firebase.auth().currentUser;
@@ -74,12 +84,18 @@ export async function getTravel(idTravel: number) {
 }
 
 export async function editTravel(travel: Travel) {
-  if (travel.dt_inicio === "A definir") { travel.dt_inicio = "" }
-  if (travel.dt_fim === "A definir") { travel.dt_fim = "" }
+  if (travel.dt_inicio === "A definir") {
+    travel.dt_inicio = "";
+  }
+  if (travel.dt_fim === "A definir") {
+    travel.dt_fim = "";
+  }
 
   let [payload, errors] = validateInputs(travel);
   if (errors.length > 0) {
-    throw new Error(`Os seguintes campos estao invalidos:\n${errors.join("\n")}`);
+    throw new Error(
+      `Os seguintes campos estão inválidos:\n${errors.join("\n")}`
+    );
   }
 
   let user = firebase.auth().currentUser;

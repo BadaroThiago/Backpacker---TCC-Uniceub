@@ -3,23 +3,46 @@ import firebase from "firebase";
 import moment from "moment";
 
 import getEnvVars from "../../environment";
-import { currencyToNumber } from "../helpers/utils";
+import { currencyToNumber, parseDate } from "../helpers/utils";
 import { Expense } from "../models/expenses";
 import { getTravel } from "./travel";
 
 const BASE_API = `${getEnvVars().apiUrl}/expense`;
 
-export async function createExpense(expenseData: Expense) {
-  expenseData.valor_gasto = currencyToNumber(expenseData.valor_gasto as string);
+function validateInputs(payload: Expense): [Expense, string[]] {
+  let errors = new Array<string>();
 
-  expenseData.dt_gasto
-    ? (expenseData.dt_gasto = moment(expenseData.dt_gasto, "DD/MM/YYYY").unix())
-    : (expenseData.dt_gasto = undefined);
+  if (!payload.nome_gasto) {
+    errors = errors.concat("- Nome");
+  }
+
+  let dt_gasto = parseDate(payload.dt_gasto as string);
+  if (!dt_gasto && payload.dt_gasto) {
+    errors = errors.concat("- Data início");
+  }
+  payload.dt_gasto = dt_gasto;
+
+  let valor_gasto = currencyToNumber(payload.valor_gasto as string);
+  if (!valor_gasto || valor_gasto < 0) {
+    errors = errors.concat("- Valor");
+  }
+  payload.valor_gasto = valor_gasto;
+
+  return [payload, errors];
+}
+
+export async function createExpense(expenseData: Expense) {
+  let [payload, errors] = validateInputs(expenseData);
+  if (errors.length > 0) {
+    throw new Error(
+      `Os seguintes campos estão inválidos:\n${errors.join("\n")}`
+    );
+  }
 
   let user = firebase.auth().currentUser;
   let token = await user.getIdToken();
 
-  await axios.post(`${BASE_API}/new`, expenseData, {
+  await axios.post(`${BASE_API}/new`, payload, {
     headers: { Authorization: token },
   });
 }

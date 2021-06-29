@@ -7,8 +7,6 @@ import {
   TouchableWithoutFeedback,
   View,
   Platform,
-  Button,
-  Image,
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { createExpense } from "../api/expenses";
@@ -30,7 +28,7 @@ import * as ImagePicker from "expo-image-picker";
 export default ({ navigation }) => {
   const { idViagem } = useContext(TravelContext);
 
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState<string>("");
 
   const [name, setName] = useState<string>("");
   const [amount, setAmount] = useState<string>("");
@@ -45,13 +43,14 @@ export default ({ navigation }) => {
         descricao_gasto: description,
         valor_gasto: amount,
         id_viagem: idViagem,
+        link_imagem_gasto: image,
       };
       console.log(expense);
       await createExpense(expense);
       navigation.navigate(ExpenseRoutes.List);
     } catch (err) {
       console.log(err);
-      Alert.alert("Erro ao adicionar gasto", err);
+      Alert.alert("Erro ao adicionar gasto", err.message);
     }
   };
 
@@ -62,7 +61,7 @@ export default ({ navigation }) => {
           status,
         } = await ImagePicker.requestMediaLibraryPermissionsAsync();
         if (status !== "granted") {
-          alert("Sorry, we need camera roll permissions to make this work!");
+          alert("Desculpe, precisamos de acesso a galeria para armazenar os anexos.");
         }
       }
     })();
@@ -72,16 +71,22 @@ export default ({ navigation }) => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
-      aspect: [4, 3],
       quality: 1,
     });
 
-    console.log(result);
-
     if (!result.cancelled) {
+      // @ts-ignore
       setImage(result.uri);
     }
   };
+
+  const imagePlaceholder = () => {
+    if (image) {
+      let n = image.split("/")
+      return n[n.length-1]
+    }
+    return "Anexar imagem"
+  }
 
   return (
     <View style={styles.view}>
@@ -115,7 +120,10 @@ export default ({ navigation }) => {
             onChangeText={(t: string) => setDescription(t)}
           />
 
-          <PickerImage text="Anexar Imagem" onPress={pickImage} />
+          <PickerImage
+            text={imagePlaceholder()}
+            onPress={pickImage}
+          />
 
           <BPButton text="Adicionar" onPress={onAddExpense} />
         </KeyboardAwareScrollView>

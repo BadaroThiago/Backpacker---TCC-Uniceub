@@ -8,7 +8,6 @@ import {
   Keyboard,
 } from "react-native";
 import { styles } from "../styles";
-import FAB from "../components/FAB";
 import {
   BPTextInput,
   BPDescriptionTextInput,
